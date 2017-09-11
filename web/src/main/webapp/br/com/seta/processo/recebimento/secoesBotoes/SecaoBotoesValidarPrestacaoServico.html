@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns:wicket="http://wicket.apache.org">
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+
+	<wicket:panel>
+		<button wicket:id="voltarBtn" class="btn btn-primary" type="button">
+			<i class="fa fa-chevron-left"></i> Voltar
+		</button>
+		<button id="recebimentoReprovadoBtn" class="btn btn-primary"
+			type="button" data-toggle="modal" data-backdrop="static"
+			data-keyboard="false" data-target="#recebimentoReprovadoModal">
+			<i class="fa fa-times" aria-hidden="true"></i> Rejeitar
+		</button>
+		<button id="recebimentoAprovadoBtn" class="btn btn-primary"
+			type="button" data-toggle="modal" data-backdrop="static"
+			data-keyboard="false" data-target="#recebimentoAprovadoModal">
+			<i class="fa fa-check" aria-hidden="true"></i> Autorizar Execução
+		</button>
+		
+		<div wicket:id="recebimentoAprovadoModal"></div>
+		<div wicket:id="recebimentoReprovadoModal"></div>
+		<div wicket:id="erroDialog"></div>
+
+		<!-- início: Fragments -->
+		<wicket:fragment wicket:id="comentariosOkBtnFragment">
+			<button id="comentariosOkBtn" type="button" class="btn btn-primary"
+				data-dismiss="modal">
+				<i class="fa fa-check"></i> Ok
+			</button>
+		</wicket:fragment>
+
+		<!-- início: conteúdo modals de confirmação -->
+		<wicket:fragment wicket:id="conteudoModalConfirmacaoFragment">
+			<div class="modal-wrapper">
+				<div class="modal-icon">
+					<i class="fa fa-question-circle"></i>
+				</div>
+				<div wicket:id="mensagemLbl" class="modal-text">[CONTEÚDO]</div>
+			</div>
+			<div class="secao" style="margin-top:40px">
+				<div class="cabecalho-secao">Comentários</div>
+				<div class="corpo-secao">
+					<div class="row">
+						<div class="col-sm-12">
+							<textarea wicket:id="comentariosTxt" class="form-control"
+								rows="4" cols="40"></textarea>
+						</div>
+					</div>
+				</div>
+			</div>			
+		</wicket:fragment>
+		<!-- fim: conteúdo modals de confirmação -->
+
+		<!-- início: botão fechar utilizado nas modals -->
+		<wicket:fragment wicket:id="fecharBtnFragment">
+			<button type="button" class="btn btn-danger" data-dismiss="modal">
+				<i class="fa fa-times"></i> Fechar
+			</button>
+		</wicket:fragment>
+		<!-- fim: botão fechar utilizado nas modals -->
+
+		<!-- início: botao ok modal aprovação -->
+		<wicket:fragment wicket:id="recebimentoAprovadoBtnFragment">
+			<button wicket:id="recebimentoAprovadoBtn" type="button"
+				class="btn btn-primary">
+				<i class="fa fa-check"></i> Ok
+			</button>
+		</wicket:fragment>
+		<!-- fim: botao ok modal aprovação -->
+
+		<!-- início: botao ok modal reprovado -->
+		<wicket:fragment wicket:id="recebimentoReprovadoBtnFragment">
+			<button wicket:id="recebimentoReprovadoBtn" type="button"
+				class="btn btn-primary">
+				<i class="fa fa-check"></i> Ok
+			</button>
+		</wicket:fragment>
+		<!-- fim: botao ok modal reprovado -->
+
+		<!-- fim: Fragments -->
+	</wicket:panel>
+</body>
+</html>

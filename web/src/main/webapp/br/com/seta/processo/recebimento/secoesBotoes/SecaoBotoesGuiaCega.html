@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns:wicket="http://wicket.apache.org">
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+	<wicket:panel>
+		<button wicket:id="voltarBtn" class="btn btn-primary" type="button">
+			<i class="fa fa-chevron-left"></i> Voltar
+		</button>
+		<button wicket:id="submitBtn" class="btn btn-primary" type="button">
+			<i class="fa fa-share" aria-hidden="true"></i> Enviar
+		</button>
+		<button wicket:id="imprimirBtn" class="btn btn-primary">
+			<i class="fa fa-print" aria-hidden="true"></i> Imprimir
+		</button>
+		
+		<a wicket:id="abrirGuiaCegaLnk" id="abrirGuiaCegaLnk" href="#" target="guia_cega" style="display: none">Abrir Guia Cega</a>
+
+		<div wicket:id="modalConfirmacao"></div>
+		<div wicket:id="erroDialog"></div>
+		
+		<!-- início: conteúdo comentários e anexo-->
+		<wicket:fragment wicket:id="corpoModal">
+			<!-- 
+			<div class="secao">
+				<div class="cabecalho-secao">Anexar documento</div>
+				<div class="corpo-secao">
+					<div class="row">
+						<div class="col-sm-12">
+							<div wicket:id="anexoDocGuiaCega"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			 -->
+			 
+			<div class="secao">
+				<div class="cabecalho-secao">Comentários</div>
+				<div class="corpo-secao">
+					<div class="col-sm-12">
+						<textarea wicket:id="comentariosTxt" class="form-control" rows="4"
+							cols="40"></textarea>
+					</div>
+				</div>
+			</div>
+			<div class="row"></div>
+		</wicket:fragment>
+
+		<!-- início: botão ok do modal de comentários -->
+		<wicket:fragment wicket:id="comentariosOkBtnFragment">
+			<button id="comentariosOkBtn" type="button" class="btn btn-primary" data-dismiss="modal">
+				<i class="fa fa-check"></i> Ok
+			</button>
+		</wicket:fragment>
+		<!-- início: botão ok do modal de comentários -->
+		
+		<!-- fim: conteúdo comentários e anexo-->
+
+		<!-- início: botões modal -->
+		<wicket:fragment wicket:id="botoesModal">
+			<button type="button" class="btn btn-danger" data-dismiss="modal">
+				<i class="fa fa-times"></i> Fechar
+			</button>
+			<button wicket:id="enviarBtn" type="button" class="btn btn-primary">
+				<i class="fa fa-check"></i> Enviar
+			</button>
+			<button wicket:id="rejeitarBtn" type="button" class="btn btn-primary">
+				<i class="fa fa-times"></i> Rejeitar
+			</button>
+			<button wicket:id="solicitarVerificacaoBtn" type="button" class="btn btn-primary">
+				<i class="fa fa-check"></i> Solicitar verificação
+			</button>
+		</wicket:fragment>
+		<!-- fim: botões modal -->
+
+	</wicket:panel>
+</body>
+</html>

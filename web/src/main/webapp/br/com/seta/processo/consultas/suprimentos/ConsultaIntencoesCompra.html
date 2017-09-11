@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns:wicket="http://wicket.apache.org">
+
+<head>
+<meta charset="UTF-8">
+<title>Consulta de Intençoes</title>
+</head>
+<body>
+	<wicket:extend>
+		<section class="panel panel-primary">
+			<form wicket:id="instanciasForm" class="form-horizontal">
+				<div class="panel-menu">
+					<button class="btn btn-primary" type="button" data-toggle="modal"
+						data-backdrop="static" data-keyboard="false"
+						data-target="#modalFiltro">
+						<i class="fa fa-filter" aria-hidden="true"></i> Filtros
+					</button>
+				</div>
+				<div class="panel-body">
+					<div wicket:id="tabelaInstancias">
+						<div class="row">
+							<div class="col-md-12">
+								<table
+									class="table table-bordered table-hover table-condensed mb-none historico"
+									id="datatable-default">
+									<thead>
+										<tr>
+											<th>Case ID</th>
+											<th>Processo</th>
+											<th>Case ID Origem</th>
+											<th>Solicitante</th>
+											<th>Tipo de Despesa</th>
+											<th>Empresa</th>
+											<th>Fornecedor</th>
+											<th>Status</th>
+											<th>Término</th>
+											<th></th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr wicket:id="instancias">
+											<td><span wicket:id="caseId"></span></td>
+											<td><span wicket:id="processo"></span></td>
+											<td><span wicket:id="caseIdOrigem"></span></td>
+											<td><span wicket:id="solicitante"></span></td>
+											<td><span wicket:id="tipoDespesa"></span></td>
+											<td><span wicket:id="empresa"></span></td>
+											<td><span wicket:id="fornecedor"></span></td>
+											<td><span wicket:id="status"></span></td>
+											<td><span wicket:id="termino"></span></td>
+											<td style="text-align: center"><button
+													wicket:id="detalhesBtn" class="btn btn-primary"
+													type="button">
+													<i class="fa fa-file-text-o" aria-hidden="true"></i>
+													Detalhes
+												</button></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12">
+								<span wicket:id="navigator" class="dataview-navigator"
+									style="margin-top: 10px;">[NAVIGATOR]</span>
+							</div>
+						</div>
+					</div>
+					<div wicket:id="mensagemContainer">
+						<div wicket:id="mensagem" class="alertaContainer alert alert-info">
+							Não foram encontrados resultados</div>
+					</div>
+				</div>
+			</form>
+			<form wicket:id="formModalFiltro">
+				<!-- MODAL FILTRO -->
+				<div wicket:id="modalFiltro" id="modalFiltro" class="modal"
+					role="dialog" data-backdrop="static" data-keyboard="false">
+					<div class="vertical-alignment-helper">
+						<div class="modal-dialog vertical-align-center">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h4 class="modal-title" id="myModalLabel">Filtros</h4>
+								</div>
+								<div class="modal-body">
+									<div class="row">
+										<div class="col-md-12">
+											<div class="form-group form-group-sm">
+												<label class="col-sm-3 control-label">CaseId</label>
+												<div class="col-sm-7">
+													<input wicket:id="caseId" type="text" class="form-control">
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-12">
+											<div class="form-group form-group-sm">
+												<label class="col-sm-3 control-label">Processo</label>
+												<div class="col-sm-7">
+													<label class="glyphicon custom-select"> <select
+														wicket:id="processo" class="form-control combo"></select>
+													</label>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-12">
+											<div class="form-group form-group-sm">
+												<label class="col-sm-3 control-label">Solicitante</label>
+												<div class="col-sm-7">
+													<input wicket:id="solicitante" class="form-control">
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-12">
+											<div class="form-group form-group-sm">
+												<label class="col-sm-3 control-label">Empresa</label>
+												<div class="col-sm-7">
+													<input wicket:id="empresa" class="form-control">
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-12">
+											<div class="form-group form-group-sm">
+												<label class="col-sm-3 control-label">Fornecedor</label>
+												<div class="col-sm-7">
+													<input wicket:id="fornecedor" type="text"
+														class="form-control">
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-12">
+											<div class="form-group form-group-sm">
+												<label class="col-sm-3 control-label">Data </label>
+												<div class="col-sm-3">
+													<input wicket:id="inicio" type="text" class="form-control"
+														data-plugin-datepicker
+														data-plugin-options='{"language":"pt-BR", "format": "dd/mm/yyyy"}'>
+												</div>
+												<label class="col-sm-1 control-label">Até</label>
+												<div class="col-sm-3">
+													<input wicket:id="fim" type="text" class="form-control"
+														data-plugin-datepicker
+														data-plugin-options='{"language":"pt-BR", "format": "dd/mm/yyyy"}'>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-12">
+											<div class="form-group form-group-sm">
+												<label class="col-sm-3 control-label">Tipo Despesa </label>
+												<div class="col-sm-7">
+													<label class="glyphicon custom-select"> <select
+														wicket:id="tipoDespesa" class="form-control combo"></select>
+													</label>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-12">
+											<div class="form-group form-group-sm">
+												<label class="col-sm-3 control-label">Status </label>
+												<div class="col-sm-7">
+													<label class="glyphicon custom-select"> <select
+														wicket:id="status" class="form-control combo"></select>
+													</label>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="modal-footer">
+									<button wicket:id="pesquisarBtn" type="button"
+										class="btn btn-primary"
+										onclick="$('#modalFiltro').modal('hide'); exibeCarregamento();">
+										<i class="fa fa-search"></i> Pesquisar
+									</button>
+									<button type="button" class="btn btn-danger"
+										data-dismiss="modal">Cancelar</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- fim modal filtro -->
+			</form>
+		</section>
+		<!-- end: page -->
+	</wicket:extend>
+</body>
+</html>

@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns:wicket="http://wicket.apache.org">
+
+<head>
+<meta charset="UTF-8">
+<title>Consulta Cadastro de Produtos</title>
+</head>
+<body>
+    <wicket:extend>
+        <section class="panel panel-primary">
+            <form wicket:id="cadProdutosForm" class="form-horizontal">
+                <div class="panel-menu">
+                    <button class="btn btn-primary" type="button" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#modalFiltro">
+                        <i class="fa fa-filter" aria-hidden="true"></i> Filtros
+                    </button>
+                </div>
+                <div class="panel-body">
+                    <div >
+                        <div class="row">
+                            <div class="col-md-12">
+                                <table wicket:id="dadosProdutoTabela" class="table table-bordered table-hover table-condensed mb-none historico" id="datatable-default">
+                                    <thead>
+                                        <tr>
+                                            <th wicket:id="caseIdOrder" >
+                                                <i class="fa fa-sort-asc"></i> 
+                                                <i class="fa fa-sort-desc"></i> 
+                                                <i class="fa fa-sort"></i>  
+                                                Case ID
+                                            </th>
+                                            <th wicket:id="dataOrder">
+                                                <i class="fa fa-sort-asc"></i> 
+                                                <i class="fa fa-sort-desc"></i> 
+                                                <i class="fa fa-sort"></i> 
+                                                Data
+                                            </th>
+                                            <th wicket:id="idFornecedorOrder">
+                                                <i class="fa fa-sort-asc"></i> 
+                                                <i class="fa fa-sort-desc"></i> 
+                                                <i class="fa fa-sort"></i> 
+                                                ID Fornecedor
+                                            </th>
+                                            <th wicket:id="eanOrder">
+                                                <i class="fa fa-sort-asc"></i> 
+                                                <i class="fa fa-sort-desc"></i> 
+                                                <i class="fa fa-sort"></i> 
+                                                EAN
+                                            </th>
+                                             <th wicket:id="idProdutoOrder">
+                                                <i class="fa fa-sort-asc"></i> 
+                                                <i class="fa fa-sort-desc"></i> 
+                                                <i class="fa fa-sort"></i> 
+                                                Cód. Prod. NF
+                                            </th>
+                                            <th wicket:id="produtoDescOrder">
+                                                <i class="fa fa-sort-asc"></i> 
+                                                <i class="fa fa-sort-desc"></i> 
+                                                <i class="fa fa-sort"></i> 
+                                                Produto
+                                            </th>
+                                            <th wicket:id="codNcmOrder">
+                                                <i class="fa fa-sort-asc"></i> 
+                                                <i class="fa fa-sort-desc"></i> 
+                                                <i class="fa fa-sort"></i> 
+                                                Cod. NCM
+                                            </th>
+                                            <th wicket:id="descNcmOrder">
+                                                <i class="fa fa-sort-asc"></i> 
+                                                <i class="fa fa-sort-desc"></i> 
+                                                <i class="fa fa-sort"></i> 
+                                                Descrição NCM
+                                            </th>
+                                            <th wicket:id="statusOrder">
+                                                <i class="fa fa-sort-asc"></i> 
+                                                <i class="fa fa-sort-desc"></i> 
+                                                <i class="fa fa-sort"></i> 
+                                                Status
+                                            </th>
+                                            <th >
+                                                
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr wicket:id="cadProdutosDataView">
+                                            <td><span wicket:id="caseIdLbl"></span></td>
+                                            <td><span wicket:id="dataLbl"></span></td>
+                                            <td><span wicket:id="idFornecLbl"></span></td>
+                                            <td><span wicket:id="eanUnidLbl"></span></td>
+                                            <td><span wicket:id="idProdutoLbl"></span></td>
+                                            <td><span wicket:id="descrProdutoLbl"></span></td>
+                                            <td><span wicket:id="codNcmLbl"></span></td>
+                                            <td><span wicket:id="descNcmLbl"></span></td>
+                                            <td><span wicket:id="statusLbl"></span></td>
+                                            <td><button wicket:id="detalhesBtn" class="btn btn-primary" type="button"><i class="fa fa-file-text-o" aria-hidden="true"></i> Detalhes</button></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <span wicket:id="navigator" class="dataview-navigator" style="margin-top: 10px;">[NAVIGATOR]</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 
+                    <div  class="alertaContainer alert alert-info">
+                        Não foram encontradas solicitações para o seu usuário
+                    </div>  -->
+                </div>
+            </form>
+            <form wicket:id="modalFiltro">
+                <!-- MODAL FILTRO -->
+                <div id="modalFiltro" class="modal" role="dialog" data-backdrop="static" data-keyboard="false">
+                    <div class="vertical-alignment-helper">
+                        <div class="modal-dialog vertical-align-center">
+                            <div class="modal-content" >
+                                <div class="modal-header">
+                                    <h4 class="modal-title" id="myModalLabel">Filtros</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group form-group-sm">
+                                                <label class="col-sm-3 control-label">Case ID</label>
+                                                <div class="col-sm-7">
+                                                    <input wicket:id="caseId" type="text" class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group form-group-sm">
+                                                <label class="col-sm-3 control-label">ID Fornecedor</label>
+                                                <div class="col-sm-7">
+                                                    <input wicket:id="codFornecedor" class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group form-group-sm">
+                                                <label class="col-sm-3 control-label">EAN</label>
+                                                <div class="col-sm-7">
+                                                    <input wicket:id="eanUnidade" class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group form-group-sm">
+                                                <label class="col-sm-3 control-label">Cód. Prod. NF</label>
+                                                <div class="col-sm-7">
+                                                    <input wicket:id="codProdutoC5" type="text" class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group form-group-sm">
+                                                <label class="col-sm-3 control-label">Produto</label>
+                                                <div class="col-sm-7">
+                                                    <input wicket:id="descricaoProduto" type="text" class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group form-group-sm">
+                                                <label class="col-sm-3 control-label">NCM</label>
+                                                <div class="col-sm-7">
+                                                    <input wicket:id="ncm" type="text" class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group form-group-sm">
+                                                <label class="col-sm-3 control-label">Data </label>
+                                                <div class="col-sm-3">
+                                                    <input wicket:id="inicio" type="text" class="form-control" data-plugin-datepicker data-plugin-options='{"language":"pt-BR", "format": "dd/mm/yyyy"}'>
+                                                </div>
+                                                <label class="col-sm-1 control-label">Até</label>
+                                                <div class="col-sm-3">
+                                                    <input wicket:id="fim" type="text" class="form-control" data-plugin-datepicker data-plugin-options='{"language":"pt-BR", "format": "dd/mm/yyyy"}'>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group form-group-sm">
+                                                <label class="col-sm-3 control-label">Status </label>
+                                                <div class="col-sm-7">
+                                                    <label class="glyphicon custom-select"> 
+                                                    	<select wicket:id="status" class="form-control combo"></select>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button wicket:id="pesquisarBtn" type="button" class="btn btn-primary" 
+                                    	onclick="$('#modalFiltro').modal('hide'); exibeCarregamento();">
+                                        <i class="fa fa-search"></i> Pesquisar
+                                    </button>
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- fim modal filtro -->
+            </form>
+        </section>
+        <!-- end: page -->
+    </wicket:extend>
+</body>
+</html>

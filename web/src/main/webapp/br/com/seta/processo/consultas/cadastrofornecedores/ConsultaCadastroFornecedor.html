@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns:wicket="http://wicket.apache.org">
+
+<head>
+<meta charset="UTF-8">
+<title>Consulta Cadastro Fornecedor</title>
+</head>
+<body>
+	<wicket:extend>
+		<section class="panel panel-primary">
+			<form wicket:id="formFornecedores"  class="form-horizontal">
+				<div class="panel-menu">
+					<button class="btn btn-primary" type="button" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#modalFiltro">
+						<i class="fa fa-filter" aria-hidden="true"></i> Filtros
+					</button>
+				</div>
+				<div wicket:id="tabelaFornecedorContainer"  class="panel-body">
+					<div >
+						<div class="row">
+							<div class="col-md-12">
+								<table class="table table-bordered table-hover table-condensed mb-none historico" id="datatable-default">
+									<thead>
+										<tr>
+											<th wicket:id="caseIdOrder">
+												<i class="fa fa-sort-asc"></i> 
+												<i class="fa fa-sort-desc"></i> 
+												<i class="fa fa-sort"></i>  
+												Case ID
+											</th>
+											<th wicket:id="codConsincoOrder">
+												<i class="fa fa-sort-asc"></i> 
+												<i class="fa fa-sort-desc"></i> 
+												<i class="fa fa-sort"></i> 
+												Cód. Consinco
+											</th>
+											<th wicket:id="dataOrder">
+												<i class="fa fa-sort-asc"></i> 
+												<i class="fa fa-sort-desc"></i> 
+												<i class="fa fa-sort"></i> 
+												Data
+											</th>
+											<th wicket:id="razaoSocialOrder">
+												<i class="fa fa-sort-asc"></i> 
+												<i class="fa fa-sort-desc"></i> 
+												<i class="fa fa-sort"></i> 
+												Razão Social
+											</th>
+											<th wicket:id="nomeOrder">
+												<i class="fa fa-sort-asc"></i> 
+												<i class="fa fa-sort-desc"></i> 
+												<i class="fa fa-sort"></i> 
+												Nome
+											</th>
+											<th wicket:id="cnpjOrder">
+												<i class="fa fa-sort-asc"></i> 
+												<i class="fa fa-sort-desc"></i> 
+												<i class="fa fa-sort"></i> 
+												CNPJ
+											</th>
+											<th wicket:id="cpfOrder">
+												<i class="fa fa-sort-asc"></i> 
+												<i class="fa fa-sort-desc"></i> 
+												<i class="fa fa-sort"></i> 
+												CPF
+											</th>
+											<th wicket:id="compradorOrder">
+												<i class="fa fa-sort-asc"></i> 
+												<i class="fa fa-sort-desc"></i> 
+												<i class="fa fa-sort"></i> 
+												Comprador
+											</th>
+											<th wicket:id="statusOrder">
+												<i class="fa fa-sort-asc"></i> 
+												<i class="fa fa-sort-desc"></i> 
+												<i class="fa fa-sort"></i> 
+												Status
+											</th>
+											<th >
+												
+											</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr wicket:id="dadosFornecedor" >
+											<td><span wicket:id="caseIdTd"></span></td>
+											<td><span wicket:id="codConsincoTd"></span></td>
+											<td><span wicket:id="dataTd"></span></td>
+											<td><span wicket:id="razaoSocialTd"></span></td>
+											<td><span wicket:id="nomeTd"></span></td>
+											<td><span wicket:id="cnpjTd" ></span></td>
+											<td><span wicket:id="cpfTd"></span></td>
+											<td><span wicket:id="compradorTd"></span></td>
+											<td><span wicket:id="statusTd"></span></td>
+											<td><button wicket:id="detalhesBtn" class="btn btn-primary" type="button"><i class="fa fa-file-text-o" aria-hidden="true"></i> Detalhes</button></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12">
+								<span wicket:id="navigator"  class="dataview-navigator" style="margin-top: 10px;">[NAVIGATOR]</span>
+							</div>
+						</div>
+					</div>
+					<!-- 
+					<div  class="alertaContainer alert alert-info">
+						Não foram encontradas solicitações para o seu usuário
+					</div>  -->
+				</div>
+			</form>
+			<form wicket:id="formFiltro">
+				<!-- MODAL FILTRO -->
+				<div wicket:id="modalFiltro" id="modalFiltro" class="modal" role="dialog" data-backdrop="static" data-keyboard="false">
+					<div class="vertical-alignment-helper">
+						<div class="modal-dialog vertical-align-center">
+							<div class="modal-content" >
+								<div class="modal-header">
+									<h4 class="modal-title" id="myModalLabel">Filtros</h4>
+								</div>
+								<div class="modal-body">
+									<div class="row">
+										<div class="col-md-12">
+											<div class="form-group form-group-sm">
+												<label class="col-sm-3 control-label">Case ID</label>
+												<div class="col-sm-7">
+													<input wicket:id="caseId" type="text" class="form-control">
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-12">
+											<div class="form-group form-group-sm">
+												<label class="col-sm-3 control-label">Cód. Consinco</label>
+												<div class="col-sm-7">
+													<input wicket:id="codConsinco" class="form-control">
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-12">
+											<div class="form-group form-group-sm">
+												<label class="col-sm-3 control-label">Razão Social/Nome</label>
+												<div class="col-sm-7">
+													<input wicket:id="razaoSocialOuNome"  type="text" class="form-control">
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-12">
+											<div class="form-group form-group-sm">
+												<label class="col-sm-3 control-label">CPF/CNPJ</label>
+												<div class="col-sm-7">
+													<input wicket:id="cpfCnpj" type="text" class="form-control">
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-12">
+											<div class="form-group form-group-sm">
+												<label class="col-sm-3 control-label">Comprador</label>
+												<div class="col-sm-7">
+													<input wicket:id="comprador" type="text" class="form-control">
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-12">
+											<div class="form-group form-group-sm">
+												<label class="col-sm-3 control-label">Data </label>
+												<div class="col-sm-3">
+													<input wicket:id="inicio" type="text" class="form-control" data-plugin-datepicker data-plugin-options='{"language":"pt-BR", "format": "dd/mm/yyyy"}'>
+												</div>
+												<label class="col-sm-1 control-label">Até</label>
+												<div class="col-sm-3">
+													<input wicket:id="fim" type="text" class="form-control" data-plugin-datepicker data-plugin-options='{"language":"pt-BR", "format": "dd/mm/yyyy"}'>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-12">
+											<div class="form-group form-group-sm">
+												<label class="col-sm-3 control-label">Status </label>
+												<div class="col-sm-7">
+													<label class="glyphicon custom-select"> <select wicket:id="status"  class="form-control combo"></select>
+													</label>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="modal-footer">
+									<button wicket:id="pesquisarBtn" type="button" class="btn btn-primary" 
+										onclick="$('#modalFiltro').modal('hide'); exibeCarregamento();" >
+										<i class="fa fa-search"></i> Pesquisar
+									</button>
+									<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- fim modal filtro -->
+			</form>
+		</section>
+		<!-- end: page -->
+	</wicket:extend>
+</body>
+</html>

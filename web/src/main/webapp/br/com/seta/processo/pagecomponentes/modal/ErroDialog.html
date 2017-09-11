@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:wicket="http://wicket.apache.org">
+
+<head>
+</head>
+<body>
+	<wicket:panel>
+		<div wicket:id="modalErro"></div>
+
+		<!-- início: corpo modal erro -->
+		<wicket:fragment wicket:id="corpoModalAnexoFragment">
+			<div class="modal-wrapper">
+				<div class="modal-icon">
+					<i class="fa fa-times-circle"></i>
+				</div>
+				<div class="modal-text">
+					<h4 wicket:id="cabecalhoMsgErro"></h4>
+					<p wicket:id="msgsErroRepeatingView">[Mensagem de erro]</p>
+				</div>
+			</div>
+		</wicket:fragment>
+		<!-- fim: corpo modal erro -->
+		
+		<wicket:fragment wicket:id="botaoFecharFragment">
+			<button wicket:id="okBtn" type="button" class="btn btn-danger" data-dismiss="modal">OK</button>
+		</wicket:fragment>
+	</wicket:panel>
+</body>
+</html>

@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns:wicket="http://wicket.apache.org">
+<head>
+	<meta charset="UTF-8">
+	<style>		
+	@media print {
+		body{
+		margin:0;
+		padding:0;
+		}
+	}
+	
+	.principal{
+		width: 21cm;
+		height: 29.7cm;
+		padding: 0.2cm;
+		font-family: "Open Sans", Arial, sans-serif;
+	}
+
+	.cabecalho{
+
+	}
+
+	.corpo{
+
+	}
+
+	.rodape{
+    	/*top: 29.8cm;
+		position: fixed;*/
+		width: 21cm;
+	    font-size: 0.3cm;
+	    position: running(rodape)
+  	}
+
+	.logo{
+		float: left;
+		width: 3.5cm;			
+	}
+
+	.titulo{
+		margin: 0;
+	}
+
+	.dados-recebimento{	
+		font-size: 0.3cm;
+		width: 17.5cm;
+		float: right;
+	}
+
+	.dados-recebimento label{
+	 	display: inline-block;
+		width: 3cm;
+  		text-align: right;
+  		font-weight: bold;
+	}
+
+	.dados-recebimento label:after{
+	 	content: ": ";
+	}
+
+	.dados-recebimento span{
+	    margin-left: 0.1cm;
+	}
+
+	.cabecalho .titulo{
+		width: 4cm;
+		float: left;
+		text-align: left;
+		padding-left: 0.7cm;
+	}
+
+	.dados-recebimento .col{
+		width: 33.33%;
+		float: left;
+	}
+
+	.secao{
+		border: 1px solid black;
+		border-radius: 0.1cm;
+	    margin-top: 0.2cm;
+		margin-bottom: 0.2cm;
+	}
+
+	.secao .titulo{
+		color: black;
+		padding-left: 0.4cm;
+		padding-top: 0.1cm;
+		padding-bottom: 0.1cm;
+	    border-bottom: 1px solid black;
+	}
+
+	.secao .conteudo{
+		font-size: 0.3cm;
+		margin: 0.2cm;
+	}	
+
+	.secao .conteudo .chave-valor > label{
+		font-weight: bold;
+		width: 100%;
+		float: left;		
+	}
+
+	.secao .conteudo .chave-valor > span{
+		width: 100%;
+		clear: left;
+		min-height: 0.3cm;
+		display: inline-block;
+	}
+
+	.secao .conteudo .col{
+		float: left;
+	}	
+
+	.secao .conteudo.solicitacao .col1{
+		width: 40%;
+	}
+
+	.secao .conteudo.solicitacao .col2{
+		width: 30%;
+	}
+
+	.secao .conteudo.solicitacao .col3{
+		width: 30%;
+	}
+
+	.secao .conteudo.valores .col{
+		width: 25%;
+	}
+
+	.secao .conteudo.validacao .col{
+		width: 30%;
+	}
+
+	.secao .conteudo.divergencias .col{
+		width: 33.33%;
+	}
+
+	.secao .conteudo.aprovar-recebimento-pedido .descricao{
+		margin-bottom: 0.3cm;
+	}
+
+	.secao .conteudo.aprovar-recebimento-pedido .comentarios-aprovador{
+
+	}
+
+	.clear-both {		  
+	  clear: both;
+	}
+
+	table{
+		width: 100%;
+		border-collapse: collapse;
+		font-size: 0.3cm;
+	}
+
+	table, th, td {
+	    border: 1px solid black;
+	}
+	
+	.rodape .emitido-em{
+		float: right;
+	}
+
+	.rodape .paginacao{
+		float: left;
+	}
+	</style>	
+</head>
+<body>	
+	<div class="principal">			
+		<div wicket:id="cabecalho" class="cabecalho">
+			<img class="logo" src="resources/img/logo_setaatacadista.png"/>		
+			<h3 class="titulo">Guia Cega</h3>
+			<div class="dados-recebimento">			
+				<div class="col">				
+					<div class="chave-valor">
+						<label>Tipo de Despesa</label> <span wicket:id="tipoDespesa"></span>
+					</div>
+				</div>
+				<div class="col">
+					<div class="chave-valor">
+						<label>N° Intenção</label> <span wicket:id="nroIntencao"></span>
+					</div>
+					<div class="chave-valor">
+						<label>Requisição C5</label> <span wicket:id="requisicaoC5"></span>
+					</div>
+				</div>
+				<div class="col">
+					<div class="chave-valor">
+						<label>Data Inclusção C5</label> <span wicket:id="dataInclusaoC5"></span>
+					</div>
+					<div class="chave-valor">
+						<label>Data Compra C5</label> <span wicket:id="dataCompraC5"></span>
+					</div>
+				</div>			
+			</div>	
+			<div class="clear-both"></div>
+		</div>
+
+		<div class="corpo">			
+			<!--Solicitacao -->
+			<div wicket:id="dadosSolicitacao" class="secao">
+				<h4 class="titulo">Solicitação</h4>
+				<div class="conteudo solicitacao">
+					<div class="col1 col">
+						<div class="chave-valor">
+							<label>Nome do Solicitante</label>
+							<span wicket:id="nomeSolicitante"></span>
+						</div>
+						<div class="chave-valor">
+							<label>Fornecedor</label>
+							<span wicket:id="fornecedor"></span>
+						</div>
+						<div class="chave-valor">
+							<label>Natureza de Despesa</label>
+							<span wicket:id="naturezaDespesa"></span>
+						</div>
+					</div>
+
+					<div class="col2 col">
+						<div class="chave-valor">
+							<label>Local de entrega</label>
+							<span wicket:id="localEntrega"></span>
+						</div>
+						<div class="chave-valor">
+							<label>Cód. Modelo</label>
+							<span wicket:id="codModelo"></span>
+						</div>
+					</div>
+
+					<div class="col3 col">
+						<div class="chave-valor">
+							<label>Empresa</label>
+							<span wicket:id="empresa"></span>
+						</div>
+						<div class="chave-valor">
+							<label>CGO</label>
+							<span wicket:id="cgo"></span>
+						</div>
+						<div class="chave-valor">
+							<label>Data Solicitação</label>
+							<span wicket:id="dataSolicitacao"></span>
+						</div>
+					</div>
+					<div class="clear-both">
+					</div>
+				</div>
+			</div>
+
+			<!--Valores -->
+			<div wicket:id="valores" class="secao">
+				<h4 class="titulo">Valores</h4>
+				<div class="conteudo valores">
+					<div class="col">
+						<div class="chave-valor">
+							<label>Valor Total</label>
+							<span wicket:id="valorTotal"></span>
+						</div>
+					</div>
+					<div class="col">
+						<div class="chave-valor">
+							<label>Valor Desconto</label>
+							<span wicket:id="valorDesconto"></span>
+						</div>
+					</div>
+					<div class="col">
+						<div class="chave-valor">
+							<label>Valor Acréscimo</label>
+							<span wicket:id="valorAcrescimo"></span>
+						</div>
+					</div>
+					<div class="col">
+						<div class="chave-valor">
+							<label>Valor Líquido</label>
+							<span wicket:id="valorLiquido"></span>
+						</div>
+					</div>
+					<div class="clear-both">
+					</div>
+				</div>
+			</div>
+			
+			<!--Itens -->
+			<div wicket:id="itens" class="secao">
+				<h4 class="titulo">Itens</h4>
+				<div class="conteudo">
+					<table>
+						<thead>
+							<tr>
+								<th style="width: 20%">Cód.</th>
+								<th style="width: 80%">Descrição</th>								
+							</tr>	
+						</thead>
+						<tbody>							
+							<tr wicket:id="itensLista">
+								<td wicket:id="cod" style="text-align: center"></td>
+								<td wicket:id="descricao"></td>								
+							</tr>	
+						</tbody>
+					</table>
+				</div>
+			</div>
+			
+			<!--Validação -->
+			<div wicket:id="validacao" class="secao">
+				<h4 class="titulo">Validação</h4>
+				<div class="conteudo validacao">
+					<div class="col">
+						<div class="chave-valor">
+							<label>Box</label>
+							<span wicket:id="box"></span>
+						</div>
+					</div>
+					<div class="col">
+						<div class="chave-valor">
+							<label>Nº Nota</label>
+							<span wicket:id="nroNota"></span>
+						</div>
+					</div>
+					<div style="clear: both; width:100%">
+						<div class="chave-valor">
+							<label>Conferentes</label>
+							<span wicket:id="conferentes"></span>
+						</div>
+					</div>
+					<div style="clear: both; width:100%">
+						<div class="chave-valor">
+							<label>Descarregadores</label>
+							<span wicket:id="descarregadores"></span>
+						</div>
+					</div>
+					<div class="clear-both">
+					</div>
+				</div>
+			</div>
+			
+			<!--Divergências -->
+			<div wicket:id="divergencias" class="secao">
+				<h4 class="titulo">Divergências</h4>
+				<div class="conteudo divergencias">
+					<div class="col">
+						<div class="chave-valor">
+							<label>Possui Divergências?</label>
+							<span wicket:id="possuiDivergencias"></span>
+						</div>
+					</div>
+					<div class="col">
+						<div class="chave-valor">
+							<label>Categoria</label>
+							<span wicket:id="categoria"></span>
+						</div>
+					</div>
+					<div class="clear-both"></div>
+					<div>
+						<div class="chave-valor">
+							<label>Descrição</label>
+							<span wicket:id="descricao"></span>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div wicket:id="aprovacaoRecebDivergente" class="secao">
+				<h4 class="titulo">Aprovação de Recebimento de Pedido Divergente</h4>
+				<div class="conteudo aprovar-recebimento-pedido">
+					<div class="descricao">
+						O pedido com divergência parcial do solicitante <span wicket:id="solicitante" style="font-weight: bold;">[SOLICITANTE]</span>
+						 foi aprovado por <span wicket:id="aprovador" style="font-weight: bold;">[APROVADOR]</span>
+					</div>
+					<div class="comentarios-aprovador">
+						<div class="chave-valor">
+							<label>Comentário do Aprovador</label>
+							<span wicket:id="comentarioAprovador">
+								
+							</span>
+						</div>
+					</div>
+				</div>
+			</div>	
+
+		</div>	
+	</div>
+</body>
+</html>

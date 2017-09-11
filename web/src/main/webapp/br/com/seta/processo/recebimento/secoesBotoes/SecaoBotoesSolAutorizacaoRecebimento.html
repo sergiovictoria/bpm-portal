@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns:wicket="http://wicket.apache.org">
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+	<wicket:head>
+		<script src="resources/js/gerenciador-modals.js"></script>
+	</wicket:head>
+
+	<wicket:panel>
+		<button wicket:id="voltarBtn" class="btn btn-primary" type="button">
+			<i class="fa fa-chevron-left"></i> Voltar
+		</button>
+		<button id="abrirModalRejeicaoBtn" class="btn btn-primary" type="button" data-toggle="modal" data-backdrop="static" data-keyboard="false"
+			data-target="#comentariosModal" >
+			<i class="fa fa-times" aria-hidden="true"></i> Rejeitar
+		</button>
+		<button id="abrirModalAprovacaoBtn" class="btn btn-primary" type="button" data-toggle="modal" data-backdrop="static" data-keyboard="false"
+			data-target="#comentariosModal">
+			<i class="fa fa-check" aria-hidden="true"></i> Solicitar Aprovação
+		</button>
+
+		<div wicket:id="comentariosModal"></div>
+		<div wicket:id="aprovacaoModal"></div>
+		<div wicket:id="rejeicaoModal"></div>
+		<div wicket:id="erroDialog"></div>
+
+		<!-- início: botão fechar modal -->
+		<wicket:fragment wicket:id="botaoOkComentariosFragment">
+			<button id="comentariosOkBtn" type="button" class="btn btn-primary" data-dismiss="modal">
+				<i class="fa fa-check"></i> Ok
+			</button>
+		</wicket:fragment>
+		<!-- fim: botão fechar modal -->
+
+		<!-- início: conteúdo modals de confirmação -->
+		<wicket:fragment wicket:id="corpoModalConfirmacao">
+			<div class="modal-wrapper">
+				<div class="modal-icon">
+					<i class="fa fa-question-circle"></i>
+				</div>
+				<div wicket:id="texto" class="modal-text">[CONTEÚDO]</div>
+			</div>
+		</wicket:fragment>
+		<!-- fim: conteúdo modals de confirmação -->
+
+		<!-- início: botão fechar modal -->
+		<wicket:fragment wicket:id="botaoFecharFragment">
+			<button type="button" class="btn btn-danger" data-dismiss="modal">
+				<i class="fa fa-times"></i> Fechar
+			</button>
+		</wicket:fragment>
+		<!-- fim: botão fechar modal -->
+
+		<!-- início: botão aprovar -->
+		<wicket:fragment wicket:id="aprovarBtnFragment">
+			<button wicket:id="aprovarBtn" type="button" class="btn btn-primary">
+				<i class="fa fa-check"></i> Ok
+			</button>
+		</wicket:fragment>
+		<!-- fim: botão aprovar -->
+		
+		<!-- início: botão rejeitar -->
+		<wicket:fragment wicket:id="rejeitarBtnFragment">
+			<button wicket:id="rejeitarBtn" type="button" class="btn btn-primary">
+				<i class="fa fa-check"></i> Ok
+			</button>
+		</wicket:fragment>
+		<!-- fim: botão rejeitar -->
+		
+		
+		<script>
+			var gerenciadorModals = new GerenciadorModals();
+			$("#abrirModalRejeicaoBtn").click(function(){gerenciadorModals.setModalSelecionado("#rejeicaoModal")});
+			$("#abrirModalAprovacaoBtn").click(function(){gerenciadorModals.setModalSelecionado("#aprovacaoModal")});
+			$("#comentariosOkBtn").click(function(){gerenciadorModals.abrirModal()});
+		</script>
+	</wicket:panel>
+</body>
+</html>

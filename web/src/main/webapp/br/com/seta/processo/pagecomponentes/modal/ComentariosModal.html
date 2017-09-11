@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:wicket="http://wicket.apache.org">
+
+<head>
+</head>
+<body>
+	<wicket:panel>
+		<div wicket:id="comentariosDialog"></div>
+
+		<!-- início: corpo modal -->
+		<wicket:fragment wicket:id="corpoModalFragment">
+			<div class="secao">
+				<div class="cabecalho-secao">Comentários</div>
+				<div class="corpo-secao">
+					<div class="row">
+						<div class="col-sm-12">
+							<textarea wicket:id="comentariosTxt" class="form-control"
+								rows="4" cols="40"></textarea>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row"></div>
+		</wicket:fragment>
+		<!-- fim: corpo modal-->
+
+		<wicket:fragment wicket:id="botaoFecharFragment">
+			<button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+		</wicket:fragment>
+	</wicket:panel>
+</body>
+</html>

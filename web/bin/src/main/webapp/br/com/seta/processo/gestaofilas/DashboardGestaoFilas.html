@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns:wicket="http://wicket.apache.org">
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+	<wicket:extend>
+
+		<script wicket:id="scriptGrfUm"></script>
+
+		<div class="panel panel-primary">
+			<form wicket:id="form">
+				<div wicket:id="painelDashboard">
+					<div class="panel-menu" style="padding: 12px;">
+						<button class="btn btn-primary" type="button" data-toggle="modal"
+							data-backdrop="static" data-keyboard="false"
+							data-target="#modalFiltro">
+							<i class="fa fa-filter" aria-hidden="true"></i> Filtros
+						</button>
+
+						<label wicket:id="lblProcesso" class="panel-filter"></label>
+					</div>
+					<div class="panel-body">
+						<div class="row">
+
+							<div class="col-md-12">
+								<div class="row">
+									<div class="col-md-12 graficoTitulo">
+										<LABEL>Por Analista</LABEL>
+									</div>
+								</div>
+								<!-- FIM ROW -->
+								<div class="row">
+									<div class="col-md-12">
+										<div id="parentContainer">
+											<div id="grfUm" class="col-md-12 col-sm-12"></div>
+										</div>
+									</div>
+								</div>
+								<!-- FIM ROW -->
+							</div>
+							<!-- fim col -->
+
+						</div>
+
+					</div>
+				</div>
+
+				<!-- MODAL FILTRO -->
+				<div class="modal fade" tabindex="-1" role="dialog"
+					aria-labelledby="myLargeModalLabel" data-backdrop="static"
+					data-keyboard="false" id="modalFiltro" wicket:id="modalFiltro">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header"
+								style="background-image: linear-gradient(#04519b, #044687 60%, #033769);">
+								<h4 class="modal-title" id="myModalLabel" style="color: #fff;">Filtros</h4>
+							</div>
+							<div class="modal-body" style="background: #eeeeee;">
+								<div class="row">
+									<div class="col-md-12">
+										<div class="form-group form-group-sm">
+											<label class="col-sm-3 control-label">Processo</label>
+											<div class="col-sm-7">
+												<label class="glyphicon custom-select"> <select
+													wicket:id="cmbProcesso" class="form-control combo"></select>
+												</label>
+											</div>
+										</div>
+									</div>
+									<!-- fim col -->
+								</div>
+								<!-- fim row -->
+								<div class="row">
+									<div class="col-md-12">
+										<div class="form-group form-group-sm">
+											<label class="col-sm-3 control-label">Ator</label>
+											<div class="col-sm-7">
+												<label class="glyphicon custom-select"> <select
+													wicket:id="cmbAtor" class="form-control combo"></select>
+												</label>
+											</div>
+										</div>
+									</div>
+									<!-- fim col -->
+								</div>
+								<!-- fim row -->
+								<div class="row">
+									<div class="col-md-12">
+										<div class="form-group form-group-sm">
+											<label class="col-sm-3 control-label">Usuário</label>
+											<div class="col-sm-7">
+												<label class="glyphicon custom-select"> <select
+													wicket:id="cmbUsuario" class="form-control combo"></select>
+												</label>
+											</div>
+										</div>
+									</div>
+									<!-- fim col -->
+								</div>
+								<!-- fim row -->
+							</div>
+							<div class="modal-footer" style="background-color: #f5f5f5;">
+								<button type="button" class="btn btn-primary"
+									wicket:id="btnPesquisar"
+									onclick="$('#modalFiltro').modal('hide');$('#modalAguarde').modal('show');">
+									<i class="fa fa-search"></i> Pesquisar
+								</button>
+								<button type="button" class="btn btn-danger"
+									data-dismiss="modal">Cancelar</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- fim modal filtro -->
+
+			</form>
+		</div>
+
+	</wicket:extend>
+</body>
+</html>

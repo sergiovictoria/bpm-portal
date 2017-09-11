@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns:wicket="http://wicket.apache.org">
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+	<wicket:panel>
+		<button wicket:id="voltarBtn" class="btn btn-primary" type="button">
+			<i class="fa fa-chevron-left"></i> Voltar
+		</button>
+
+		<button class="btn btn-primary" type="button" data-toggle="modal" data-backdrop="static" data-keyboard="false"
+			data-target="#comentariosModal">
+			<i class="fa fa-check" aria-hidden="true"></i> Finalizar
+		</button>
+
+		<div wicket:id="comentariosModal"></div>
+		<div wicket:id="finalizarModal"></div>
+
+		<!-- início: Fragments -->
+		<wicket:fragment wicket:id="corpoComentariosModal">
+			<div class="secao">
+				<div class="cabecalho-secao">Comentários</div>
+				<div class="corpo-secao">
+					<div class="row">
+						<div class="col-sm-12">
+							<textarea wicket:id="comentariosTxt" class="form-control"
+								rows="4" cols="40"></textarea>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row"></div>
+		</wicket:fragment>
+
+		<wicket:fragment wicket:id="botoesComentariosModal">
+			<button type="button" class="btn btn-danger" data-dismiss="modal">
+				<i class="fa fa-times"></i> Fechar
+			</button>
+			<button type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#finalizarModal">
+				<i class="fa fa-check"></i> Ok
+			</button>
+		</wicket:fragment>
+
+		<wicket:fragment wicket:id="corpoModalFinalizar">
+			<div class="modal-wrapper">
+				<div class="modal-icon">
+					<i class="fa fa-question-circle"></i>
+				</div>
+				<div class="modal-text">Integrar requisição para pagamento na Consinco?</div>
+			</div>
+		</wicket:fragment>
+
+		<wicket:fragment wicket:id="botoesFinalizarModal">
+			<button type="button" class="btn btn-danger" data-dismiss="modal">
+				<i class="fa fa-times"></i> Fechar
+			</button>
+			<button wicket:id="okBtn" type="button" class="btn btn-primary">
+				<i class="fa fa-check"></i> Ok
+			</button>
+		</wicket:fragment>
+		<!-- fim: Fragments -->
+
+	</wicket:panel>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns:wicket="http://wicket.apache.org">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Parametrizar Solicitação de Pagamento</title>
+</head>
+<body>
+	<wicket:extend>
+	
+		<div class="panel panel-primary">
+			<form wicket:id="form">			
+				<div class="panel-menu">
+					<button class="btn btn-primary" type="button" wicket:id="btnSalvar">
+						<i class="fa fa-floppy-o" aria-hidden="true"></i> Salvar
+					</button>
+				</div>
+				<div class="panel-body">
+					
+					<div class="row" wicket:id="rptProcessos">
+						<div class="col-md-6" wicket:id="dtvProcessos"> <!-- dataview aqui -->
+						
+							<div class="panel panel-default">
+								<div class="atividade panel-body" style="background-color: #fff !important;cursor: auto;">
+									<span id="prioridadeIcone" class="prioridade-icone"><i class="fa fa-minus" style="margin-top: 7px;"></i></span>
+									<div wicket:id="descricao" class="labelAtividade">[NOME PROCESSO]</div>
+									<div class="rootContainer" style="margin-bottom: 10px;">
+										<div class="row">
+		                                	<span class="col-md-4 labelDadosAtividade" style="text-align: right; vertical-align: middle;">Tempo de SLA: </span> 
+		                                	<div class="col-md-3">
+		                                		<INPUT wicket:id="txtTempo" type="text" class="form-control" />
+		                                	</div>
+		                                	<div class="col-md-4">
+												<label class="glyphicon custom-select">
+				                                   <select wicket:id="cmbTempoTipo" class="form-control combo"></select>
+				                                </label>
+			                                </div> 
+		                                </div>
+									</div>									
+								</div>									
+							</div>
+							
+						</div>
+						
+						
+					</div> <!-- fim row -->
+					
+				</div>				
+			</form>
+			
+		</div>
+		
+	</wicket:extend>
+</body>
+</html>

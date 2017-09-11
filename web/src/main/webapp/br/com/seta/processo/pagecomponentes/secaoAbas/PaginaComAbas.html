@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns:wicket="http://wicket.apache.org">
+<head>
+<meta charset="UTF-8">
+<title></title>
+</head>
+<body>
+	<wicket:extend>
+		<link rel="stylesheet" href="resources/css/wizard.css" />
+		<div class="panel panel-primary form-wizard">
+			<form wicket:id="form" class="form-horizontal">
+				<div class="panel-menu">
+					<div wicket:id="secaoBotoes"></div>
+				</div>
+				<div class="panel-body">
+					
+					<!-- início: abas -->
+					<div class="wizard-progress wizard-progress-lg">
+						<div class="steps-progress">
+							<div class="progress-indicator" style="width: 100%;"></div>
+						</div>
+						<ul class="wizard-steps">
+							<!-- links -->
+							<wicket:container wicket:id="linksAbas">
+								<wicket:container wicket:id="linkAba" ></wicket:container>
+							</wicket:container>
+						</ul>
+					</div>
+					<!-- fim: abas -->
+
+					<!-- início: seções/abas -->
+					<div class="tab-content">
+						<wicket:container wicket:id="secoesAbas">
+							<wicket:container wicket:id="secaoAba" ></wicket:container>
+						</wicket:container>					
+					</div>
+					<!-- fim: seções/abas -->
+					
+				</div>
+			</form>
+		</div>	
+		<script>
+		var iniciaSecoesAbas = function(){
+			$(".wizard-steps li.completed").click(function(){
+				$(".wizard-steps li.active, .tab-content .tab-pane.active").removeClass("active");
+			});
+		}
+
+		iniciaSecoesAbas();
+
+		</script>		
+	</wicket:extend>
+</body>
+</html>

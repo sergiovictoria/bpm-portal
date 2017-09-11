@@ -1,0 +1,226 @@
+@charset "utf-8";
+
+.logo {
+	position: absolute;
+    top: 4em;
+	right: 28%;
+}
+
+.logo img {
+	width: 28em;
+}
+
+.principal {
+	position: absolute;
+	border: 1px solid rgb(0, 107, 186);
+	border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+	width: 90%;
+	height: 40em;
+	top: 19em;
+	overflow: hidden;
+	right: 5%;
+}
+
+.box .box-header, .box .box-footer {
+	background-color: rgb(0, 107, 186);
+	max-width:inherit;
+	height: 1.5em;
+}
+
+.box .box-principal {
+	max-width:inherit;
+	height: 37em;
+}
+
+.box-principal .box-principal-img {
+	display:inline;
+}
+
+.box-principal .box-principal-campo {
+	float: right;
+}
+
+.box-principal .box-principal-img img {
+	width: 30em;
+	margin-top: 8em;
+	margin-left: -2em;
+}
+
+.box-principal .box-principal-campo {
+	max-width:inherit;
+	margin-right: 8em;
+}
+
+.bem-vindo {
+	color: rgb(0, 107, 186);
+	font-size:3em;
+	display: inherit;
+	margin-bottom: 0.8em;	
+}
+
+.box-principal .box-principal-campo div span {
+	font-size: 1.5em;
+	font-weight:bold;
+	color: rgb(0, 107, 186);
+}
+
+.box-principal .box-principal-campo div {
+	margin-top: 1em;
+}
+
+.box-principal .box-principal-campo button {
+	margin-top: 2em;
+	float: right;
+}
+
+.feedback {
+	font-weight: bold;
+	position: absolute;
+	color: red;
+}
+
+.alert.alert-danger {
+    width: 35em;
+    position: absolute;
+    top: 36em;
+    right: 32%;
+    text-align: center;
+}
+
+.alert.alert-danger strong label {
+	font-weight: bold;
+}
+
+.alert.alert-success {
+    width: 35em;
+    position: absolute;
+    top: 36em;
+    right: 32%;
+    text-align: center;
+}
+
+.alert.alert-success strong label {
+	font-weight: bold;
+}
+
+@media (min-width: 1300px) {
+	
+	.logo{
+		right: 42%;
+	}
+	
+	.logo img {
+		width: 14em;
+	}
+	
+	.principal {
+		right: 32%;
+		top: 13em;
+		width: 35em;
+		height: 22em;
+	}	
+	
+	.box .box-principal {
+		height: 19em;
+	}
+	
+	.box-principal .box-principal-img img {
+		width: 15em;
+		margin-top: 4em;
+		margin-left: -2em;
+	}
+	
+	.box-principal .box-principal-campo {
+		max-width:inherit;
+		margin-right: 3em;
+	}
+	
+	.box-principal .box-principal-campo div span {
+		font-size: 1em;
+		font-weight:bold;
+	}
+	
+	.bem-vindo{
+		color: rgb(0, 107, 186);
+		font-size:1.5em;
+		display: inherit;
+		margin: 0;	
+	}
+	
+	.box-principal .box-principal-campo button {
+		margin-top: 0.5em;
+		float: right;
+	}
+	
+	.feedback {
+        top: 36em;
+    	right: 41%;
+	}
+}
+
+@media (max-width: 960px) {
+	.box-principal .box-principal-campo input {
+		height: 3em;
+		margin-bottom: 1em;
+		font-size: 1.4em;
+	}
+	
+	.box-principal .box-principal-campo button {
+		width: 8em;
+		height: 3em;
+		font-size:1.4em;
+	}
+	
+	.feedback {
+        top: 30em;
+    	right: 29%;
+    	font-size: 2em;
+	}
+	
+}
+
+@media (max-width: 1200px) {
+	.box-principal .box-principal-campo input {
+		height: 3em;
+		margin-bottom: 1em;
+		font-size: 1.4em;
+	}
+	
+	.box-principal .box-principal-campo button {
+		width: 8em;
+		height: 3em;
+		font-size:1.4em;
+	}
+	
+	.feedback {
+        top: 30em;
+    	right: 29%;
+    	font-size: 2em;
+	}
+	
+}
+
+@media (max-width: 1280px) {
+	.box-principal .box-principal-campo input {
+		height: 4em;
+		margin-bottom: 1em;
+		font-size: 1.25em;
+	}
+	
+	.box-principal .box-principal-campo button {
+		width: 8em;
+		height: 4em;
+		font-size:1.26em;
+		font-weight: bold;
+		margin-top: 0.7em;
+	}
+	
+	.feedback {
+        top: 30em;
+    	right: 29%;
+    	font-size: 2em;
+	}
+}

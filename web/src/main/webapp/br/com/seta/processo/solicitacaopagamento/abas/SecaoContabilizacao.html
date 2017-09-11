@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns:wicket="http://wicket.apache.org">
+<head>
+<meta charset="UTF-8">
+</head>
+<body> 
+	<wicket:panel>
+		
+		<div wicket:id="secaoCentroCusto" class="secao">
+			<div class="cabecalho-secao">Centro de Custo</div>
+			<div class="corpo-secao">
+				<div wicket:id="tabelaCentroCusto">
+					<table class="table table-bordered table-hover table-condensed mb-none dataTable no-footer">
+						<thead>
+							<tr>
+								<th>Linha</th>
+								<th>Centro de Custo</th>
+								<th>Conta Débito</th>
+								<th>Conta Crédito</th>
+								<th>Histórico</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr wicket:id="centrosCustos">
+								<td><span wicket:id="linhaLbl"></span></td>
+								<td><span wicket:id="centroCustoLbl"></span></td>
+								<td><span wicket:id="contaDebitoLbl"></span></td>
+								<td><span wicket:id="contaCreditoLbl"></span></td>
+								<td><span wicket:id="historico"></span></td>
+								<td style="text-align: center">
+									<a wicket:id="addCentroCustoBtn"><i class="fa fa-plus" aria-hidden="true"></i></a>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div wicket:id="secaoRateioCusto" class="secao">
+			<div class="cabecalho-secao">Rateio Centro de Custo</div>
+			<div class="corpo-secao">
+				<table wicket:id="tabelaRateios" class="table table-bordered table-hover table-condensed mb-none dataTable no-footer">
+					<thead>
+						<tr>
+							<th>Linha</th>
+							<th>Centro de Custo</th>
+							<th>Conta Débito</th>
+							<th>Conta Crédito</th>
+							<th>Histórico</th>
+							<th>Valor</th>
+							<th>Porcentagem</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr wicket:id="rateios">
+							<td><span wicket:id="linhaLbl"></span></td>
+							<td><span wicket:id="centroCustoLbl"></span></td>
+							<td><span wicket:id="contaDebitoLbl"></span></td>
+							<td><span wicket:id="contaCreditoLbl"></span></td>
+							<td><span wicket:id="historicoLbl"></span></td>
+							<td><input wicket:id="valorLbl" class="monetario" type="text" style="width: 100%"></td>
+							<td><span wicket:id="porcentagem"></span></td>
+						</tr>
+					</tbody>
+					<tfoot>
+						<tr>
+							<td colspan="5"></td>
+							<td><span wicket:id="totalValor" style="font-weight: bold;">[TOTAL VALOR]</span></td>
+							<td><span wicket:id="totalPorcentagem" style="font-weight: bold;">[TOTAL PORCENTAGEM]</span></td>
+						</tr>
+					</tfoot>
+				</table>
+			</div>
+		</div>
+
+	</wicket:panel>
+</body>
+</html>

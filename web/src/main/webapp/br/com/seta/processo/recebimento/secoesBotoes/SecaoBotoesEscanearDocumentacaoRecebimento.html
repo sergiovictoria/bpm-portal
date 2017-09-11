@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns:wicket="http://wicket.apache.org">
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+	<wicket:panel>
+		<button wicket:id="voltarBtn" class="btn btn-primary" type="button">
+			<i class="fa fa-chevron-left"></i> Voltar
+		</button>
+		<button class="btn btn-primary" type="button" data-toggle="modal" data-backdrop="static"
+			data-keyboard="false" data-target="#comentariosModal">			
+			<i class="fa fa-envelope-o" aria-hidden="true"></i> Enviar
+		</button>		
+		
+		<div wicket:id="erroDialog"></div>
+		<div wicket:id="comentariosModal"></div>
+		<div wicket:id="confirmacaoModal"></div>
+		
+		<!-- início: conteúdo modals de confirmação -->
+		<wicket:fragment wicket:id="conteudoModalConfirmacaoFragment">
+			<div class="modal-wrapper">
+				<div class="modal-icon">
+					<i class="fa fa-question-circle"></i>
+				</div>
+				<div class="modal-text">Deseja enviar?</div>
+			</div>				
+		</wicket:fragment>
+		<!-- fim: conteúdo modals de confirmação -->
+		
+		<!-- início: botoes modal confirmação  -->
+		<wicket:fragment wicket:id="botoesModalConfirmacao">
+			<button type="button" class="btn btn-danger" data-dismiss="modal">
+				<i class="fa fa-times"></i> Fechar
+			</button>
+			<button wicket:id="okBtn" type="button" class="btn btn-primary">
+				<i class="fa fa-check"></i> Ok
+			</button>
+		</wicket:fragment>
+		<!-- fim: botoes modal confirmação  -->
+		
+		<!-- início: botoes modal comentarios -->
+		<wicket:fragment wicket:id="botoesModalComentarios">
+			<button type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-backdrop="static"
+			data-keyboard="false" data-target="#confirmacaoModal">
+				<i class="fa fa-check"></i> Ok
+			</button>
+		</wicket:fragment>
+		<!-- início: botoes modal comentarios -->
+		
+		
+	</wicket:panel>
+</body>
+</html>

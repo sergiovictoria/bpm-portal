@@ -1,0 +1,1123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns:wicket="http://wicket.apache.org" xmlns:h="http://java.sun.com/jsf/html">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+	<wicket:extend>
+		<link rel="stylesheet" href="resources/css/wizard.css" />
+		<script type="text/javascript" src="resources/js/validador.js"></script>
+
+		<SCRIPT type="text/javascript">
+			$(document).ready(function() {
+		        
+				$('#btnAnterior').hide();
+		        
+		        $("#lnkSecaoDadosProduto").on('click',function(){
+			        $('#btnAnterior').hide();
+			        $('#btnProximo').show();
+	        	});
+
+	        	$("#lnkSecaoEmbalagem").on('click',function(){
+	        		$('#btnAnterior').show();
+			        $('#btnProximo').show();
+	        	});
+
+	        	$("#lnkSecaoPaletizacaos").on('click',function(){
+	        		$('#btnAnterior').show();
+			        $('#btnProximo').show();
+	        	});
+
+	        	$("#lnkSecaoDadosNutricionais").on('click',function(){
+	        		$('#btnAnterior').show();
+			        $('#btnProximo').show();
+	        	});
+
+	        	$("#lnkSecaoDadosFiscais").on('click',function(){
+	        		$('#btnAnterior').show();
+			        $('#btnProximo').show();
+	        	});
+
+	        	$("#lnkSecaoPreenchimentoInterno").on('click',function(){
+	        		$('#btnAnterior').show();
+			        $('#btnProximo').hide();
+	        	});
+
+	        	$("#txtQuantidadeUnidade").keypress(verificaNumero);
+	        	$("#txtQuantidadeDisplay").keypress(verificaNumero);
+	        	$("#txtQuantidadeEmbalagem").keypress(verificaNumero);
+		    });
+		</SCRIPT>
+
+		<SCRIPT type="text/javascript">
+			function funBtnAnterior(){
+				
+				if($("#tabEmbalagem").hasClass("active")){
+					$("#tabEmbalagem").removeClass("active");
+					$("#secaoEmbalagem").removeClass("active");
+					
+					$("#tabDadosProduto").addClass("active");
+					$("#secaoDadosProduto").addClass("active");
+	
+					$('#btnAnterior').hide();
+					$('#btnProximo').show();
+					
+					return;
+				}
+				
+				if($("#tabPaletizacao").hasClass("active")){
+					$("#tabPaletizacao").removeClass("active");
+					$("#secaoPaletizacaos").removeClass("active");
+					
+					$("#tabEmbalagem").addClass("active");
+					$("#secaoEmbalagem").addClass("active");
+	
+					$('#btnProximo').show();
+					
+					return;
+				}
+				
+				if($("#tabDadosNutricionais").hasClass("active")){
+					$("#tabDadosNutricionais").removeClass("active");
+					$("#secaoDadosNutricionais").removeClass("active");
+					
+					$("#tabPaletizacao").addClass("active");
+					$("#secaoPaletizacaos").addClass("active");
+	
+					$('#btnProximo').show();
+					
+					return;
+				}
+				
+				if($("#tabDadosFiscais").hasClass("active")){
+					$("#tabDadosFiscais").removeClass("active");
+					$("#secaoDadosFiscais").removeClass("active");
+					
+					$("#tabDadosNutricionais").addClass("active");
+					$("#secaoDadosNutricionais").addClass("active");
+
+					$('#btnProximo').show();
+					
+					return;
+				}
+				
+				if($("#tabPreenchimentoInterno").hasClass("active")){
+					$("#tabPreenchimentoInterno").removeClass("active");
+					$("#secaoPreenchimentoInterno").removeClass("active");
+					
+					$("#tabDadosFiscais").addClass("active");
+					$("#secaoDadosFiscais").addClass("active");
+	
+					$('#btnProximo').show();
+					
+					return;
+				}
+			};
+			
+			function funBtnProximo(){
+				if($("#tabDadosProduto").hasClass("active")){
+					$("#tabDadosProduto").removeClass("active");
+					$("#secaoDadosProduto").removeClass("active");
+					
+					$("#tabEmbalagem").addClass("active");
+					$("#secaoEmbalagem").addClass("active");
+
+					$('#btnAnterior').show();
+					
+					return;
+				}
+				
+				if($("#tabEmbalagem").hasClass("active")){
+					$("#tabEmbalagem").removeClass("active");
+					$("#secaoEmbalagem").removeClass("active");
+					
+					$("#tabPaletizacao").addClass("active");
+					$("#secaoPaletizacaos").addClass("active");
+
+					$('#btnAnterior').show();
+					
+					return;
+				}
+				
+				if($("#tabPaletizacao").hasClass("active")){
+					$("#tabPaletizacao").removeClass("active");
+					$("#secaoPaletizacaos").removeClass("active");
+					
+					$("#tabDadosNutricionais").addClass("active");
+					$("#secaoDadosNutricionais").addClass("active");
+
+					$('#btnAnterior').show();
+					
+					return;
+				}
+				
+				if($("#tabDadosNutricionais").hasClass("active")){
+					$("#tabDadosNutricionais").removeClass("active");
+					$("#secaoDadosNutricionais").removeClass("active");
+					
+					$("#tabDadosFiscais").addClass("active");
+					$("#secaoDadosFiscais").addClass("active");
+
+					$('#btnAnterior').show();
+					
+					return;
+				}
+				
+				if($("#tabDadosFiscais").hasClass("active")){
+					$("#tabDadosFiscais").removeClass("active");
+					$("#secaoDadosFiscais").removeClass("active");
+					
+					$("#tabPreenchimentoInterno").addClass("active");
+					$("#secaoPreenchimentoInterno").addClass("active");
+
+					$('#btnAnterior').show();
+					$('#btnProximo').hide();
+					
+					return;
+				}
+			};
+		</SCRIPT>
+
+		<div class="panel panel-primary form-wizard">
+			<form wicket:id="produtoForm" class="form-horizontal formulario-fornecedores">
+				<div class="panel-menu">
+					<button wicket:id="btnVoltar" class="btn btn-primary">
+						<i class="fa fa-chevron-left"></i> Voltar
+					</button>
+					<button wicket:id="consultaCadProdutoBtn" class="mb-xs mt-xs mr-xs btn btn-primary">
+						<i class="fa fa-search" aria-hidden="true"></i> Consultar Cadastros
+					</button>
+				</div>
+				<div class="panel-body" id="planilhaFornecedorContainer">
+					<!-- início: wizard -->
+					<div class="wizard-progress wizard-progress-lg">
+						<div class="steps-progress">
+							<div class="progress-indicator" style="width: 100%;"></div>
+						</div>
+						<ul class="wizard-steps">
+							<li id="tabDadosProduto" class="completed active"><a id="lnkSecaoDadosProduto" href="#secaoDadosProduto" data-toggle="tab" aria-expanded="false"> <span>1</span>Dados<br />do Produto
+							</a></li>
+							<li id="tabEmbalagem" class="completed"><a id="lnkSecaoEmbalagem" href="#secaoEmbalagem" data-toggle="tab" aria-expanded="false"> <span>2</span>Embalagem
+							</a></li>
+							<li id="tabPaletizacao" class="completed"><a id="lnkSecaoPaletizacaos" href="#secaoPaletizacaos" data-toggle="tab" aria-expanded="false"> <span>3</span>Paletização e <br />Estocagem
+							</a></li>
+							<li id="tabDadosNutricionais" class="completed"><a id="lnkSecaoDadosNutricionais" href="#secaoDadosNutricionais" data-toggle="tab" aria-expanded="false"> <span>4</span>Dados<br />Nutricionais
+							</a></li>
+							<li id="tabDadosFiscais" class="completed"><a id="lnkSecaoDadosFiscais" href="#secaoDadosFiscais" data-toggle="tab" aria-expanded="false"> <span>5</span>Dados Fiscais
+							</a></li>
+							<li id="tabPreenchimentoInterno" class="completed"><a id="lnkSecaoPreenchimentoInterno" href="#secaoPreenchimentoInterno" data-toggle="tab" aria-expanded="false"> <span>6</span>Preenchimento<br />do
+									Seta
+							</a></li>
+						</ul>
+					</div>
+					<!-- fim: wizard -->
+
+					<div class="row" style="padding-bottom: 10px;">
+						<div class="col-sm-2" style="text-align: left;">
+							<a id="btnAnterior" href="#" class="btn btn-primary" onclick="funBtnAnterior();"><i class="fa fa-arrow-left"></i> Anterior</a>
+						</div>
+						<div class="col-sm-8"></div>
+						<div class="col-sm-2" style="text-align: right;">
+							<a id="btnProximo" href="#" class="btn btn-primary" onclick="funBtnProximo();">Proximo <i class="fa fa-arrow-right"></i></a>
+						</div>
+					</div>
+
+					<div class="tab-content">
+						<!-- início: DADOS DO PRODUTO -->
+						<div id="secaoDadosProduto" wicket:id="grpDadosProduto" class="tab-pane active">
+							<div class="row">
+								<div class="col-sm-7">
+									<div class="row">
+										<div class="col-sm-6">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3">Completa</label>
+												<div class="col-sm-9">
+													<input wicket:id="txtDescCompleta" class="form-control" type="text" placeholder="Completa" />
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-6">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-4">Cód.Prod. NF</label>
+												<div class="col-sm-8">
+													<input wicket:id="txtCodProduto" class="form-control" type="text" />
+												</div>
+											</div>
+										</div>
+
+									</div>
+									<!-- FIM DA ROW -->
+									<div class="row">
+										<div class="col-sm-6">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3">Reduzida</label>
+												<div class="col-sm-9">
+													<input wicket:id="txtDescReduzida" class="form-control" type="text" placeholder="Reduzida" />
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-6">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-4">País Origem</label>
+												<div class="col-sm-8">
+													<input wicket:id="txtPaisOrigem" class="form-control" type="text" />
+												</div>
+											</div>
+										</div>
+									</div>
+									<!-- FIM DA ROW -->
+
+									<div class="row">
+										<div class="col-sm-6">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3">Cert. Origem</label>
+												<div class="col-sm-4">
+													<div wicket:id="rdgSimplesNacional">
+														<div class="radio-custom radio-primary">
+															<input wicket:id="rdbCertificadoNacional_0" type="radio" name="rdbSimplesNacional" /> <label for="rdbSimplesNacional_Sim">Sim</label>
+														</div>
+														<div class="radio-custom radio-primary">
+															<input wicket:id="rdbCertificadoNacional_1" type="radio" name="rdbSimplesNacional" /> <label for="rdbSimplesNacional_Nao">Não</label>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-6">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-4">Origem Prod.</label>
+												<div class="col-sm-8">
+													<label class="glyphicon custom-select"> <select wicket:id="cmbOrigemProduto" class="form-control combo"></select>
+													</label>
+												</div>
+											</div>
+										</div>
+									</div>
+									<!-- FIM DA ROW -->
+								</div>
+							</div>
+							<!-- FIM DA ROW -->
+
+
+						</div>
+						<!-- fim: seção DADOS DO PRODUTO -->
+
+
+						<!-- inicio: EMBALAGEM -->
+						<div id="secaoEmbalagem" wicket:id="grpEmbalagem" class="tab-pane">
+							<div class="secao">
+								<div class="cabecalho-secao">Unidade</div>
+								<div class="corpo-secao">
+									<div class="row">
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3">Quantidade</label>
+												<div class="col-sm-9">
+													<input wicket:id="txtQuantidadeUnidade" id="txtQuantidadeUnidade" class="form-control" type="text" />
+												</div>
+											</div>
+										</div>
+
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3">Comprimento</label>
+												<div class="col-sm-9">
+													<input wicket:id="txtComprimentoUnidade" class="form-control" type="text" placeholder="CM" />
+												</div>
+											</div>
+										</div>
+
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3">Peso Liq.</label>
+												<div class="col-sm-9">
+													<input wicket:id="txtPesoLiqUnidade" class="form-control" type="text" placeholder="KG" />
+												</div>
+											</div>
+										</div>
+									</div>
+									<!-- fim row -->
+
+									<div class="row">
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3">Embalagem</label>
+												<div class="col-sm-9">
+													<label class="glyphicon custom-select"> <select wicket:id="cmbEmbalagemUnidade" class="form-control combo"></select>
+													</label>
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3">Largura</label>
+												<div class="col-sm-9">
+													<input wicket:id="txtLarguraUnidade" class="form-control" type="text" placeholder="CM" />
+												</div>
+											</div>
+										</div>
+
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3">Peso Bruto</label>
+												<div class="col-sm-9">
+													<input wicket:id="txtPesoBrutoUnidade" class="form-control" type="text" placeholder="KG" />
+												</div>
+											</div>
+										</div>
+									</div>
+									<!-- fim row -->
+
+
+									<div class="row">
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3">EAN</label>
+												<div class="col-sm-9">
+													<input wicket:id="txtEanUnidade" class="form-control" type="text" maxlength="15" />
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3">Altura</label>
+												<div class="col-sm-9">
+													<input wicket:id="txtAlturaUnidade" class="form-control" type="text" placeholder="CM" />
+												</div>
+											</div>
+										</div>
+									</div>
+									<!-- fim row -->
+								</div>
+							</div>
+							<div class="secao">
+								<div class="cabecalho-secao">Display</div>
+								<div class="corpo-secao">
+									<div class="row">
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3">Quantidade</label>
+												<div class="col-sm-9">
+													<input wicket:id="txtQuantidadeDisplay" id="txtQuantidadeDisplay" class="form-control" type="text" />
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3">Comprimento</label>
+												<div class="col-sm-9">
+													<input wicket:id="txtComprimentoDisplay" class="form-control" type="text" placeholder="CM" />
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3">Peso Liq.</label>
+												<div class="col-sm-9">
+													<input wicket:id="txtPesoLiqDisplay" class="form-control" type="text" placeholder="KG" />
+												</div>
+											</div>
+										</div>
+									</div>
+									<!-- fim row -->
+
+									<div class="row">
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3">Embalagem</label>
+												<div class="col-sm-9">
+													<label class="glyphicon custom-select"> <select wicket:id="cmbEmbalagemDisplay" class="form-control combo"></select>
+													</label>
+												</div>
+											</div>
+										</div>
+
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3">Largura</label>
+												<div class="col-sm-9">
+													<input wicket:id="txtLarguraDisplay" class="form-control" type="text" placeholder="CM" />
+												</div>
+											</div>
+										</div>
+
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3">Peso Bruto</label>
+												<div class="col-sm-9">
+													<input wicket:id="txtPesoBrutoDisplay" class="form-control" type="text" placeholder="KG" />
+												</div>
+											</div>
+										</div>
+									</div>
+									<!-- fim row -->
+
+									<div class="row">
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3">EAN</label>
+												<div class="col-sm-9">
+													<input wicket:id="txtEanDisplay" class="form-control" type="text" maxlength="15" />
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3">Altura</label>
+												<div class="col-sm-9">
+													<input wicket:id="txtAlturaDisplay" class="form-control" type="text" placeholder="CM" />
+												</div>
+											</div>
+										</div>
+									</div>
+									<!-- fim row -->
+								</div>
+							</div>
+							<div class="secao">
+								<div class="cabecalho-secao">Embalagem Master (Caixa/Fardo/Pacote)</div>
+								<div class="corpo-secao">
+
+									<div class="row">
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3">Quantidade</label>
+												<div class="col-sm-9">
+													<input wicket:id="txtQuantidadeEmbalagem" id="txtQuantidadeEmbalagem" class="form-control" type="text" />
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3">Comprimento</label>
+												<div class="col-sm-9">
+													<input wicket:id="txtComprimentoEmbalagem" class="form-control" type="text" placeholder="CM" />
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3">Peso Bruto</label>
+												<div class="col-sm-9">
+													<input wicket:id="txtPesoBrutoEmbalagem" class="form-control" type="text" placeholder="KG" />
+												</div>
+											</div>
+										</div>
+									</div>
+									<!-- fim row -->
+
+									<div class="row">
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3">Tipo Emb.</label>
+												<div class="col-sm-9">
+													<label class="glyphicon custom-select"> <select wicket:id="cmbEmbalagemEmbalagem" class="form-control combo"></select>
+													</label>
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3">Largura</label>
+												<div class="col-sm-9">
+													<input wicket:id="txtLarguraEmbalagem" class="form-control" type="text" placeholder="CM" />
+												</div>
+											</div>
+										</div>
+
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3">Entrega</label>
+												<div class="col-sm-9">
+													<label class="glyphicon custom-select"> <select wicket:id="cmbFormaEntregaEmbalagem" class="form-control combo"></select>
+													</label>
+												</div>
+											</div>
+										</div>
+									</div>
+									<!-- fim row -->
+
+									<div class="row">
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3">DUN</label>
+												<div class="col-sm-9">
+													<input wicket:id="txtEanEmbalagem" class="form-control" type="text" maxlength="15" />
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3">Altura</label>
+												<div class="col-sm-9">
+													<input wicket:id="txtAlturaEmbalagem" class="form-control" type="text" placeholder="CM" />
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3">Embalagem?</label>
+												<div wicket:id="rdgPossuiEmbalagemEmbalagem">
+													<div class="col-sm-3">
+														<div class="radio-custom radio-primary">
+															<input wicket:id="rdbPossuiEmbalagemEmbalagem_0" type="radio" name="rdgPossuiEmbalagemEmbalagem" /> <label>Sim</label>
+														</div>
+														<div class="radio-custom radio-primary">
+															<input wicket:id="rdbPossuiEmbalagemEmbalagem_1" type="radio" name="rdgPossuiEmbalagemEmbalagem" /> <label>Não</label>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<!-- fim row -->
+								</div>
+							</div>
+						</div>
+						<!-- fim: EMBALAGEM -->
+
+						<!-- início: Paletização e Estocagem -->
+						<div id="secaoPaletizacaos" wicket:id="grpPaletizacaoEstocagem" class="tab-pane">
+							<div class="secao">
+								<div class="cabecalho-secao">Paletização</div>
+								<div class="corpo-secao">
+
+									<div class="row">
+										<div class="col-sm-12">
+											<div class="form-group form-group-sm">
+												<div class="col-sm-4">
+													<div class="col-sm-3">
+														<label class="control-label col-sm-1" title="">Prod. Paletizado?</label>
+													</div>
+
+													<div class="col-sm-3">
+														<div wicket:id="rdgProdutoPaletizado">
+															<div class="radio-custom radio-primary">
+																<input wicket:id="rdbProdutoPaletizado_0" type="radio" name="rdgProdutoPaletizado" /> <label>Sim</label>
+															</div>
+
+															<div class="radio-custom radio-primary">
+																<input wicket:id="rdbProdutoPaletizado_1" type="radio" name="rdgProdutoPaletizado" /> <label>Não</label>
+															</div>
+														</div>
+													</div>
+												</div>
+
+												<div class="col-sm-4">
+													<label class="control-label col-sm-3" title="">Comprimento</label>
+													<div class="col-sm-9">
+														<input wicket:id="txtComprimentoPaletizado" class="form-control" type="text" maxlength="10" />
+													</div>
+												</div>
+
+												<div class="col-sm-4">
+													<label class="control-label col-sm-3" title="">Peso Total</label>
+													<div class="col-sm-6">
+														<input wicket:id="txtPesoTotalPaletizado" class="form-control" type="text" maxlength="10" />
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<div class="row">
+										<div class="col-sm-12">
+											<div class="form-group form-group-sm">
+												<div class="col-xs-4">
+													<label class="control-label col-xs-3" title="">Qtd. Lastro</label>
+													<div class="col-xs-6">
+														<input wicket:id="txtQuantidadeLastroPaletizado" class="form-control" type="text" maxlength="10" />
+													</div>
+												</div>
+
+												<div class="col-xs-4">
+													<label class="control-label col-xs-3" title="">Largura</label>
+													<div class="col-xs-9">
+														<input wicket:id="txtLarguraPaletizado" class="form-control" type="text" maxlength="10" />
+													</div>
+												</div>
+
+												<div class="col-xs-4">
+													<label class="control-label col-xs-3" title="">Total/Pallet</label>
+													<div class="col-xs-6">
+														<input wicket:id="txtTotalPalletPaletizado" class="form-control" type="text" maxlength="10" />
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<div class="row">
+										<div class="col-xs-8">
+											<div class="form-group form-group-sm">
+												<div class="col-xs-6">
+													<label class="control-label col-xs-3" title="">Qtd. Altura</label>
+													<div class="col-xs-6">
+														<input wicket:id="txtQuantidadeAlturaPaletizado" class="form-control" type="text" maxlength="10" />
+													</div>
+												</div>
+
+												<div class="col-xs-6">
+													<label class="control-label col-xs-3" title="">Altura</label>
+													<div class="col-xs-9">
+														<input wicket:id="txtAlturaPaletizado" class="form-control" type="text" maxlength="10" />
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+
+								</div>
+							</div>
+							<!-- fim da sessão -->
+
+							<div class="secao">
+								<div class="cabecalho-secao">Estocagem</div>
+								<div class="corpo-secao">
+
+									<div class="row">
+
+										<div class="col-sm-12">
+											<div class="form-group form-group-sm">
+												<div class="col-sm-4">
+													<div class="col-sm-3">
+														<label class="control-label col-sm-1" title="">Perecível</label>
+													</div>
+
+													<div class="col-sm-3">
+														<div wicket:id="rdgPerecivelPaletizado" class="col-sm-1">
+															<div class="radio-custom radio-primary">
+																<input wicket:id="rdbPerecivelPaletizado_0" type="radio" name="rdgPerecivelPaletizado" /> <label>Sim</label>
+															</div>
+															<div class="radio-custom radio-primary">
+																<input wicket:id="rdbPerecivelPaletizado_1" type="radio" name="rdgPerecivelPaletizado" /> <label>Não</label>
+															</div>
+														</div>
+													</div>
+												</div>
+
+												<div class="col-sm-4">
+													<div class="col-sm-3">
+														<label class="control-label col-sm-1" title="">Peso Variável</label>
+													</div>
+													<div class="col-sm-3">
+														<div wicket:id="rdgPesoVariavelPaletizado" class="col-sm-1">
+															<div class="radio-custom radio-primary">
+																<input wicket:id="rdbPesoVariavelPaletizado_0" type="radio" name="rdgPesoVariavelPaletizado" /> <label>Sim</label>
+															</div>
+															<div class="radio-custom radio-primary">
+																<input wicket:id="rdbPesoVariavelPaletizado_1" type="radio" name="rdgPesoVariavelPaletizado" /> <label>Não</label>
+															</div>
+														</div>
+													</div>
+												</div>
+
+												<div class="col-sm-4">
+													<div class="col-sm-3">
+														<label class="control-label col-sm-1" title="">Sazonal</label>
+													</div>
+													<div class="col-sm-3">
+														<div wicket:id="rdgSazonalPaletizado" class="col-sm-1">
+															<div class="radio-custom radio-primary">
+																<input wicket:id="rdbSazonalPaletizado_0" type="radio" name="rdgSazonalPaletizado" /> <label>Sim</label>
+															</div>
+															<div class="radio-custom radio-primary">
+																<input wicket:id="rdbSazonalPaletizado_1" type="radio" name="rdgSazonalPaletizado" /> <label>Não</label>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+
+										<div class="col-sm-12">
+											<div class="form-group form-group-sm">
+
+												<label class="control-label col-sm-1">ºC Máxima</label>
+												<div class="col-sm-2">
+													<div class="input-group">
+														<input wicket:id="txtCMaximaEstocagem" type="text" class="form-control" maxlength="10" />
+													</div>
+												</div>
+
+												<label class="control-label col-sm-1">Validade Útil</label>
+												<div class="col-sm-2">
+													<div class="input-group">
+														<input wicket:id="txtValidadeEstocagem" type="text" class="form-control" maxlength="10" />
+													</div>
+												</div>
+											</div>
+										</div>
+
+										<div class="col-sm-12">
+											<div class="form-group form-group-sm">
+
+												<label class="control-label col-sm-1">ºC Mínima</label>
+												<div class="col-sm-2">
+													<div class="input-group">
+														<input wicket:id="txtCMinimaEstocagem" type="text" class="form-control" maxlength="10" />
+													</div>
+												</div>
+
+												<label class="control-label col-sm-1">Empilh. Cx.</label>
+												<div class="col-sm-2">
+													<div class="input-group">
+														<input wicket:id="txtEmpilhamentoEstocagem" type="text" class="form-control" maxlength="10" />
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<!-- fim da row -->
+								</div>
+							</div>
+							<!-- FIM DA SESSÃO -->
+						</div>					
+						<!-- fim: Paletização e Estocagem -->
+
+						<!-- início: dados nutricionais -->
+						<div id="secaoDadosNutricionais" wicket:id="grpDadosNutricionais" class="tab-pane">
+							<div class="secao">
+								<div class="cabecalho-secao">Padrão Anvisa (Para preenchimento de Produtos Perecíveis)</div>
+								<div class="corpo-secao">
+									<div class="row">
+										<div class="col-sm-12">
+											<div class="form-group form-group-sm">
+												<div class="col-xs-4">
+													<label class="control-label col-xs-3">Qtd. Porção</label>
+													<div class="col-xs-6">
+														<input wicket:id="txtQuantidadeParcao" class="form-control" type="text" placeholder="g" maxlength="10" />
+													</div>
+												</div>
+
+												<div class="col-xs-4">
+													<label class="control-label col-xs-3">Gord. Satur.</label>
+													<div class="col-xs-6">
+														<input wicket:id="txtGorduraSaturada" class="form-control" type="text" placeholder="g" maxlength="10" />
+													</div>
+												</div>
+
+												<div class="col-xs-4">
+													<label class="control-label col-xs-3">Un. da Porção</label>
+													<div class="col-xs-6">
+														<label class="glyphicon custom-select"> <select wicket:id="cmbUnidadePorcao" class="form-control combo"></select>
+														</label>
+													</div>
+												</div>
+											</div>
+										</div>
+
+										<div class="col-sm-12">
+											<div class="form-group form-group-sm">
+												<div class="col-xs-4">
+													<label class="control-label col-xs-3">Carboidratos</label>
+													<div class="col-xs-6">
+														<input wicket:id="txtCarboidrato" class="form-control" type="text" placeholder="g" maxlength="10" />
+													</div>
+												</div>
+
+												<div class="col-xs-4">
+													<label class="control-label col-xs-3">Gord. Trans</label>
+													<div class="col-xs-6">
+														<input wicket:id="txtGorduraTrans" class="form-control" type="text" placeholder="g" maxlength="10" />
+													</div>
+												</div>
+
+												<div class="col-xs-4">
+													<label class="control-label col-xs-3">Calorias</label>
+													<div class="col-xs-6">
+														<input wicket:id="txtValorCalorico" class="form-control" type="text" placeholder="Kcal" maxlength="10" />
+													</div>
+												</div>
+											</div>
+										</div>
+
+										<div class="col-xs-12">
+											<div class="form-group form-group-sm">
+												<div class="col-xs-4">
+													<label class="control-label col-sm-3">Proteínas</label>
+													<div class="col-xs-6">
+														<input wicket:id="txtProteina" class="form-control" type="text" placeholder="g" maxlength="10" />
+													</div>
+												</div>
+
+												<div class="col-xs-4">
+													<label class="control-label col-xs-3">Total Gord.</label>
+													<div class="col-xs-6">
+														<input wicket:id="txtGorduraTotal" class="form-control" type="text" placeholder="g" maxlength="10" />
+													</div>
+												</div>
+
+												<div class="col-xs-4">
+													<label class="control-label col-xs-3">Sódio</label>
+													<div class="col-xs-3">
+														<input wicket:id="txtSodio" class="form-control" type="text" placeholder="mg" maxlength="10" />
+													</div>
+
+
+													<label class="control-label col-xs-3">Fibra Alim.</label>
+													<div class="col-xs-3">
+														<input wicket:id="txtFibraAlimentar" class="form-control" type="text" placeholder="g" maxlength="10" />
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- início: dados nutricionais -->						
+
+						<!-- início: dados fiscais -->
+						<div id="secaoDadosFiscais" wicket:id="grpDadosFiscais" class="tab-pane">
+							<div class="secao">
+								<div class="corpo-secao">
+
+									<div class="row">
+										<div class="col-sm-6">
+											<div class="form-group form-group-sm" style="margin-bottom: 0;">
+												<label class="control-label col-sm-2">NCM</label>
+												<div class="col-sm-3">
+													<input wicket:id="txtNcm" class="form-control" type="text" />
+												</div>
+												<div class="form-group form-group-sm col-sm-7" style="padding-right: 0;">
+													<div class="input-group">
+														<input wicket:id="txtDescricaoNcm" type="text" class="form-control">
+														<div class="input-group-btn">
+															<button wicket:id="btnExibirModalNcm" type="button" class="btn btn-primary btn-sm" style="padding-top: 8px; padding-bottom: 8px;">
+																<i class="fa fa-search"></i>
+															</button>
+														</div>
+													</div>
+												</div>
+
+											</div>
+										</div>
+										<div class="col-sm-2"></div>
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3">Qual?</label>
+												<div class="col-sm-9">
+													<input wicket:id="txtIncentivoFiscalQual" class="form-control" type="text" />
+												</div>
+											</div>
+										</div>
+									</div>
+									<!-- FIM DA ROW -->
+
+									<div class="row">
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3">Trib. ICMS</label>
+												<div class="col-sm-9">
+													<label class="glyphicon custom-select"> <select wicket:id="cmbTributacaoIcms" class="form-control combo"></select>
+													</label>
+												</div>
+											</div>
+										</div>
+
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3">IVA – ST</label>
+												<div class="col-sm-3">
+													<input wicket:id="txtIvaSt" class="form-control" type="text" />
+												</div>
+												<label class="control-label col-sm-3">Incen. Fiscal</label>
+												<div class="col-sm-3">
+													<div wicket:id="rdgIncentivoFiscal" class="col-sm-9">
+														<div class="radio-custom radio-primary">
+															<input wicket:id="rdbIncentivoFiscal_0" type="radio" name="rdgIncentivoFiscal" /> <label>Sim</label>
+														</div>
+														<div class="radio-custom radio-primary">
+															<input wicket:id="rdbIncentivoFiscal_1" type="radio" name="rdgIncentivoFiscal" /> <label>Não</label>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3">Funda.</label>
+												<div class="col-sm-9">
+													<input wicket:id="txtFundamentacao" class="form-control" type="text" title="Fundamentação" />
+												</div>
+											</div>
+										</div>
+
+									</div>
+									<!-- FIM DA ROW -->
+
+									<div class="row">
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3">Alíq. ICMS</label>
+												<div class="col-sm-3">
+													<label class="glyphicon custom-select"> <select wicket:id="cmbAlicotaIcms" class="form-control combo"></select>
+													</label>
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3">Alíq. IPI</label>
+												<div class="col-sm-3">
+													<input wicket:id="txtAliquotaIpi" class="form-control" type="text" />
+												</div>
+												<label class="control-label col-sm-3">Alí. Cofins</label>
+												<div class="col-sm-3">
+													<input wicket:id="txtAliquotaCofins" class="form-control" type="text" />
+												</div>
+											</div>
+										</div>
+
+									</div>
+
+									<div class="row">
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3">Redução</label>
+												<div class="col-sm-3">
+													<label class="glyphicon custom-select"> <select wicket:id="cmbReducaoIcms" class="form-control combo"></select>
+													</label>
+												</div>
+											</div>
+										</div>
+
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3">Alíquota PIS</label>
+												<div class="col-sm-3">
+													<input wicket:id="txtAliquotaPis" class="form-control" type="text" />
+												</div>
+												<label class="control-label col-sm-3">Pauta</label>
+												<div class="col-sm-3">
+													<input wicket:id="txtPauta" class="form-control" type="text" />
+												</div>
+											</div>
+										</div>
+									</div>
+									<!-- FIM DA ROW -->
+
+								</div>
+							</div>
+
+
+						</div>
+						<!-- fim: dados fiscais -->
+
+
+						<!-- início: Preenchimento interno -->
+						<div id="secaoPreenchimentoInterno" wicket:id="grpPreenchimentoInterno" class="tab-pane">
+							<div class="secao">
+								<div class="corpo-secao">
+									<div class="row">
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3" title="">Produto para</label>
+												<div class="col-sm-9">
+													<label class="glyphicon custom-select"> <select wicket:id="cmbProdutoPara" class="form-control combo"></select>
+													</label>
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3" title="">Comprador</label>
+												<div class="col-sm-9">
+													<label class="glyphicon custom-select"> <select wicket:id="cmbComprador" class="form-control combo"></select>
+													</label>
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3" title="">Categoria</label>
+												<div class="col-sm-9">
+													<label class="glyphicon custom-select"> <select wicket:id="cmbCategoria" class="form-control combo"></select>
+													</label>
+												</div>
+											</div>
+										</div>
+									</div>
+									<!-- FIM ROW -->
+
+									<div class="row">
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3" title="">Divisão</label>
+												<div class="col-sm-9">
+													<label class="glyphicon custom-select"> <select wicket:id="cmbDivisao" class="form-control combo"></select>
+													</label>
+												</div>
+											</div>
+										</div>
+
+									</div>
+									<!-- FIM DA ROW -->
+
+								</div>
+							</div>
+							<!-- fim da sessão -->
+
+							<div class="secao">
+								<div class="cabecalho-secao">Classificação Comercial do Seta</div>
+								<div class="corpo-secao">
+									<div class="row">
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3" title="">Atacado</label>
+												<div class="col-sm-9">
+													<label class="glyphicon custom-select"> <select wicket:id="cmbAtacado" class="form-control combo"></select>
+													</label>
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3" title="">Telemarketing</label>
+												<div class="col-sm-9">
+													<label class="glyphicon custom-select"> <select wicket:id="cmbTelemarketing" class="form-control combo"></select>
+													</label>
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3" title="">Grupo</label>
+												<div class="col-sm-9">
+													<label class="glyphicon custom-select"> <select wicket:id="cmbGrupo" class="form-control combo"></select>
+													</label>
+												</div>
+											</div>
+										</div>
+									</div>
+									<!-- FIM ROW -->
+
+									<div class="row">
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3" title="">Varejo</label>
+												<div class="col-sm-9">
+													<label class="glyphicon custom-select"> <select wicket:id="cmbVarejo" class="form-control combo"></select>
+													</label>
+												</div>
+											</div>
+										</div>
+									</div>
+									<!-- FIM DA ROW -->
+								</div>
+							</div>
+							<!-- fim da sessão -->
+						</div>
+						<!-- fim: Preenchimento interno -->
+					</div>
+				</div>
+				<!-- FIM PANEL-BODY -->
+			</form>
+		</div>
+		<script src="resources/assets/vendor/bootstrap-wizard/jquery.bootstrap.wizard.js"></script>
+		<script src="resources/js/cadastro-fornecedor/cadastro-fornecedor.js"></script>
+	</wicket:extend>
+</body>
+</html>

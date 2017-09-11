@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:application="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://java.sun.com/xml/ns/javaee/application_5.xsd http://java.sun.com /xml/ns/j2ee"
+	version="1.4">
+	<display-name>Processo</display-name>
+	<module>
+		<ejb>Processo-ejb.jar</ejb>
+	</module>
+	<module>
+		<web>
+			<web-uri>Processo-web.war</web-uri>
+			<context-root>processo</context-root>
+		</web>
+	</module>
+	<library-directory>lib</library-directory>
+	<application-name>processo</application-name>
+</application>

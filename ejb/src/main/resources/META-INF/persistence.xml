@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<persistence version="2.0"
+	xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://java.sun.com/xml/ns/persistence
+        http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+	<persistence-unit name="CONSINCO" transaction-type="JTA">
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<jta-data-source>java:jboss/datasources/CON5HOMOLOGACAO</jta-data-source>
+		<shared-cache-mode>ENABLE_SELECTIVE</shared-cache-mode>
+		<exclude-unlisted-classes>true</exclude-unlisted-classes>
+    
+		<class>br.com.seta.processo.entity.PessoaEntity</class>
+		<class>br.com.seta.processo.entity.OrRequisicaoEntity</class>
+		<class>br.com.seta.processo.entity.OrReqitensdespesaEntity</class>
+		<class>br.com.seta.processo.entity.OrReqitensdespesaId</class>
+		<class>br.com.seta.processo.entity.OrReqplanilhalanctoEntity</class>
+		<class>br.com.seta.processo.entity.OrRequisicaovenctoEntity</class>
+		<class>br.com.seta.processo.entity.OrRequisicaovenctoId</class>
+		<class>br.com.seta.processo.entity.OrReqplanilhalanctoId</class>
+		<class>br.com.seta.processo.entity.GePessoaEntity</class>
+		<class>br.com.seta.processo.entity.MafFornecedorEntity</class>
+		<class>br.com.seta.processo.entity.GeCidadeEntity</class>
+		<class>br.com.seta.processo.entity.GeSequenciaEntity</class>
+		<class>br.com.seta.processo.entity.MafForneccontatoEntity</class>
+		<class>br.com.seta.processo.entity.MapFamiliaEntity</class>
+		<class>br.com.seta.processo.entity.MaxAtributofixoEntity</class>
+		<class>br.com.seta.processo.entity.MaxAtributofixoId</class>
+		<class>br.com.seta.processo.entity.MapMarcaEntity</class>
+		<class>br.com.seta.processo.entity.GeEmpresaEntity</class>
+		<class>br.com.seta.processo.entity.MapFamfornecEntity</class>
+		<class>br.com.seta.processo.entity.MapFamfornecId</class>
+		<class>br.com.seta.processo.entity.MapEmbalagemEntity</class>
+		<class>br.com.seta.processo.entity.MapFamembalagemId</class>
+		<class>br.com.seta.processo.entity.MapProdutoEntity</class>
+		<class>br.com.seta.processo.entity.MapProdutoId</class>
+		<class>br.com.seta.processo.entity.RfParamnatnfdespEntity</class>
+		<class>br.com.seta.processo.entity.RfParamnatnfdespId</class>
+		<class>br.com.seta.processo.entity.OrNfdespesaEntity</class>
+		<class>br.com.seta.processo.entity.OrNfitensdespesaEntity</class>
+		<class>br.com.seta.processo.entity.OrNfitensdespesaId</class>
+		<class>br.com.seta.processo.entity.OrNfplanilhalanctoEntity</class>
+		<class>br.com.seta.processo.entity.OrNfplanilhalanctoId</class>
+		<class>br.com.seta.processo.entity.OrParametroEntity</class>
+		<class>br.com.seta.processo.entity.OrvProdutotribEntity</class>
+		<class>br.com.seta.processo.entity.GeFeriado</class>
+		<class>br.com.seta.processo.entity.FiForncontaEntity</class>
+		<class>br.com.seta.processo.entity.FiForncontaId</class>
+		<class>br.com.seta.processo.entity.MapProdcodigoEntity</class>
+		<class>br.com.seta.processo.entity.MapProdcodigoId</class>
+		<class>br.com.seta.processo.entity.OrNfvencimento</class>
+		<class>br.com.seta.processo.entity.CtvHistorico</class>
+		
+
+		<properties>
+			<property name="hibernate.cache.region.factory_class" value="org.jboss.as.jpa.hibernate4.infinispan.InfinispanRegionFactory" />
+			<property name="hibernate.cache.infinispan.cachemanager" value="java:jboss/infinispan/container/hibernate" />
+			<property name="hibernate.transaction.manager_lookup_class"	value="org.hibernate.transaction.JBossTransactionManagerLookup" />
+			<property name="hibernate.cache.use_second_level_cache"	value="true" />
+			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.format_sql" value="true" />
+			<property name="hibernate.max_fetch_depth" value="3" />
+			<property name="hibernate.use_sql_comments" value="true" />
+			<property name="hibernate.jdbc.wrap_result_sets" value="false" />
+			<property name="hibernate.cache.use_second_level_cache"	value="true" />
+			<property name="hibernate.cache.use_query_cache" value="true" />
+			<property name="hibernate.generate_statistics" value="true" />
+		</properties>
+
+	</persistence-unit>
+
+</persistence>

@@ -1,0 +1,1531 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:wicket="http://wicket.apache.org">
+<head>
+<title>Visualizar Planilha</title>
+</head>
+<body>
+	<wicket:extend>
+		<link rel="stylesheet" href="resources/css/wizard.css" />
+
+		<div class="panel panel-primary form-wizard">
+			<form wicket:id="planilhaFornecedoresForm"
+				class="form-horizontal formulario-fornecedores">
+				<div class="panel-menu">
+					<button wicket:id="voltarBtn" class="btn btn-primary">
+						<i class="fa fa-chevron-left"></i> Voltar
+					</button>
+					<!-- Gerente/Aprovador -->
+					<span wicket:id="secaoBotoesAprovador">
+						<button class="btn btn-primary nao-ok-btn" type="button"
+							data-toggle="modal" data-backdrop="static" data-keyboard="false"
+							data-target="#rejeicaoGerenteModal">
+							<i class="fa fa-times"></i> Rejeitar
+						</button>
+						<button class="btn btn-primary ok-btn" type="button"
+							data-toggle="modal" data-backdrop="static" data-keyboard="false"
+							data-target="#aprovacaoGerenteModal">
+							<i class="fa fa-check"></i> Aprovar
+						</button>
+					</span>
+					<!-- Cadastro -->
+					<span wicket:id="secaoBotoesCadastro">
+						<button wicket:id="solicitarCorrecaoBtn" class="btn btn-primary"
+							type="button" data-toggle="modal" data-backdrop="static"
+							data-keyboard="false" data-target="#solicitarCorrecaoModal">
+							<i class="fa fa-pencil-square-o"></i> Solicitar Correção
+						</button>
+						<button wicket:id="enviarConsincoBtn" class="btn btn-primary"
+							type="button" onclick="exibeCarregamento()">
+							<i class="fa fa-share"></i> Enviar para Consinco
+						</button>
+					</span>
+					<!-- Comercial/CSC 'salvarComentariosModal-->
+					<span wicket:id="secaoBotoesComercial">
+						<button class="btn btn-primary" type="button" data-toggle="modal"
+							data-backdrop="static" data-keyboard="false"
+							data-target="#importarPlanilhaModal">
+							<i class="fa fa-upload"></i> Importar Planilha
+						</button>
+						<button class="btn btn-primary" type="button" data-toggle="modal"
+							data-backdrop="static" data-keyboard="false"
+							data-target="#salvarCorrecoesModal">
+							<i class="fa fa-floppy-o"></i> Salvar
+						</button>
+					</span>
+				</div>
+				<div wicket:id="planilhaFornecedoresContainer" class="panel-body"
+					id="planilhaFornecedorContainer">
+					<!-- início: wizard -->
+					<div class="wizard-progress wizard-progress-lg">
+						<div class="steps-progress">
+							<div class="progress-indicator" style="width: 100%;"></div>
+						</div>
+						<ul class="wizard-steps">
+							<li class="completed active"><a href="#secao-fornecedor"
+								data-toggle="tab" aria-expanded="false"><span>1</span>Fornecedor</a>
+							</li>
+							<li class="completed"><a href="#secao-endereco-contato"
+								data-toggle="tab" aria-expanded="false"><span>2</span>Endereço
+									e <br />Contato</a></li>
+							<li class="completed"><a href="#secao-dados-financeiros"
+								data-toggle="tab" aria-expanded="false"><span>3</span>Dados
+									<br />Financeiros</a></li>
+							<li class="completed"><a href="#secao-negociacao"
+								data-toggle="tab" aria-expanded="false"><span>4</span>Dados
+									de <br />Negociação</a></li>
+							<li class="completed"><a href="#secao-dados-reponsavel"
+								data-toggle="tab" aria-expanded="false"><span>5</span>Dados
+									dos <br />Responsáveis</a></li>
+						</ul>
+					</div>
+					<!-- fim: wizard -->
+					<div class="tab-content">
+						<!-- início: seção fornecedor -->
+						<div id="secao-fornecedor" class="tab-pane active">
+							<div wicket:id="secaoDadosFornecedor">
+								<div class="row">
+									<div class="col-sm-4">
+										<div class="form-group form-group-sm">
+											<label class="control-label col-sm-3">Fornecedor</label>
+											<div class="col-sm-9">
+												<label class="glyphicon custom-select"> <select
+													wicket:id="tipoFornecedor" class="form-control combo"></select>
+												</label>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-4">
+										<div class="form-group form-group-sm">
+											<label class="control-label col-sm-3">Comprador</label>
+											<div class="col-sm-9">
+												<label class="glyphicon custom-select"> <select
+													wicket:id="comprador" class="form-control combo"></select>
+												</label>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-4">
+										<div wicket:id="grpMicroEmpresa" class="col-sm-6">
+											<div class="checkbox-custom checkbox-primary">
+												<input wicket:id="microEmpresa" type="checkbox" /> <label>Micro
+													Empresa</label> 
+											</div>
+										</div>
+										<div wicket:id="grpIeProdutorRural" class="col-sm-6">
+											<div class="checkbox-custom checkbox-primary">
+												<input wicket:id="ieProdutorRural" type="checkbox" /> <label>IE.
+													Produtor Rural</label>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-sm-4">
+										<div class="form-group form-group-sm">
+											<label class="control-label col-sm-3">Solicitação</label>
+											<div class="col-sm-9">
+												<label class="glyphicon custom-select"> <select
+													wicket:id="tipoSolicatacao" class="form-control combo"></select>
+												</label>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-4">
+										<div class="form-group form-group-sm">
+											<label class="control-label col-sm-3">Categoria</label>
+											<div class="col-sm-9">
+												<label class="glyphicon custom-select"> <select
+													wicket:id="categoria" class="form-control combo"></select>
+												</label>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-4">
+										<div wicket:id="grpContribuinteIPI" class="col-sm-6">
+											<div class="checkbox-custom checkbox-primary">
+												<input wicket:id="contribuinteIPI" type="checkbox" /> <label>É
+													Contribuinte de IPI</label>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="secao">
+									<div class="cabecalho-secao">Fornecedor</div>
+									<div class="corpo-secao">
+										<div class="row">
+											<div class="col-sm-4">
+												<div class="form-group form-group-sm">
+													<label class="control-label col-sm-3">Tipo Pessoa</label>
+													<div class="col-sm-9">
+														<label class="glyphicon custom-select"> <select
+															wicket:id="tipoPessoa" class="form-control combo"></select>
+														</label>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div wicket:id="secaoPJ">
+											<div class="row">
+												<div class="col-sm-4">
+													<div class="form-group form-group-sm">
+														<label class="control-label col-sm-3"
+															title="Razão Social Completo">Razão Social</label>
+														<div class="col-sm-9">
+															<input wicket:id="razaoSocialFornedor"
+																class="form-control" type="text" />
+														</div>
+													</div>
+												</div>
+												<div class="col-sm-4">
+													<div class="form-group form-group-sm">
+														<label class="control-label col-sm-3"
+															title="Razão Social Reduzido">Razão Reduzido</label>
+														<div class="col-sm-9">
+															<input wicket:id="razaoSocialReduzido"
+																class="form-control" type="text" />
+														</div>
+													</div>
+												</div>
+												<div class="col-sm-4">
+													<div class="form-group form-group-sm">
+														<label class="control-label col-sm-3">Inscr.
+															Estadual</label>
+														<div class="col-sm-9">
+															<input wicket:id="inscricaoEstadual" class="form-control"
+																type="text" />
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-sm-4">
+													<div class="form-group form-group-sm">
+														<label class="control-label col-sm-3">CNPJ</label>
+														<div class="col-sm-9">
+															<input wicket:id="cpnjJuridico" class="form-control"
+																type="text" />
+														</div>
+													</div>
+												</div>
+												<div class="col-sm-4">
+													<div class="form-group form-group-sm">
+														<label class="control-label col-sm-3">Simples
+															Nacional</label>
+														<div class="col-sm-3">
+															<div wicket:id="simplesNacional">
+																<div class="radio-custom radio-primary">
+																	<input wicket:id="simplesNacional_0" type="radio"
+																		name="rdbSimplesNacional" /> <label
+																		for="rdbSimplesNacional_Sim">Sim</label>
+																</div>
+																<div class="radio-custom radio-primary">
+																	<input wicket:id="simplesNacional_1" type="radio"
+																		name="rdbSimplesNacional" /> <label
+																		for="rdbSimplesNacional_Nao">Não</label>
+																</div>
+															</div>
+														</div>
+														<label class="control-label col-sm-3">Data Fund.</label>
+														<div class="col-sm-3">
+															<input wicket:id="dataFundacao" class="form-control date"
+																type="text" />
+														</div>
+													</div>
+												</div>
+												<div class="col-sm-4">
+													<div class="form-group form-group-sm">
+														<label class="control-label col-sm-3">Inscr.
+															Municipal</label>
+														<div class="col-sm-9">
+															<input wicket:id="inscricaoMunicipal"
+																class="form-control" type="text" />
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div wicket:id="secaoPF">
+											<div class="row">
+												<div class="col-sm-4">
+													<div class="form-group form-group-sm">
+														<label class="control-label col-sm-3">Nome</label>
+														<div class="col-sm-9">
+															<input wicket:id="nome" class="form-control" type="text" />
+														</div>
+													</div>
+												</div>
+												<div class="col-sm-4">
+													<div class="form-group form-group-sm">
+														<label class="control-label col-sm-3">Nome
+															Reduzido</label>
+														<div class="col-sm-9">
+															<input wicket:id="nomeReduzido" class="form-control"
+																type="text" />
+														</div>
+													</div>
+												</div>
+												<div class="col-sm-4">
+													<div class="form-group form-group-sm">
+														<label class="control-label col-sm-3">CPF</label>
+														<div class="col-sm-6">
+															<input wicket:id="cpfFisica" class="form-control"
+																type="text" />
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-sm-4">
+													<div class="form-group form-group-sm">
+														<label class="control-label col-sm-3">RG</label>
+														<div class="col-sm-6">
+															<input wicket:id="rg" class="form-control" type="text" />
+														</div>
+													</div>
+												</div>
+												<div class="col-sm-4">
+													<div class="form-group form-group-sm">
+														<label class="control-label col-sm-3">Órg.
+															Emissor/UF</label>
+														<div class="col-sm-3">
+															<input wicket:id="orgaoExpUF" class="form-control"
+																type="text" />
+														</div>
+														<label class="control-label col-sm-3">Data Exp.</label>
+														<div class="col-sm-3">
+															<input wicket:id="dataExpedicao"
+																class="form-control date" type="text" />
+														</div>
+													</div>
+												</div>
+												<div class="col-sm-4">
+													<div class="form-group form-group-sm">
+														<label class="control-label col-sm-3">Data Nasc.</label>
+														<div class="col-sm-3">
+															<input wicket:id="dataNascimento"
+																class="form-control date" type="text" />
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- fim: seção fornecedor -->
+
+						<!-- inicio: seção endereço e contato -->
+						<div id="secao-endereco-contato" class="tab-pane">
+							<div class="secao">
+								<div class="cabecalho-secao">Endereço</div>
+								<div class="corpo-secao">
+									<div class="row">
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3">Lograd.</label>
+												<div class="col-sm-3">
+													<label class="glyphicon custom-select"> <select
+														wicket:id="tipoLogradouro" class="form-control combo"></select>
+													</label>
+												</div>
+												<div class="col-sm-6">
+													<input wicket:id="logradouro" class="form-control"
+														type="text" />
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3">Número</label>
+												<div class="col-sm-3">
+													<input wicket:id="numero" class="form-control" type="text" />
+												</div>
+												<label class="control-label col-sm-3">CEP</label>
+												<div class="col-sm-3">
+													<input wicket:id="cep" class="form-control" type="text" />
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3">Compl</label>
+												<div class="col-sm-9">
+													<input wicket:id="complemento" class="form-control"
+														type="text" />
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3">Bairro</label>
+												<div class="col-sm-9">
+													<input wicket:id="bairro" class="form-control" type="text" />
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3">Cidade</label>
+												<div class="col-sm-9">
+													<input wicket:id="cidade" class="form-control" type="text" />
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3">Estado/UF</label>
+												<div class="col-sm-9">
+													<label class="glyphicon custom-select"> <select
+														wicket:id="estadoUf" class="form-control combo"></select>
+													</label>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="secao">
+								<div class="cabecalho-secao">Contato</div>
+								<div class="corpo-secao">
+									<div class="row">
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3">Email</label>
+												<div class="col-sm-9">
+													<input wicket:id="emailContato" class="form-control"
+														type="text" />
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3">Site</label>
+												<div class="col-sm-9">
+													<input wicket:id="homePage" class="form-control"
+														type="text" />
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3">Tel. Comercial</label>
+												<div class="col-sm-3">
+													<input wicket:id="ddFoneComercial" class="form-control"
+														type="text" />
+												</div>
+												<div class="col-sm-6">
+													<input wicket:id="foneComercial" class="form-control"
+														type="text" />
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3">Email NF-e</label>
+												<div class="col-sm-9">
+													<input wicket:id="emailParaNf" class="form-control"
+														type="text" />
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3">Tel. Fiscal</label>
+												<div class="col-sm-3">
+													<input wicket:id="ddFoneFiscal" class="form-control"
+														type="text" />
+												</div>
+												<div class="col-sm-6">
+													<input wicket:id="foneFiscal" class="form-control"
+														type="text" />
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3">Tel.
+													Financeiro</label>
+												<div class="col-sm-3">
+													<input wicket:id="ddFoneFinanceiro" class="form-control"
+														type="text" />
+												</div>
+												<div class="col-sm-6">
+													<input wicket:id="foneFinanceiro" class="form-control"
+														type="text" />
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- fim: seção endereço e contato -->
+
+						<!-- início: seção dados financeiros para pagamento -->
+						<div id="secao-dados-financeiros" class="tab-pane">
+							<div class="secao">
+								<div class="cabecalho-secao">Dados financeiros para
+									Pagamento</div>
+								<div class="corpo-secao">
+									<div class="row">
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3"
+													title="Forma de Pagamento">Forma Pgto.</label>
+												<div class="col-sm-9">
+													<label class="glyphicon custom-select"> <select
+														wicket:id="formaPagamento" class="form-control combo"></select>
+													</label>
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3"
+													title="Informar o nome completo da pessoa titular da conta">Titular
+													da Conta</label>
+												<div class="col-sm-9">
+													<input wicket:id="nomeTitularConta" class="form-control"
+														type="text" />
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-4"></div>
+									</div>
+									<div class="row">
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3"
+													title="Informar o tipo de conta que será usada para pagamentos">Tipo
+													da Conta</label>
+												<div class="col-sm-9">
+													<label class="glyphicon custom-select"> <select
+														wicket:id="tipoDaConta" class="form-control combo"></select>
+													</label>
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3"
+													title="Informar o CNPJ ou CPF do Titular da Conta">CNPJ
+													/ CPF</label>
+												<div class="col-sm-6">
+													<input wicket:id="cpfCnpjTitularConta" class="form-control"
+														type="text" />
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-4"></div>
+									</div>
+									<div class="row">
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3">Banco</label>
+												<div class="col-sm-9">
+													<label class="glyphicon custom-select"> <select
+														wicket:id="bancoTitularConta" class="form-control combo"></select>
+													</label>
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3" title="">Endereço</label>
+												<div class="col-sm-9">
+													<input wicket:id="enderecoTitularConta"
+														class="form-control" type="text" />
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<div>
+													<label class="control-label col-sm-3" title="">Nº</label>
+													<div class="col-sm-3">
+														<input wicket:id="numeroTitularConta" class="form-control"
+															type="text" />
+													</div>
+												</div>
+												<div>
+													<label class="control-label col-sm-3" title="">CEP</label>
+													<div class="col-sm-3">
+														<input wicket:id="cepTitularConta" class="form-control"
+															type="text" />
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3"
+													title="Informar o número da agência">Agência</label>
+												<div class="col-sm-3">
+													<input wicket:id="agenciaTitularConta" class="form-control"
+														type="text" />
+												</div>
+												<label class="control-label col-sm-3" title="">Dígito</label>
+												<div class="col-sm-3">
+													<input wicket:id="digitoAgenciaTitularConta"
+														class="form-control" type="text" />
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3" title="">Bairro</label>
+												<div class="col-sm-9">
+													<input wicket:id="bairroTitularConta" class="form-control"
+														type="text" />
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3">Complemento</label>
+												<div class="col-sm-9">
+													<input wicket:id="complementoTitularConta"
+														class="form-control" type="text" />
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3"
+													title="Informar o número da conta">Conta</label>
+												<div class="col-sm-3">
+													<input wicket:id="contaTitularConta" class="form-control"
+														type="text" />
+												</div>
+												<label class="control-label col-sm-3" title="">Dígito</label>
+												<div class="col-sm-3">
+													<input wicket:id="digitoContaTitularConta"
+														class="form-control" type="text" />
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3" title="">Cidade</label>
+												<div class="col-sm-9">
+													<input wicket:id="cidadeTitularConta" class="form-control"
+														type="text" />
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<div>
+													<label class="control-label col-sm-3">Estado/UF</label>
+													<div class="col-sm-9">
+														<label class="glyphicon custom-select"> <select
+															wicket:id="ufTitularConta" class="form-control combo"></select>
+														</label>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<div>
+													<label class="control-label col-sm-3"
+														title="Informar o tipo da conta bancária">Tipo de
+														Conta</label>
+													<div class="col-sm-9">
+														<label class="glyphicon custom-select"> <select
+															wicket:id="tipoDeConta" class="form-control combo"></select>
+														</label>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3"
+													title="Informar a quantidade de dias de prazo para pagamentos">Prazo
+													de Pgto.</label>
+												<div class="col-sm-6">
+													<input wicket:id="prazoPagamento" class="form-control"
+														type="text" />
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3" title="">Observação</label>
+												<div class="col-sm-9">
+													<input wicket:id="observacaoTitularConta"
+														class="form-control" type="text" />
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- fim: seção dados financeiros para pagamento -->
+
+						<!-- início: seção negociação, entrega e dados adicionais -->
+						<div id="secao-negociacao" class="tab-pane">
+							<div class="secao">
+								<div class="cabecalho-secao">Negociação</div>
+								<div class="corpo-secao">
+									<div class="row">
+
+										<!-- MELHORIAS INICIO -->
+										<div class="col-sm-3">
+											<div class="form-group form-group-sm">
+												<div>
+													<label class="control-label col-sm-3"
+														title="Recebe NF Devolução">Rec. NF Devol.</label>
+													<div class="col-sm-3">
+														<div wicket:id="recebeNfDevolucao" class="col-sm-3">
+															<div class="radio-custom radio-primary">
+																<input wicket:id="recebeNfDevolucao_0" type="radio"
+																	name="rdbRecebeNfDevolucao" /> <label>Sim</label>
+															</div>
+															<div class="radio-custom radio-primary">
+																<input wicket:id="recebeNfDevolucao_1" type="radio"
+																	name="rdbRecebeNfDevolucao" /> <label>Não</label>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div>
+													<label class="control-label col-sm-3"
+														title="Negociação de Boleto">Negoc. de Boleto</label>
+													<div wicket:id="negocicacaoBoleto">
+														<div class="col-sm-3">
+															<div class="radio-custom radio-primary">
+																<input wicket:id="negocicacaoBoleto_0" type="radio"
+																	name="rdbNegocicacaoBoleto" /> <label>Sim</label>
+															</div>
+															<div class="radio-custom radio-primary">
+																<input wicket:id="negocicacaoBoleto_1" type="radio"
+																	name="rdbNegocicacaoBoleto" /> <label>Não</label>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+
+										<!--  -->
+
+										<div class="col-sm-3">
+											<div class="form-group form-group-sm">
+												<div>
+													<label class="control-label col-sm-3"
+														title="Troca c/NF ou Bonificação">c/NF ou Bonif.</label>
+													<div wicket:id="trocaNfBonificacao">
+														<div class="col-sm-3">
+															<div class="radio-custom radio-primary">
+																<input wicket:id="trocaNfBonificacao_0" type="radio"
+																	name="rdbSimplesNacional" /> <label
+																	for="rdbSimplesNacional_Sim">Sim</label>
+															</div>
+															<div class="radio-custom radio-primary">
+																<input wicket:id="trocaNfBonificacao_1" type="radio"
+																	name="rdbSimplesNacional" /> <label
+																	for="rdbSimplesNacional_Nao">Não</label>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div>
+													<label class="control-label col-sm-3"
+														title="Troca Produto X Produto">Troca Prod. X
+														Prod.</label>
+													<div wicket:id="trocaProdutoProduto">
+														<div class="col-sm-3">
+															<div class="radio-custom radio-primary">
+																<input wicket:id="trocaProdutoProduto_0" type="radio"
+																	name="rdbTrocaProdutoProduto" /> <label
+																	for="rdbTrocaProdutoProduto_Sim">Sim</label>
+															</div>
+															<div class="radio-custom radio-primary">
+																<input wicket:id="trocaProdutoProduto_1" type="radio"
+																	name="rdbTrocaProdutoProduto" /> <label
+																	for="rdbTrocaProdutoProduto_Nao">Não</label>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+
+										<!--  -->
+
+										<div class="col-sm-3">
+											<div class="form-group form-group-sm">
+												<div>
+													<label class="control-label col-sm-3"
+														title="Troca Recolhe os Produtos">Recolhe os Prod.</label>
+													<div wicket:id="trocaRecolheProduto">
+														<div class="col-sm-3">
+															<div class="radio-custom radio-primary">
+																<input wicket:id="trocaRecolheProduto_0" type="radio"
+																	name="rdbTrocaRecolheProduto" /> <label
+																	for="rdbTrocaRecolheProduto_Sim">Sim</label>
+															</div>
+															<div class="radio-custom radio-primary">
+																<input wicket:id="trocaRecolheProduto_1" type="radio"
+																	name="rdbTrocaRecolheProduto" /> <label
+																	for="rdbTrocaRecolheProduto_Nao">Não</label>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div>
+													<label class="control-label col-sm-3"
+														title="Negociação de Boleto">Indeniza Troca</label>
+													<div wicket:id="indenizaTroca">
+														<div class="col-sm-3">
+															<div class="radio-custom radio-primary">
+																<input wicket:id="indenizaTroca_0" type="radio"
+																	name="rdbNegocicacaoBoleto" /> <label>Sim</label>
+															</div>
+															<div class="radio-custom radio-primary">
+																<input wicket:id="indenizaTroca_1" type="radio"
+																	name="rdbNegocicacaoBoleto" /> <label>Não</label>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+
+										<!--  -->
+
+										<div class="col-sm-3">
+											<div class="form-group form-group-sm">
+												<div>
+													<label class="control-label col-sm-3"
+														title="Recebe NF Devolução">Acordo Comercial</label>
+													<div class="col-sm-3">
+														<div wicket:id="acordoComercial" class="col-sm-3">
+															<div class="radio-custom radio-primary">
+																<input wicket:id="acordoComercial_0" type="radio"
+																	name="rdbRecebeNfDevolucao" /> <label>Sim</label>
+															</div>
+															<div class="radio-custom radio-primary">
+																<input wicket:id="acordoComercial_1" type="radio"
+																	name="rdbRecebeNfDevolucao" /> <label>Não</label>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<!-- MELHORIAS FIM -->
+
+									</div>
+								</div>
+							</div>
+							<div class="secao">
+								<div class="cabecalho-secao">Entrega</div>
+								<div class="corpo-secao">
+									<div class="row">
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3">Prazo de
+													Entrega</label>
+												<div class="col-sm-9">
+													<div class="input-group">
+														<input wicket:id="prazoEntrega" type="text"
+															class="form-control" /> <span class="input-group-addon">dias</span>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3"
+													title="Prazo de Atraso de Entrega">Prazo de Atraso</label>
+												<div class="col-sm-9">
+													<div class="input-group">
+														<input wicket:id="prazoAtrasoEntrega" type="text"
+															class="form-control" /> <span class="input-group-addon">dias</span>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3">Prazo de
+													Visita</label>
+												<div class="col-sm-9">
+													<div class="input-group">
+														<input wicket:id="prazoVisita" type="text"
+															class="form-control" /> <span class="input-group-addon">dias</span>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<div>
+													<label class="control-label col-sm-3">Tipo de Frete</label>
+													<div class="col-sm-6">
+														<label class="glyphicon custom-select"> <select
+															wicket:id="tipoFrete" class="form-control combo"></select>
+														</label>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3">Observação</label>
+												<div class="col-sm-9">
+													<input wicket:id="observacaoEntrega" class="form-control"
+														type="text" />
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="secao">
+								<div class="cabecalho-secao">Dados Adicionais</div>
+								<div class="corpo-secao">
+									<div class="row">
+										<div class="row">
+											<div class="col-sm-12">
+												<div class="col-sm-12">
+													<textarea wicket:id="dadosAdicionais" class="form-control"
+														row="4"></textarea>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- fim: seção negociação, entrega e dados adicionais -->
+
+						<!-- início: dados do responsável -->
+						<div id="secao-dados-reponsavel" class="tab-pane">
+							<div class="secao">
+								<div class="cabecalho-secao">Responsável para Acordos</div>
+								<div class="corpo-secao">
+									<div class="row">
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3">Nome</label>
+												<div class="col-sm-9">
+													<input wicket:id="nomeCompletoReponsavelAcordo"
+														class="form-control" type="text" />
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3">CPF</label>
+												<div class="col-sm-6">
+													<input wicket:id="cpfReponsavelAcordo" class="form-control"
+														type="text" />
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3">Telefone</label>
+												<div class="col-sm-3">
+													<input wicket:id="ddFoneReponsavelAcordo"
+														class="form-control" type="text" />
+												</div>
+												<div class="col-sm-6">
+													<input wicket:id="foneReponsavelAcordo"
+														class="form-control" type="text" />
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3">Cargo</label>
+												<div class="col-sm-9">
+													<input wicket:id="cargoReponsavelAcordo"
+														class="form-control" type="text" />
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3">RG</label>
+												<div class="col-sm-6">
+													<input wicket:id="rgReponsavelAcordo" class="form-control"
+														type="text" />
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3">E-mail Contato</label>
+												<div class="col-sm-9">
+													<input wicket:id="emailReponsavelAcordo"
+														class="form-control" type="text" />
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="secao">
+								<div class="cabecalho-secao">Preposto/Representante</div>
+								<div class="corpo-secao">
+									<div class="row">
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3">Nome</label>
+												<div class="col-sm-9">
+													<input wicket:id="nomePrepostoRepresentante"
+														class="form-control" type="text" />
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3">CPF</label>
+												<div class="col-sm-6">
+													<input wicket:id="cpfPrepostoRepresentante"
+														class="form-control" type="text" />
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3">Telefone</label>
+												<div class="col-sm-3">
+													<input wicket:id="ddFonePrepostoRepresentante"
+														class="form-control" type="text" />
+												</div>
+												<div class="col-sm-6">
+													<input wicket:id="fonePrepostoRepresentante"
+														class="form-control" type="text" />
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3">Cargo</label>
+												<div class="col-sm-9">
+													<input wicket:id="cargoPrepostoRepresentante"
+														class="form-control" type="text" />
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3">RG</label>
+												<div class="col-sm-6">
+													<input wicket:id="rgPrepostoRepresentante"
+														class="form-control" type="text" />
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3">E-mail Contato</label>
+												<div class="col-sm-9">
+													<input wicket:id="emailPrepostoRepresentante"
+														class="form-control" type="text" />
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- fim: dados do responsável -->
+					</div>
+				</div>
+
+				<div wicket:id="salvarAlteracoesContainer">
+					<!-- início: modal salvar corrreção -->
+					<div id="salvarCorrecoesModal" class="modal" role="dialog">
+						<div class="vertical-alignment-helper">
+							<div class="modal-dialog vertical-align-center">
+								<div class="modal-content">
+									<div class="form-horizontal">
+										<div class="modal-header">
+											<h4 class="modal-title">Comentários</h4>
+										</div>
+										<div class="modal-body">
+											<div class="row">
+												<div class="col-sm-12">
+													<div class="form-group form-group-sm">
+														<label class="control-label col-sm-2">Aprovador</label>
+														<div class="col-sm-10">
+															<span wicket:id="usuarioSalvarCorrecao"
+																class="form-control disabled"></span>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-sm-12">
+													<div class="form-group form-group-sm">
+														<label class="control-label col-sm-2">Comentários</label>
+														<div class="col-sm-10">
+															<textarea wicket:id="comentariosAlteracoes"
+																class="form-control comentarios" rows="4"></textarea>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="modal-footer">
+											<button class="btn btn-primary" type="button"
+												data-toggle="modal" data-backdrop="static"
+												data-keyboard="false" data-dismiss="modal"
+												data-target="#confirmacaoSalvarCorrecaoDialog">
+												<i class="fa fa-envelope-o"></i> Enviar
+											</button>
+											<button type="button" class="btn btn-primary"
+												data-dismiss="modal" onclick="limparCampoComentarios()">
+												<i class="fa fa-times"></i> Fechar
+											</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- fim: modal salvar corrreção -->
+
+					<!-- início: dialog confirmação salvar dados corrigidos  -->
+					<div id="confirmacaoSalvarCorrecaoDialog" class="modal"
+						role="dialog">
+						<div class="vertical-alignment-helper">
+							<div class="modal-dialog confirmacao vertical-align-center">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h4 class="modal-title">Confirmação</h4>
+									</div>
+									<div class="modal-body">
+										<div class="modal-wrapper">
+											<div class="modal-icon">
+												<i class="fa fa-question-circle"></i>
+											</div>
+											<div class="modal-text">Tem certeza que deseja salvar
+												os dados corrigidos?</div>
+										</div>
+									</div>
+									<div class="modal-footer">
+										<button wicket:id="salvarAlteracoesBtn" type="button"
+											class="btn btn-primary"
+											onclick="$('#confirmacaoSalvarCorrecaoDialog').modal('hide')">
+											<i class="fa fa-check"></i> Sim
+										</button>
+										<button type="button" class="btn btn-danger"
+											data-dismiss="modal" data-target="#salvarCorrecoesModal"
+											data-toggle="modal" data-backdrop="static"
+											data-keyboard="false">
+											<i class="fa fa-times"></i> Não
+										</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- fim: dialog confirmação salvar dados corrigidos  -->
+				</div>
+			</form>
+
+			<!-- início: modals -->
+
+			<!-- início: modal aprovação modal -->
+			<form wicket:id="aprovacaoModalForm" class="form-horizontal">
+				<div id="aprovacaoGerenteModal" class="modal" role="dialog">
+					<div class="vertical-alignment-helper">
+						<div class="modal-dialog vertical-align-center">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h4 class="modal-title">Aprovação - Comentários</h4>
+								</div>
+								<div class="modal-body">
+									<div class="row">
+										<div class="col-sm-12">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-2">Aprovador</label>
+												<div class="col-sm-10">
+													<span wicket:id="nomeAprovador"
+														class="form-control disabled"></span>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-sm-12">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-2">Comentários</label>
+												<div class="col-sm-10">
+													<textarea wicket:id="comentariosAprovacao"
+														class="form-control comentarios" rows="4"></textarea>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="modal-footer">
+									<button class="btn btn-primary" type="button"
+										data-toggle="modal" data-backdrop="static"
+										data-keyboard="false"
+										data-target="#confirmacaoAprovacaoDialog" data-dismiss="modal">
+										<i class="fa fa-envelope-o"></i> Enviar
+									</button>
+									<button type="button" class="btn btn-primary"
+										data-dismiss="modal" onclick="limparCampoComentarios()">
+										<i class="fa fa-times"></i> Fechar
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- início: dialog confirmação aprovação  -->
+				<div id="confirmacaoAprovacaoDialog" class="modal" role="dialog">
+					<div class="vertical-alignment-helper">
+						<div class="modal-dialog vertical-align-center confirmacao">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h4 class="modal-title">Confirmação</h4>
+								</div>
+								<div class="modal-body">
+									<div class="modal-wrapper">
+										<div class="modal-icon">
+											<i class="fa fa-question-circle"></i>
+										</div>
+										<div class="modal-text">Tem certeza que deseja aprovar o
+											cadastro do fornecedor?</div>
+									</div>
+								</div>
+								<div class="modal-footer">
+									<button wicket:id="enviarAprovacaoBtn" type="button"
+										class="btn btn-primary">
+										<i class="fa fa-check"></i> Sim
+									</button>
+									<button type="button" class="btn btn-danger"
+										data-dismiss="modal" data-target="#aprovacaoGerenteModal"
+										data-toggle="modal" data-backdrop="static"
+										data-keyboard="false">
+										<i class="fa fa-times"></i> Não
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- fim: dialog confirmação aprovação  -->
+			</form>
+			<!-- fim: modal aprovação modal -->
+
+			<!-- início: modal rejeição modal -->
+			<form wicket:id="rejeicaoModalForm" class="form-horizontal">
+				<div id="rejeicaoGerenteModal" class="modal" role="dialog">
+					<div class="vertical-alignment-helper">
+						<div class="modal-dialog vertical-align-center">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h4 class="modal-title">Rejeição - Comentários</h4>
+								</div>
+								<div class="modal-body">
+									<div class="row">
+										<div class="col-sm-12">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-2">Aprovador</label>
+												<div class="col-sm-10">
+													<span wicket:id="nomeAprovadorRejeicao"
+														class="form-control disabled"></span>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-sm-12">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-2">Motivo</label>
+												<div class="col-sm-10">
+													<label class="glyphicon custom-select"> <select
+														wicket:id="motivosRejeicao" class="form-control combo"></select>
+													</label>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-sm-12">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-2">Comentários</label>
+												<div class="col-sm-10">
+													<textarea wicket:id="comentariosRejeicao"
+														class="form-control comentarios" rows="4"></textarea>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="modal-footer">
+									<button class="btn btn-primary" type="button"
+										data-dismiss="modal" data-toggle="modal"
+										data-backdrop="static" data-keyboard="false"
+										data-target="#confirmacaoRejeicaoDialog">
+										<i class="fa fa-envelope-o"></i> Enviar
+									</button>
+									<button type="button" class="btn btn-primary"
+										data-dismiss="modal" onclick="limparCampoComentarios()">
+										<i class="fa fa-times"></i> Fechar
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- início: dialog confirmação rejeição  -->
+				<div id="confirmacaoRejeicaoDialog" class="modal" role="dialog">
+					<div class="vertical-alignment-helper">
+						<div class="modal-dialog confirmacao vertical-align-center">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h4 class="modal-title">Confirmação</h4>
+								</div>
+								<div class="modal-body">
+									<div class="modal-wrapper">
+										<div class="modal-icon">
+											<i class="fa fa-question-circle"></i>
+										</div>
+										<div class="modal-text">Tem certeza que deseja rejeitar
+											o cadastro do fornecedor?</div>
+									</div>
+								</div>
+
+								<div class="modal-footer">
+									<button wicket:id="enviarRejeicaoBtn" type="button"
+										class="btn btn-primary">
+										<i class="fa fa-check"></i> Sim
+									</button>
+									<button type="button" class="btn btn-danger"
+										data-dismiss="modal" data-toggle="modal"
+										data-backdrop="static" data-keyboard="false"
+										data-target="#rejeicaoGerenteModal">
+										<i class="fa fa-times"></i> Não
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- fim: dialog confirmação rejeição  -->
+			</form>
+			<!-- fim: modal rejeição modal -->
+
+			<!-- início: modal solicitar correção -->
+			<form wicket:id="correcaoModalForm" class="form-horizontal">
+				<div id="solicitarCorrecaoModal" class="modal" role="dialog">
+					<div class="vertical-alignment-helper">
+						<div class="modal-dialog vertical-align-center">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h4 class="modal-title">Solicitar Correção - Comentários</h4>
+								</div>
+								<div class="modal-body">
+									<div class="row">
+										<div class="col-sm-12">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-2">Aprovador</label>
+												<div class="col-sm-10">
+													<span wicket:id="usuarioSolicitacaoCorrecao"
+														class="form-control disabled"></span>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-sm-12">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-2">Comentários</label>
+												<div class="col-sm-10">
+													<textarea wicket:id="comentariosCorrecao"
+														class="form-control comentarios" rows="4"></textarea>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="modal-footer">
+									<button class="btn btn-primary" type="button"
+										data-toggle="modal" data-backdrop="static"
+										data-keyboard="false"
+										data-target="#confirmacaoEnvioCorrecaoDialog"
+										data-dismiss="modal">
+										<i class="fa fa-envelope-o"></i> Enviar
+									</button>
+									<button type="button" class="btn btn-primary"
+										data-dismiss="modal" onclick="limparCampoComentarios()">
+										<i class="fa fa-times"></i> Fechar
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- início: dialog confirmação envio para correção  -->
+				<div id="confirmacaoEnvioCorrecaoDialog" class="modal" role="dialog">
+					<div class="vertical-alignment-helper">
+						<div class="modal-dialog confirmacao vertical-align-center">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h4 class="modal-title">Confirmação</h4>
+								</div>
+								<div class="modal-body">
+									<div class="modal-wrapper">
+										<div class="modal-icon">
+											<i class="fa fa-question-circle"></i>
+										</div>
+										<div class="modal-text">Tem certeza que deseja enviar o
+											cadastro para correção?</div>
+									</div>
+								</div>
+								<div class="modal-footer">
+									<button wicket:id="enviarSolicitacaoCorrecaoBtn" type="button"
+										class="btn btn-primary">
+										<i class="fa fa-check"></i> Sim
+									</button>
+									<button type="button" class="btn btn-danger"
+										data-dismiss="modal" data-toggle="modal"
+										data-backdrop="static" data-keyboard="false"
+										data-target="#solicitarCorrecaoModal">
+										<i class="fa fa-times"></i> Não
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- fim: dialog confirmação envio para correção  -->
+			</form>
+			<!-- fim: modal solicitar correção -->
+
+			<!-- início: modal importar planilha -->
+			<div id="importarPlanilhaModal" class="modal" role="dialog">
+				<div class="vertical-alignment-helper">
+					<div class="modal-dialog vertical-align-center">
+						<div class="modal-content">
+							<form wicket:id="importacaoPlanilhaModalForm"
+								class="form-horizontal">
+								<div class="modal-header">
+									<h4 class="modal-title">Importar planilha preenchida</h4>
+								</div>
+								<div class="modal-body">
+									<div class="row">
+										<div class="fileupload fileupload-new"
+											data-provides="fileupload">
+											<div class="col-sm-12">
+												<div class="form-group form-group-sm">
+													<label class="control-label col-sm-2">Planilha</label>
+													<div class="col-sm-9">
+														<div class="input-append">
+															<div class="input-group input-group-sm">
+																<div class="uneditable-input form-control">
+																	<span class="fa fa-file fileupload-exists"></span> <span
+																		class="fileupload-preview"></span>
+																</div>
+																<span class="input-group-btn"> <span
+																	class="btn btn-primary btn-file"> <span
+																		class="fileupload-exists"> <i
+																			class="fa fa-refresh"> </i> Trocar
+																	</span> <span class="fileupload-new"> <i
+																			class="fa fa-search"></i>
+																	</span> <input wicket:id="fileUploadField" type="file" /> <!-- wicketId vem aqui!  -->
+																</span>
+																	<button class="btn btn-primary fileupload-exists"
+																		data-dismiss="fileupload">
+																		<i class="fa fa-trash-o"></i> Remover
+																	</button>
+																</span>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="modal-footer">
+									<button wicket:id="importBtn" type="button"
+										class="btn btn-primary"
+										onclick="$('#importarPlanilhaModal').modal('hide')">
+										<i class="fa fa-upload"></i> Importar
+									</button>
+									<button type="button" class="btn btn-primary"
+										data-dismiss="modal">
+										<i class="fa fa-times"></i> Fechar
+									</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- fim: modal importar planilha -->
+
+			<!-- início: modal fornecedor criado com sucesso modal -->
+			<div id="sucessoCriacaoFornecedorModal" class="modal" role="dialog">
+				<form wicket:id="sucessoCadastroForm">
+					<div class="vertical-alignment-helper">
+						<div class="modal-dialog sucesso vertical-align-center">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h4 class="modal-title">Sucesso</h4>
+								</div>
+								<div class="modal-body">
+									<div class="modal-wrapper">
+										<div class="modal-icon">
+											<i class="fa fa-check"></i>
+										</div>
+										<div class="modal-text">
+											<h4>Fornecedor criado com sucesso.</h4>
+											Número do fornecedor na Consinco: <b><span
+												wicket:id="nroFornecedorConsincoLabel">[NRO_FORNC_CONSINCO]</span></b>
+										</div>
+									</div>
+								</div>
+								<div class="modal-footer">
+									<button wicket:id="finalizarCadastroBtn" type="button"
+										class="btn btn-success">OK</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+			<!-- fim: modal fornecedor criado com sucesso modal -->
+			<!-- fim: modals -->
+		</div>
+		<script
+			src="resources/assets/vendor/bootstrap-wizard/jquery.bootstrap.wizard.js"></script>
+		<script src="resources/js/cadastro-fornecedor/cadastro-fornecedor.js"></script>
+	</wicket:extend>
+</body>
+</html>

@@ -1,0 +1,9 @@
+.alert.alert-danger{
+	margin-top: 40px;
+	margin-left: 10%;
+	margin-right: 10%;
+}
+
+.alert.alert-danger > .mensagem-erro{
+	text-align: center;
+}

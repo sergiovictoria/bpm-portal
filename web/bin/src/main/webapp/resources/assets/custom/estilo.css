@@ -1,0 +1,124 @@
+@CHARSET "UTF-8";
+
+.conteudo {
+	list-style: none;
+}
+		
+.conteudo li {
+	padding-bottom: 20px;
+}
+
+.conteudo-bloco {
+	border: 1px solid #000;
+}
+
+.conteudo-header{
+	border-bottom: 1px solid #000;
+	background-image: linear-gradient(#04519b, #044687 60%, #033769);
+	text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+   	color: #fff;
+   	padding-top: 0.5rem;
+   	padding-bottom: 0.5rem;
+}
+	
+.conteudo-header h1 {
+	margin: 0px;
+    font-weight: bold;
+    font-size: 2.5rem;
+    font-family: inherit;
+}
+
+.conteudo-mensagem {
+	
+}
+
+.conteudo-footer {
+	border-top: 1px solid #000;
+	background-color: #04519b;
+	box-shadow: 0 1px 0 0 #dc9843;
+	color: #fff;
+	font-weight: bold;
+}
+	
+.dataview-navigator {
+    /*
+    position: absolute;
+    bottom: 5.5rem;
+    right: 1.45rem;*/
+    background-color: #04519b;
+    color: #fff;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 0;
+    margin: 0;
+    padding-top: 0.5rem;
+   	padding-bottom: 0.5rem;
+    -webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	border: 1px solid #dc9843 !important;
+	line-height: normal;
+	font-size: 14px;
+}
+	
+.dataview-navigator .first, 
+.dataview-navigator .prev, 
+.dataview-navigator .goto, 
+.dataview-navigator .next,
+.dataview-navigator .last {
+	padding-right: 0.8rem;
+   	padding-left: 0.8rem;
+   	padding-top: 0.5rem;
+   	padding-bottom: 0.5rem;
+   	text-decoration: none;
+   	font-weight: 800;
+   	font-style: normal !important;
+}
+
+.dataview-navigator .goto a {
+	color: #999999;
+}
+
+.dataview-navigator .first,
+.dataview-navigator .prev,
+.dataview-navigator .next,
+.dataview-navigator .last {
+	color: #FFF;
+}
+
+.dataview-navigator .first em, 
+.dataview-navigator .prev em, 
+.dataview-navigator .goto em, 
+.dataview-navigator .next em,
+.dataview-navigator .last em {
+	font-style: normal; !important;
+}
+
+.dataview-navigator .first, 
+.dataview-navigator .prev, 
+.dataview-navigator .goto, 
+.dataview-navigator .next {
+	border-right: 1px solid #dc9843 !important;
+}
+
+.dataview-navigator .goto {
+	background-image: linear-gradient(#04519b, #044687 60%, #033769);
+}
+
+/*		
+.form-horizontal{
+    height: 100%;
+}*/
+
+.form-group-sm select.form-control {
+	line-height: normal;
+}	
+
+.datepicker table thead tr th{
+	color: #000 !important;
+}
+
+.form-group label.control-label,
+.form-group .form-group-sm label.control-label{
+	font-weight: bold;
+}

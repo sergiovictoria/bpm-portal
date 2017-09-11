@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:wicket="http://wicket.apache.org">
+<head>
+<title>Alteração de Senha</title>
+
+</head>	
+<body>
+	<wicket:extend>
+		<form wicket:id="formAlteracaoSenha" >
+			<div class="panel panel-primary">
+				<div class="panel-menu">
+					<button wicket:id="alterarSenhaBtn" class="btn btn-primary"><i class="fa fa-pencil"></i> Alterar</button>
+				</div>
+				<div class="panel-body">
+					<div class="secao">
+						<div class="cabecalho-secao">Trocar Senha</div>
+						<div class="corpo-secao">
+							<div class="row">
+								<div class="col-sm-12">
+									<div class="form-group form-group-sm">
+										<label class="control-label col-sm-2">Nova senha</label>
+										<div class="col-sm-5">
+											<input wicket:id="senha" type="password" class="form-control"/>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-sm-12">
+									<div class="form-group form-group-sm">
+										<label class="control-label col-sm-2">Confirmação</label>
+										<div class="col-sm-5">
+											<input wicket:id="confirmacaoSenha" type="password" class="form-control"/>
+										</div>
+									</div>
+								</div>
+							</div>							
+						</div>
+					</div>	
+				</div>
+			</div>
+		</form>
+	</wicket:extend>
+</body>
+</html>

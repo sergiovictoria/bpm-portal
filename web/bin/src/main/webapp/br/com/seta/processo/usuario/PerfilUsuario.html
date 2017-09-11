@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:wicket="http://wicket.apache.org">
+<head>
+<title>Perfil do Usuário</title>
+
+</head>	
+<body>
+	<wicket:extend>
+		<div class="panel panel-primary">
+			<div class="panel-menu">
+				<button wicket:id="alterarEmailBtn" class="btn btn-primary" type="button"><i class="fa fa-envelope-o"></i> Alterar E-mail</button>
+				<button wicket:id="alterarSenhaBtn" class="btn btn-primary" type="button"><i class="fa fa-unlock-alt"></i> Alterar Senha</button>
+			</div>
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-sm-6">
+						<div class="form-group form-group-sm">
+							<label class="control-label col-sm-3">Nome</label>
+							<div class="col-sm-9">
+						    	<input wicket:id="nomeInput" class="form-control" type="text" />
+						    </div>
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="form-group form-group-sm">
+							<label class="control-label col-sm-3">Sobrenome</label>
+							<div class="col-sm-9">
+						    	<input wicket:id="sobrenomeInput" class="form-control" type="text" />
+						    </div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-sm-6">
+						<div class="form-group form-group-sm">
+							<label class="control-label col-sm-3">Usuário</label>
+							<div class="col-sm-9">
+						    	<input wicket:id="usuarioInput" class="form-control" type="text" />
+						    </div>
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="form-group form-group-sm">
+							<label class="control-label col-sm-3">E-mail</label>
+							<div class="col-sm-9">
+						    	<input wicket:id="emailInput" class="form-control" type="text" />
+						    </div>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+	</wicket:extend>
+</body>
+</html>

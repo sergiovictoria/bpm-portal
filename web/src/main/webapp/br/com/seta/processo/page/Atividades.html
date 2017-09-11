@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org">
+<head>
+<title>Atividades</title>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="../../../../../resources/assets/components/font-awesome-4.4.0/css/font-awesome.min.css" />
+<link rel="stylesheet" href="../../../../../resources/css/processos.css"></link>
+
+
+</head>
+<body>
+	<wicket:extend>
+		<form wicket:id="atividadesForm">
+			<div class="alertaContainer alert alert-info">Não foram encontradas atividades para o seu usuário!</div>
+
+			<div class="atividadesContainer clearfix">
+				<!-- início: seção atividades -->
+				<div class="panel panel-primary secaoAtividades secao">
+					<div class="panel-menu">
+						<span class="titulo-secao">Lista de Atividades</span>
+					</div>
+					<div class="panel-body">	
+						<!-- início: filtro atividades -->
+						<div class="secao-filtro-atividades">
+							<div class="row">
+								<div class="form-group form-group-sm col-sm-12">
+									<button class="refresh" title="Atualizar">
+										<i class="fa fa-refresh"></i>
+									</button>
+									<div class="input-group input-group-sm">
+										<input wicket:id="buscaAtividadeInput" type="text" class="form-control" placeholder="Busque..." /> <span class="input-group-btn">
+											<button wicket:id="buscaAtividadeBtn" class="btn btn-primary btn-sm" type="button">
+												<i class="fa fa-search"></i>
+											</button>
+										</span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- fim: filtro atividades -->
+	
+						<div wicket:id="atividadesContainer">
+							<div class="atividadesTabela" style="display: none">
+								<div class="panel-group">
+									<div wicket:id="atividadesDataView" class="atividadePanel panel panel-default">
+										<div class="atividade panel-body">
+											<span wicket:id="prioridadeIcone" class="prioridade-icone"><i class="fa fa-exclamation"></i></span>
+											<div wicket:id="descricao" class="labelAtividade">[Nome Atividade]</div>
+											<div class="rootContainerId">
+												<span class="labelDadosAtividade">Case ID: </span> <span wicket:id="rootContainerId"></span>
+											</div>
+											<div class="rootContainer">
+												<span class="labelDadosAtividade">Processo: </span> <span wicket:id="rootContainer"></span>
+											</div>
+											<div class="lado-equerdo">
+												<div class="prazo">
+													<span wicket:id="prazoRelogio" class="prazoRelogio fa fa-clock-o"></span> <span wicket:id="prazo">[Prazo]</span>
+												</div>
+												<button wicket:id="executarAtividadeBtn" class="btn btn-primary" type="button">
+													<i class="fa fa-play"></i> Executar
+												</button>
+											</div>
+											<div class="prioridade">
+												<span class="labelDadosAtividade">Prioridade: </span><span wicket:id="prioridade">[Prioridade]</span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="navigator-container" wicket:id="navigatorContainer" style="display: none">
+							<div class="row">
+								<div class="col-sm-12">
+									<span wicket:id="navigator" class="dataview-navigator"></span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- fim: seção atividades -->
+
+				<!-- início: seção timeline -->
+				<div wicket:id="secaoTimeline" class="panel panel-primary secaoTimeline secao">
+					<div class="panel-menu">
+						<span class="titulo-secao">Linha do Tempo</span>
+					</div>
+					<div class="panel-body">
+						<div wicket:id="timeline"></div>
+					</div>
+				</div>
+				<!-- fim: seção timeline -->
+			</div>
+		</form>
+
+		<script>
+			/**
+			Define os estilos dos painéis de atividade quando estes são selecionados
+			*/
+			var setEstiloAtividades = function(){
+				$(".atividadePanel").first(".atividaePanel").addClass("itemSelecionado");
+	
+				$(".atividadePanel").click(function(){
+					$(".atividadePanel").removeClass("itemSelecionado");
+					$(this).addClass("itemSelecionado");
+				});
+			}
+	
+			/**
+			Oculta as seções de atividades e exibe uma mensagem de alerta, caso não tenhamos atividades
+			*/
+			var existeAtividades = function(){				
+				if($(".atividadePanel").length === 0){
+					$(".atividadesTabela").hide();
+					$(".navigator-container").hide();
+					$(".secaoTimeline").hide();
+					$(".alertaContainer").show();
+				}else{
+					$(".alertaContainer").hide();
+
+					$(".atividadesTabela").show();
+					$(".navigator-container").show();
+					$(".secaoTimeline").show();
+
+					
+					$(".atividadesContainer").show();
+				}				
+			}
+			
+			$(function(){
+				setEstiloAtividades(); 
+				existeAtividades();
+				});
+		</script>
+	</wicket:extend>
+</body>
+</html>

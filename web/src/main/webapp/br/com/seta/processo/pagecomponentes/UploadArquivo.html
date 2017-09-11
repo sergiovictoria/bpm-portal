@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:wicket="http://wicket.apache.org">
+
+<head>
+</head>
+<body>
+	<wicket:panel>
+		<div class="fileupload fileupload-new" style="margin: 0 0px"
+			data-provides="fileupload">
+			<div class="input-append">
+				<div class="input-group input-group-sm">
+					<div class="uneditable-input form-control">
+						<span class="fa fa-file fileupload-exists"></span> <span
+							class="fileupload-preview"></span>
+					</div>
+					<span class="input-group-btn"> <span
+						class="btn btn-primary btn-file"> <span
+							class="fileupload-exists"> <i class="fa fa-refresh"> </i>
+								Trocar
+						</span> <span class="fileupload-new"> <i class="fa fa-search"></i>
+						</span> <input wicket:id="fileUploadField" type="file" />
+					</span>
+						<button class="btn btn-primary fileupload-exists"
+							data-dismiss="fileupload">
+							<i class="fa fa-trash-o"></i> Remover
+						</button>
+					</span>
+				</div>
+			</div>
+		</div>
+	</wicket:panel>
+</body>
+</html>

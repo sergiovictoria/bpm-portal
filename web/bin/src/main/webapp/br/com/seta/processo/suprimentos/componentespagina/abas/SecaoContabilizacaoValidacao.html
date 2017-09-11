@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns:wicket="http://wicket.apache.org">
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+	<wicket:panel>
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="form-group form-group-sm">
+					<label class="control-label col-sm-3">Natureza de Despesa</label>
+					<div class="col-sm-5">
+						<input wicket:id="naturezaDespesa" type="text" class="form-control" />
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div wicket:id="secaoRateioCusto" class="secao">
+			<div class="cabecalho-secao">Rateio Centro de Custo</div>
+			<div class="corpo-secao">
+				<table wicket:id="tabelaRateios" class="table table-bordered table-hover table-condensed mb-none dataTable no-footer">
+					<thead>
+						<tr>
+							<th>Linha</th>
+							<th>Centro de Resultado</th>
+							<th>Centro de Custo</th>
+							<th>Conta Débito</th>
+							<th>Conta Crédito</th>
+							<th>Histórico</th>
+							<th>Porcentagem</th>
+							<th>Valor</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr wicket:id="rateios">
+							<td><span wicket:id="linhaLbl"></span></td>
+							<td><input wicket:id="centroResultado" type="text" /></td>
+							<td><span wicket:id="centroCustoLbl"></span></td>
+							<td><span wicket:id="contaDebitoLbl"></span></td>
+							<td><span wicket:id="contaCreditoLbl"></span></td>
+							<td><span wicket:id="historicoLbl"></span></td>
+							<td><span wicket:id="porcentagem"></span></td>
+							<td><span wicket:id="valorLbl"></span></td>
+							<td style="text-align: center">
+								<button wicket:id="validarCrBtn" class="btn btn-primary" type="button">Validar CR</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+		<div wicket:id="secaoRateiosValidados" class="secao">
+			<div class="cabecalho-secao">Centros de Resultado Validados</div>
+			<div class="corpo-secao">
+				<table class="table table-bordered table-hover table-condensed mb-none dataTable no-footer">
+					<thead>
+						<tr>
+							<th>Linha</th>
+							<th>Centro de Resultado</th>
+							<th>Centro de Custo</th>
+							<th>Conta Crédito</th>
+							<th>Histórico</th>
+							<th>Porcentagem</th>
+							<th>Valor</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr wicket:id="rateiosValidadosDV">
+							<td><span wicket:id="linhaLbl" ></span></td>
+							<td><span wicket:id="centroResultado"></span></td>
+							<td><span wicket:id="centroCustoLbl"></span></td>
+							<td><span wicket:id="contaCreditoLbl"></span></td>
+							<td><span wicket:id="historicoLbl"></span></td>
+							<td><span wicket:id="porcentagem"></span></td>
+							<td><span wicket:id="valorLbl"></span></td>
+							<td style="text-align: center">
+								<a wicket:id="excluirBtn"><i class="fa fa-trash" aria-hidden="true"></i></a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+		<!-- início: Validação Centro de Custo  -->
+		<div id="validarCRDialog" class="modal" role="dialog">
+			<div class="vertical-alignment-helper">
+				<div wicket:id="validarCRDialog" class="modal-dialog vertical-align-center">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h4 class="modal-title">Itens</h4>
+						</div>
+						<div class="modal-body">
+							<div wicket:id="camposDescritivos"  class="row">
+								<div class="col-sm-4">
+									<div class="form-group form-group-sm">
+										<label class="control-label col-sm-2">Cód</label>
+										<div class="col-sm-10">
+											<input wicket:id="codigo" type="text" class="form-control">
+										</div>
+									</div>
+								</div>
+
+								<div class="col-sm-8">
+									<div class="form-group form-group-sm">
+										<label class="control-label col-sm-3">Descrição</label>
+										<div class="col-sm-9">
+											<input wicket:id="descricao" type="text" class="form-control">
+										</div>
+									</div>
+								</div>
+							</div>
+							<div wicket:id="mensagem" class="row">
+								<div class="alertaContainer alert alert-danger" style="display: block;">Centro de Resultado inexistente</div>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button wicket:id="addOutroCodigoBtn" type="button" class="btn btn-danger" data-dismiss="modal">
+								<i class="fa fa-times"></i> Adicionar outro código
+							</button>
+							<button wicket:id="confirmarBtn" type="button" class="btn btn-primary" data-dismiss="modal">
+								<i class="fa fa-check"></i> Confirmar
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- fim: Validação Centro de Custo  -->
+	</wicket:panel>
+</body>
+</html>

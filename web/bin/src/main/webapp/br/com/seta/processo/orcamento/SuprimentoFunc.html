@@ -1,0 +1,901 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns:wicket="http://wicket.apache.org">
+<head>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../../../../../resources/assets/components/moment/moment.js"></script>
+	<script type="text/javascript" src="../../../../../resources/assets/components/moment/min/moment-with-locales.min.js"></script>	
+	<script type="text/javascript" src="../../../../../resources/assets/components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+	<link rel="stylesheet"
+		href="../../../../../resources/assets/components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
+</head>
+<body>
+	<wicket:extend>
+	<div>
+		<span wicket:id="feedback"></span>
+	</div>	
+	
+	<div class="secaoBotoesPrincipais">
+			<form wicket:id="enviarOrRequisicaoForm">
+				<div wicket:id="enviarOrRequisicaoContainer">
+					<button wicket:id="limparOrRequisicaoBtn" class="mb-xs mt-xs mr-xs btn btn-primary">
+						<i class="fa fa-eraser"></i> Limpar
+					</button>
+					<button wicket:id="enviarOrRequisicaoBtn" class="mb-xs mt-xs mr-xs btn btn-primary">
+						<i class="fa fa-envelope-o"></i> Enviar
+					</button>
+				</div>
+			</form>
+		</div>
+	
+	<div class="tabs tabs-primary">
+		<!-- start: abas -->
+		<ul class="nav nav-tabs">
+			<li class="active">
+				<a data-toggle="tab" href="#requisicao" >Requisição</a>
+			</li>		
+			<li>
+				<a href="#itens" data-toggle="tab">Itens</a>
+			</li>
+			<li>
+				<a href="#contabilizacao" data-toggle="tab">Contabilização</a>
+			</li>		
+		</ul>
+		<!-- end: abas -->
+		<!-- start: conteudo abas -->
+		<div class="tab-content">			
+			<!--Requisição -->
+			<div id="requisicao" class="tab-pane active">		
+				<div>
+					<form wicket:id="requisicaoForm" class="form-horizontal">
+				      <div wicket:id="requisicaoContainer">
+				      						
+							<div class="row">		
+								<div class="col-sm-6">
+									<div class="form-group form-group-sm">
+										<label class="control-label col-sm-3">Empresa</label>
+										<div class="col-sm-9">
+									    	<label class="glyphicon custom-select">
+									    		<select wicket:id="empresaCb" class="form-control combo"></select>
+									    	</label>
+									    </div>
+									</div>
+								</div>
+							</div>		
+							
+							<div class="row">
+								<div class="col-sm-6">					
+									<div class="form-group form-group-sm">
+										<label class="control-label col-sm-3">Natureza Despesa</label>	
+										<div class="col-sm-9">
+											<div class="input-group input-group-sm">
+												<input wicket:id="natDespesaSelecionada" type="text" class="form-control" disabled>
+												<span class="input-group-btn">
+													<button class="btn btn-primary btn-sm" type="button" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#consultaNatDespesasModal">
+														<i class="fa fa-search"></i>
+										           </button>
+												</span>
+											</div>
+										</div>
+									</div>											
+								</div>
+								<div class="col-sm-6">
+									<div class="form-group form-group-sm">
+										<label class="control-label col-sm-3" for="modelonfTxt">Modelo Nota Fiscal</label>	
+										<div class="col-sm-9">
+											<div class="input-group input-group-sm">
+												<input wicket:id="modeloDocSelecionado" type="text" class="form-control" disabled>
+												<span class="input-group-btn">
+													<button class="btn btn-primary btn-sm" type="button" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#modeloDocumentoModal">
+														<i class="fa fa-search"></i>
+										           </button>
+												</span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>		
+							
+							<div class="row">
+								<div class="col-sm-6">
+									<div class="form-group form-group-sm">
+										<label class="control-label col-sm-3" for="modelonfTxt">Pessoa</label>	
+										<div class="col-sm-9">		
+											<div class="input-group input-group-sm">
+												<input wicket:id="pessoaSelecionada" type="text" class="form-control" disabled>
+												<span class="input-group-btn">
+													<button class="btn btn-primary btn-sm" type="button" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#clienteFornecedorModal">
+														<i class="fa fa-search"></i>
+										           </button>
+												</span>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-6">
+									<div class="form-group form-group-sm">
+										<label class="control-label col-sm-3">Transportadora</label>								
+										<div class="col-sm-9">
+											<div class="input-group input-group-sm">
+												<input wicket:id="transportadoraSelecionada" type="text" class="form-control" disabled>
+												<span class="input-group-btn">
+													<button class="btn btn-primary btn-sm" type="button" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#transportadoraModal">
+														<i class="fa fa-search"></i>
+										           </button>
+												</span>
+											</div>		
+										</div>									
+									</div>
+								</div>
+							</div>																		
+					</div>
+						
+					<div class="row">	
+							<div class="col-sm-6">
+								<div class="form-group form-group-sm">
+									<label class="control-label col-sm-3">Data Compra</label>
+									<div class=" col-sm-9">
+										<div class="input-group input-group-sm campoDatepicker">											
+											<input wicket:id="DataCompra" type="text"/> 
+											<span class="input-group-btn">												
+												<button class="btn btn-primary btn-sm" type="button">
+													<i class="fa fa-calendar"></i>
+	   											</button>
+											</span>
+										</div>
+									</div>
+								</div>						
+							</div>
+							<div class="col-sm-6">
+								<div class="form-group form-group-sm">
+									<label class="control-label col-sm-3">Data Inclusão</label>
+									<div class=" col-sm-9">
+										<div class="input-group input-group-sm campoDatepicker">											
+											<input wicket:id="DataInclusao" type="text"/>
+											<span class="input-group-btn">
+												<button class="btn btn-primary btn-sm" type="button">
+													<i class="fa fa-calendar"></i>
+												</button>
+											</span>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</form>
+					
+					<!--início: Vencimentos -->							
+					<form wicket:id="vencimentoForm" class="form-horizontal">
+						<div wicket:id="vencimentosContainer">
+							<div class="row">
+								<div class="col-sm-6">
+									<div class="form-group form-group-sm">
+										<label class="control-label col-sm-3">Valor Requisição</label>
+										<div class="col-sm-9">											
+											<input wicket:id="Valor" class="form-control monetario" type="text"/>												
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-6">
+									<div class="form-group form-group-sm">
+										<label class="control-label col-sm-3">Valor Desconto</label>
+										<div class="col-sm-9">
+											<input wicket:id="Vlrdescontos" class="form-control monetario" type="text"/>
+										</div>
+									</div>
+								</div>
+							</div>
+							
+							<div class="row">								
+								<div class="col-sm-6">
+									<div class="form-group form-group-sm">
+										<label class="control-label col-sm-3">Valor Acréscimo</label>
+										<div class="col-sm-9">
+											<input wicket:id="Vlracrescimos" class="form-control monetario" type="text"/>
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-6">
+									<div class="form-group form-group-sm">
+										<label class="control-label col-sm-3">Valor Líquido</label>
+										<div class="col-sm-9">
+											<span wicket:id="Vlrliqreq" class="form-control monetario" type="text"></span>
+										</div>
+									</div>
+								</div>
+							</div>
+							
+							<div class="row">
+								<div class="col-sm-12">
+								    <div class="form-group form-group-sm">
+										<label class="control-label col-sm-1_5">Observações</label>
+										<div class="col-sm-10_5">
+											<textarea class="form-control" wicket:id="Observacao" rows="4"></textarea>
+										</div>
+									</div>
+								</div>
+							</div>
+							
+							<div class="row">
+								<div class="form-group form-group-sm">
+									<div class="col-sm-6">
+										<label class="control-label col-sm-3">Prazo</label>
+										<div class="col-sm-9">
+											<div class="input-group input-group-sm">
+												<input id="desdobramento" wicket:id="desdobramentoParcela" class="form-control" type="text"/>
+												<span class="input-group-btn">
+													<button wicket:id="calcularBtn" class="btn btn-primary" type="button">
+														<i class="fa fa-calculator"></i>
+													</button>
+												</span> 
+											</div>
+										</div>							
+									</div>
+								</div>
+							</div>			
+							<div class="row">
+								<div class="col-sm-12">
+									<table class="table table-bordered table-hover table-condensed mb-none dataTable no-footer">
+										<thead>
+											<tr>
+												<th>Data Vencimento</th>
+												<th>Data Programada</th>
+												<th>Valor Total</th>
+												<th>Descontos</th>
+												<th>Acréscimo</th>
+												<th>Valor Líquido</th>
+												<th></th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr wicket:id="valorsView"> 
+												<td><input wicket:id="Dtavencimento" class="form-control" type="text"/></td>
+												<td><input wicket:id="Dtaprogramada" class="form-control" type="text"/></td>
+												<td><input wicket:id="Vlrtotal" class="form-control monetario" type="text"/></td>
+												<td><input wicket:id="Vlrdesconto" class="form-control monetario" type="text"/></td>
+											<!-- <td><input wicket:id="Vlroutoperdesc" class="form-control monetario" type="text"/></td>  -->
+												<td><input wicket:id="Vlracrescimo" class="form-control monetario" type="text"/></td>
+												<td><input wicket:id="Vlrliquido" class="form-control monetario" type="text"/></td>
+												<td class="actions"><a wicket:id="delete"><i class="fa fa-trash-o"></i></a></td>	
+											</tr>	
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>	
+					</form>
+					<!-- fim: Vencimentos -->	
+					
+					<!-- Modals (início) -->
+					<!-- Modal Consulta Natureza de Despesas -->
+					<div id="consultaNatDespesasModal" class="modal" role="dialog">
+						<div class="modal-dialog  modal-lg">
+							<div class="modal-content">
+								<form wicket:id="natDespesasForm" class="form-vertical">
+								<div wicket:id="naturezaContainer">
+									<div class="modal-header">
+										<h4 class="modal-title">Natureza de Despesas</h4>
+									</div>
+									<div class="modal-body">								
+										<div class="container-fluid">	
+																		
+											<div class="row">											
+												<div class="form-group form-group-sm col-sm-12">													
+													<div class="input-group input-group-sm">
+														<input wicket:id="historicoNaturezaInput" type="text" class="form-control">
+														<span class="input-group-btn">
+															<button wicket:id="natDespesasBtn" class="btn btn-primary btn-sm" type="button"><i class="fa fa-search"></i></button>
+														</span>
+													</div>
+												</div>
+											</div>			
+											
+											<table class="table table-bordered table-hover table-condensed mb-none dataTable no-footer">
+												<thead>
+													<tr>
+														<th></th>
+														<th>Código</th>
+														<th>Descrição</th>														
+													</tr>
+												</thead>
+												<tbody>				
+													<tr wicket:id="row">
+														<td class="checkbox-custom checkbox-primary">
+															<label></label>
+															<input wicket:id="check" type="checkbox"/>															
+														</td>
+		   												<td><span wicket:id="Codhistorico">[codigo]</span></td>
+		   												<td><span wicket:id="Historico">[descricao]</span></td>	   												
+													</tr>
+												</tbody>									
+											</table>	
+											
+											<div class="row">
+												<div class="col-sm-12">
+													<span class="dataview-navigator" wicket:id="navigator"></span>
+												</div>
+											</div>					
+										</div>
+										
+										<div class="container-fluid">
+						                  <span wicket:id="feedback"></span>
+					                    </div>							
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>
+									</div>
+								 </div>
+								</form>
+							</div>
+							
+						</div>
+					</div>
+					
+					<!--Modal Modelo de Documento  -->
+					<div id="modeloDocumentoModal" class="modal" role="dialog">
+						<div class="modal-dialog modal-lg">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h4 class="modal-title">Modelo de Documento</h4>
+								</div>
+								<div class="modal-body">
+									<div class="container-fluid">
+										<form wicket:id="modeloNotaFiscalForm">
+											<div wicket:id="modeloDocumentoContainer">
+												<div class="row">											
+													<div class="form-group form-group-sm col-sm-12">
+														<div class="input-group input-group-sm">
+															<input wicket:id="buscaDocumentoTxt" type="text" class="form-control">
+															<span class="input-group-btn">
+																<button wicket:id="buscaDocumentoBtn" class="btn btn-primary btn-sm" type="button">
+																	<i class="fa fa-search"></i>
+																</button>	
+															</span>
+														</div>
+													</div>
+												</div>								
+										
+												<table class="table table-bordered table-hover table-condensed mb-none dataTable no-footer">
+													<thead>
+														<tr>
+															<th></th>
+															<th>Código</th>
+															<th>Descrição</th>
+															<th>Cód Espécie</th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr wicket:id="documentosRow">
+															<td class="checkbox-custom checkbox-primary">
+																<input wicket:id="check" type="checkbox" />
+																<label></label>
+															</td>
+															<td wicket:id="codigo">[Código]</td>
+															<td wicket:id="descricao">[Descrição]</td>
+															<td wicket:id="codEspecie">[Cód Espécie]</td>
+														</tr>													
+													</tbody>													
+												</table>
+												
+												<div class="row">
+													<div class="col-sm-12">
+														<span class="dataview-navigator" wicket:id="navigator"></span>
+													</div>
+												</div>
+												
+											</div>
+										</form>
+									</div>
+								</div>
+								<div class="modal-footer">
+										<button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>
+								</div>
+							</div>
+						</div>
+					</div>
+		
+					<!-- Modal Cliente/Fornecedor -->
+					<div id="clienteFornecedorModal" class="modal" role="dialog">
+						<div class="modal-dialog modal-lg">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h4 class="modal-title">Cliente/Fornecedor</h4>
+								</div>
+								<div class="modal-body">
+									<div class="container-fluid">
+										<form wicket:id="pessoaForm">
+											<div wicket:id="pessoasContainer">
+												<div class="row">
+													<div class="col-sm-12">
+														<div class="form-group form-group" >
+															<div class="input-group input-group-sm">	
+																<input wicket:id="buscaClienteTxt" class="form-control" type="text"/>
+																<span class="input-group-btn">
+																	<button wicket:id="buscaClientesBtn" class="btn btn-primary btn-sm" type="button">
+																		<i class="fa fa-search"></i>
+																	</button>
+																</span>
+															</div>
+														</div>
+													</div>
+												</div>
+												
+												<div class="row">
+													<div class="col-sm-12">
+														<table class="table table-bordered table-hover table-condensed mb-none dataTable no-footer">
+															<thead>
+																<tr>
+																	<th></th>
+																	<th>Código</th>
+																	<th>Nome/Razão Social</th>
+																</tr>
+															</thead>
+															<tbody>
+																<tr wicket:id="pessoasRow">
+																	<td class="checkbox-custom checkbox-primary">
+																		<input wicket:id="check" type="checkbox"/>
+																		<label></label>
+																	</td>
+																	<td wicket:id="codigo">[Código]</td>
+																	<td wicket:id="nome">[Nome/Razão Social]</td>
+																</tr>										
+															</tbody>
+														</table>
+														
+														<div class="row">
+															<div class="col-sm-12">
+																<span class="dataview-navigator" wicket:id="navigator"></span>
+															</div>
+														</div>		
+													</div>
+												</div>
+											</div>
+										</form>
+									</div>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>
+								</div>
+							</div>
+						</div>
+					</div>
+		
+					<!-- Modal Transportadora -->
+					<div id="transportadoraModal" class="modal" role="dialog">
+						<div class="modal-dialog modal-lg">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h4 class="modal-title">Transportadora</h4>
+								</div>
+								<div class="modal-body">
+									<div class="container-fluid">
+									 <form wicket:id="transportadoraForm">
+									    <div wicket:id="transportadoraContainer">
+											 
+											<div class="row form-group">
+												<div class="col-sm-12">
+													<div class="input-group input-group-sm">
+														<input wicket:id="buscaTransportadoraTxt" type="text" class="form-control" /><span
+															class="input-group-btn">
+															<button wicket:id="buscaTransportadoraBtn" class="btn btn-primary btn-sm" type="button">
+																<i class="fa fa-search"></i>
+															</button>
+														</span>
+													</div>
+												</div>
+											</div>							
+											<div class="row">
+												<div class="col-sm-12">
+													<table class="table table-bordered table-hover table-condensed mb-none dataTable no-footer">
+														<thead>
+															<tr>
+																<th></th>
+																<th>Código</th>
+																<th>Descrição</th>													
+															</tr>
+														</thead>
+														<tbody>				
+															<tr wicket:id="row">
+				   												<td class="checkbox-custom checkbox-primary">
+				   													<input wicket:id="check" type="checkbox"/>
+				   													<label></label>
+				   												</td>
+				   												<td><span wicket:id="codigoTransportadora">[codigo]</span></td>
+				   												<td><span wicket:id="descricaoTransportadora">[descricao]</span></td>	   												
+															</tr>
+														</tbody>												
+													</table>
+													
+													<div class="row">
+														<div class="col-sm-12">
+															<span class="dataview-navigator" wicket:id="navigator"></span>
+														</div>
+													</div>	
+												</div>
+											</div>
+										    <div class="container-fluid">
+						                       <span wicket:id="feedback"></span>
+					                        </div>
+					                        
+										 </div>
+										</form>
+									</div>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>
+								</div>
+															
+							</div>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+			
+			<!--Itens -->
+			<div id="itens" class="tab-pane">
+				<div>
+					<form wicket:id="itensForm" class="form-horizontal">					
+						<div wicket:id="itensContainer">
+							
+							<!-- Cadastro Itens -->
+							<div class="tab-menu">									
+								<button wicket:id="Inserir" class="btn btn-primary" type="button">
+									<i class="fa fa-plus "></i>
+									Inserir
+								</button>
+							</div>
+							<div class="row">
+								<div class="col-sm-6">
+									<div class="form-group form-group-sm">
+										<label class="control-label col-sm-2">CFOP</label>
+										<div class="col-sm-10">
+											<div class="input-group input-group-sm">
+												<input wicket:id="cfopSelecionado" class="form-control" type="text" />
+												<span class="input-group-btn">
+													<button class="btn btn-primary btn-sm" type="button" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#consultaCFOPModal">
+														<i class="fa fa-search"></i>
+										           </button>
+												</span>
+											</div>
+										</div>							
+									</div>
+								</div>
+								<div class="col-sm-6">
+									<div class="form-group form-group-sm">
+										<label class="control-label col-sm-2">Produto</label>
+										<div class="col-sm-10">	
+											<div class="input-group input-group-sm">
+												<input wicket:id="produtoSelecionado" class="form-control" type="text" />	
+												<span class="input-group-btn">
+													<button class="btn btn-primary btn-sm" type="button" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#consultaProdutosModal">
+														<i class="fa fa-search"></i>
+										           </button>
+												</span>	
+											</div>
+										</div>					
+									</div>
+								</div>								
+							</div>
+							<div class="row">
+								<div class="col-sm-4">
+									<div class="form-group form-group-sm">
+										<label class="control-label col-sm-3">Versão</label>
+										<div class="col-sm-9">
+ 										       <input wicket:id="Versaoprod" class="form-control" type="text"/>	
+										</div>							
+									</div>
+								</div>	
+								
+								<div class="col-sm-4">
+									<div class="form-group form-group-sm">
+										<label class="control-label col-sm-3">Unidade</label>
+										<div class="col-sm-9">
+										    <input wicket:id="Unidadepadrao" class="form-control" type="text"/>
+										</div>
+									</div>
+								</div>
+								
+								<div class="col-sm-4">
+									<div class="form-group form-group-sm">
+										<label class="control-label col-sm-3">Quantidade</label>
+										<div class="col-sm-9">
+											<input wicket:id="Quantidade" class="form-control" type="text"/>
+										</div>
+									</div>
+								</div>						
+							</div>
+								
+							<div class="row">
+								<div class="col-sm-4">
+									<div class="form-group form-group-sm">
+										<label class="control-label col-sm-3">Valor Item</label>
+										<div class="col-sm-9">
+											<input wicket:id="Valor" class="form-control monetario" type="text"/>
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-4">
+									<div class="form-group form-group-sm">
+										<label class="control-label col-sm-3">Desconto</label>
+										<div class="col-sm-9">
+											<input wicket:id="VlrDesconto" class="form-control monetario" type="text"/>
+										</div>							
+									</div>
+								</div>
+								<div class="col-sm-4">
+									<div class="form-group form-group-sm">
+										<label class="control-label col-sm-3">Acréscimos</label>
+										<div class="col-sm-9">
+											<input wicket:id="VlrAcescimo" class="form-control monetario" type="text"/>	
+										</div>					
+									</div>
+								</div>
+							</div>
+									
+							<div class="row">
+								<div class="col-sm-12">
+									<table class="table table-bordered table-hover table-condensed mb-none dataTable no-footer" style="margin-top: 15px">
+										<thead>
+											<tr>
+												<th>Item</th>
+												<th>CFOP</th>
+												<th>Produto</th>
+												<th>Versão</th>											
+												<th>Unidade</th>
+												<th>Quantidade</th>
+												<th>Valor Item</th>
+												<th>Valor Desconto</th>											
+												<th>Valor Acréscimos</th>
+												<th></th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr wicket:id="Itensdespesa">
+											
+												<td><span wicket:id="codproduto"></span></td>
+												<td><span wicket:id="cfop"></span></td>
+												<td><span wicket:id="descricao"></span></td>
+												<td><span wicket:id="versaoprod"></span></td>
+												<td><span wicket:id="unidadepadrao"></span></td>
+												<td><span wicket:id="quantidade"></span></td>
+												<td><span wicket:id="vlrtotal"></span></td>
+												<td><span wicket:id="vlrdesconto"></span></td>
+												<td><span wicket:id="vlracrescimos"></span></td>
+												
+												<td class="actions">
+													<a wicket:id="delete">
+													    <i class="fa fa-trash-o"></i>
+													</a>
+													<a wicket:id="edit">
+													    <i class="fa fa-pencil"></i>
+													</a>
+												</td>	
+												<!-- 
+												<td class="actions">
+													<a wicket:id="edit">
+													    <i class="fa fa-trash-o"></i>
+													</a>
+												</td>  -->
+									
+											</tr>										
+										</tbody>									
+									</table>
+								</div>
+							</div>	
+		
+						</div>					
+					</form>
+				</div>
+				
+				<!--Início: Modals da seção items -->
+				<!--Início: Modal Consulta CFOP -->
+				<div id="consultaCFOPModal" class="modal" role="dialog">
+					<div class="modal-dialog modal-lg">
+						<div class="modal-content">
+							<form wicket:id="cfopForm" class="form-vertical">
+								<!-- WebMarkupContainer -->
+								<div wicket:id="cfopContainer">
+									<div class="modal-header">
+										<h4 class="modal-title">CFOP</h4>
+									</div>
+									<div class="modal-body">								
+										<div class="container-fluid">	
+											<div class="row">
+												<div class="col-sm-12">
+													<div class="form-group form-group-sm">													
+														<div class="input-group input-group-sm">
+															<input wicket:id="buscaCfopTxt" type="text" class="form-control">
+															<span class="input-group-btn">
+																<button wicket:id="buscaCfopBtn" class="btn btn-primary btn-sm" type="button">
+																	<i class="fa fa-search"></i>
+																</button>
+															</span>
+														</div>
+													</div>
+												</div>
+											</div>	
+											
+											<table class="table table-bordered table-hover table-condensed mb-none dataTable no-footer">
+												<thead>
+													<tr>
+														<th></th>
+														<th>Código</th>
+														<th>Descrição</th>														
+													</tr>
+												</thead>
+												<tbody>				
+													<tr wicket:id="cfopDataView">
+														<td class="checkbox-custom checkbox-primary">
+															<input wicket:id="check" type="checkbox"/>
+															<label></label>
+														</td>
+														<td><span wicket:id="codigo" >[codigo]</span></td>
+														<td><span wicket:id="descricao" >[descricao]</span></td>	   												
+													</tr>
+												</tbody>									
+											</table>
+											
+											<div class="row">
+												<div class="col-sm-12">
+													<span class="dataview-navigator" wicket:id="navigator"></span>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>
+									</div>
+								</div>							
+							</form>						
+						</div>					
+					</div>
+				</div>	
+				<!--Fim: Modal Consulta CFOP -->
+				
+				
+				<!--Início: Modal Consulta Produtos -->
+				<div id="consultaProdutosModal" class="modal" role="dialog">
+					<div class="modal-dialog  modal-lg">
+						<div class="modal-content">
+							<form wicket:id="produtosForm" class="form-vertical">
+								<!-- WebMarkupContainer -->
+								<div wicket:id="produtosContainer">
+									<div class="modal-header">
+										<h4 class="modal-title">Produtos</h4>
+									</div>
+									<div class="modal-body">								
+										<div class="container-fluid">
+											<div class="row">	
+												<div class=" col-sm-12">									
+													<div class="form-group form-group-sm">													
+														<div class="input-group input-group-sm">
+															<input wicket:id="buscaProdutosTxt" type="text" class="form-control">
+															<span class="input-group-btn">
+																<button  wicket:id="buscaProdutosBtn" class="btn btn-primary btn-sm" type="button">
+																	<i class="fa fa-search"></i>
+																</button>
+															</span>
+														</div>
+													</div>
+												</div>	
+											</div>	
+											
+											<table class="table table-bordered table-hover table-condensed mb-none dataTable no-footer">
+												<thead>
+													<tr>
+														<th></th>
+														<th>Código</th>
+														<th>Descrição</th>														
+													</tr>
+												</thead>
+												<tbody>				
+													<tr wicket:id="produtosDataView">
+														<td class="checkbox-custom checkbox-primary">
+															<input wicket:id="check" type="checkbox"/>
+															<label></label>
+														</td>
+														<td><span wicket:id="Seqproduto">[codigo]</span></td>
+														<td><span wicket:id="Descricao">[descricao]</span></td>	   												
+													</tr>
+												</tbody>									
+											</table>
+											
+											<div class="row">
+												<div class="col-sm-12">
+													<span class="dataview-navigator" wicket:id="navigator"></span>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+				<!--Fim: Modal Consulta Produtos -->
+				
+				
+				<!--Fim: Modals da seção items -->
+				
+			</div>
+	
+			<!--Contabilização -->
+			<div id="contabilizacao" class="tab-pane">
+				<div>	
+					<form wicket:id="contabForm" class="form-horizontal">
+						<!-- Dados da Requisição -->
+						<div wicket:id="orReqplanilhalanctoContainer">
+						<div>						
+							<div class="row">
+								<div class="col-sm-5">
+									<div class="form-group form-group-sm">
+										<label class="control-label col-sm-4">Valor Total Requisição</label>
+										<div class="col-sm-8">
+											<input id="vlrTotalContabil" wicket:id="VlrTotalReq" class="form-control monetario" type="text" disabled/>	
+										</div>
+									</div>
+								</div>
+							</div>						
+						</div>
+	
+						<div class="row">
+							<div class="col-sm-12">
+								<table class="table table-bordered table-hover table-condensed mb-none dataTable no-footer" style="margin-bottom:px !important">
+									<thead>
+										<tr>
+											<th>Emp</th>
+											<th>Filial</th>
+											<th>Conta Débito</th>			
+											<th>CR</th>
+											<th>Conta Crédito</th>			
+											<th>Histórico</th>
+											<th>Valor</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr wicket:id="orReqplanilhalanctoDataView">
+											<td><span wicket:id="Empresa">[Empresa]</span></td>
+											<td><span wicket:id="Filial">[Filial]</span></td>
+											<td><span wicket:id="Contadebito">[Contadebito]</span></td>			
+											<td><span wicket:id="Centrocustodb">[Centrocustodb]</span></td>
+											<td><span wicket:id="Contacredito">[Contacredito]</span></td>			
+											<td><span wicket:id="Historico">[Historico]</span></td>
+											<td><input wicket:id="Vlrlancamento" class="form-control valorUnitario monetario" type="text"/></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+	                  </div>
+					</form>
+				</div>
+			</div>
+		</div>	
+		<!-- end: conteudo abas -->
+		
+	</div>
+	</wicket:extend>
+	
+	<script>
+		var iniciarDatePicker = function(){
+			$(".datepicker").datetimepicker({
+				locale: 'pt-BR',
+				format: 'L'
+			});
+		}
+
+		$(function(){
+			iniciarDatePicker();
+		});
+	</script>
+</body>
+</html>

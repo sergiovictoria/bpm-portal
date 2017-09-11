@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns:wicket="http://wicket.apache.org">
+<head>
+<meta charset="UTF-8">
+<title>Cadastrar Itens</title>
+</head>
+<body>
+	<wicket:extend>
+		<script src="resources/js/suprimentos/suprimentos.js" ></script>
+		<link rel="stylesheet" href="resources/css/wizard.css" />
+		<div class="panel panel-primary form-wizard">
+			<form wicket:id="formFormulario" class="form-horizontal">
+				<div class="panel-menu">
+					<div wicket:id="secaoBotoesAcao"></div>
+				</div>
+				<div class="panel-body">
+					<!-- início: abas -->
+					<div class="wizard-progress wizard-progress-lg">
+						<div class="steps-progress">
+							<div class="progress-indicator" style="width: 100%;"></div>
+						</div>
+						<ul class="wizard-steps">
+							<li id="tab-faturamento" class="completed active">
+								<a id="lnkSecaoDadosProduto" href="#secao-faturamento" data-toggle="tab" aria-expanded="false"> 
+									<span wicket:id="abaFaturamento">1</span>Faturamento
+								</a>
+							</li>
+							<li id="tab-itens" class="completed">
+								<a id="lnkSecaoEmbalagem" href="#secao-itens" data-toggle="tab" aria-expanded="false"> 
+									<span wicket:id="abaItens">2</span>Cadastrar<br> Itens
+								</a>
+							</li>
+						</ul>
+					</div>
+					<!-- fim: abas -->
+
+					<div class="tab-content">
+						<!-- início: Faturamento -->
+						<div id="secao-faturamento" class="tab-pane active">
+							<div wicket:id="secaoFaturamento"></div>
+						</div>
+						<!-- fim: Faturamento -->
+
+						<!-- início: Itens -->
+						<div id="secao-itens" class="tab-pane">
+							<div wicket:id="secaoItens"></div>
+						</div>
+						<!-- fim: Itens -->						
+					</div>
+				</div>
+			</form>
+		</div>
+		<script>
+		 	iniciarCamposMonetarios();
+		</script>		
+	</wicket:extend>
+</body>
+</html>

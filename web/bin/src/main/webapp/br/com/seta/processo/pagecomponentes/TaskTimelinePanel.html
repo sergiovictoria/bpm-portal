@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:wicket="http://wicket.apache.org">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+	<wicket:panel>	
+		
+		<div class="timeline">
+			<div class="tm-body">
+				<ol class="tm-items">
+					<li wicket:id="humanTaskItens">
+						<div class="tm-info">
+							<div wicket:id="iconeContainer" class="tm-icon"><i wicket:id="icone" class="fa fa-star"></i></div>
+							<div class="tm-datetime">
+								<div wicket:id="atividade" class="nomeAtividade">Atividade</div>
+								<div wicket:id="usuario" class="tm-user">Fulano</div>
+								<div wicket:id="data" class="tm-date">dd/MM/yyyy</div>
+							</div>
+						</div>
+						<div class="tm-box">
+							<div class="nomeAtividade">
+								<span wicket:id="detalhamentoAtividade" class="tm-task">[Atividade]</span> (<span wicket:id="grupo">[Grupo]</span>)
+							</div>	
+							<div class="linha">
+								<label class="control-label">Status: </label> <span wicket:id="status" class="form-value">[status]</span>
+							</div>
+							<div class="linha">
+								<label class="control-label">Atribuído a: </label> <span wicket:id="atribuidoAUsuario" class="form-value"></span> 
+							</div>
+							<div class="linha">
+								<label class="control-label">Atribuído em: </label> <span wicket:id="dataAtribuicao" class="form-value"></span>
+							</div>
+							
+							<div class="linha">
+								<label class="control-label">Concluído por: </label> <span wicket:id="executadoPorUsuario" class="form-value"></span> 
+							</div>
+							<div class="linha">
+								<label class="control-label">Concluído em: </label> <span wicket:id="dataConclusao" class="form-value"></span>
+							</div>
+						</div>
+					</li>
+				</ol>				
+			
+			<div class="tm-title inicio-timeline">
+				<span wicket:id="inicioTimeline" class="inicio-timeline-texto"></span>
+			</div>
+			</div>
+		</div>
+		
+		<script>
+			var ocultarLinhasSemValores = function(){
+				$(".tm-box .linha").each(function(index){
+					var valor = $(this).find(".form-value").first()[0].innerHTML;
+					if(!valor || valor.length == 0){
+						$(this).hide();
+					}
+				});
+			}
+
+			$(function(){ocultarLinhasSemValores()});
+		</script>
+	</wicket:panel>
+</body>
+</html>

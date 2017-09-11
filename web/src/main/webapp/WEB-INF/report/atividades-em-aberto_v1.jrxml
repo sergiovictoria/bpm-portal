@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.0.final using JasperReports Library version 6.3.0  -->
+<!-- 2016-06-29T13:51:17 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ProdutosEmExcesso" pageWidth="842" pageHeight="595" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="88be07dd-fb8e-41d6-b22e-8ff59b821a76">
+	<property name="ireport.zoom" value="1.0263162364614133"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Users\\Usuário\\Documents\\Documentos Seta\\Projetos\\SAS\\Geral\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="LOGOTIPO" class="java.io.InputStream" isForPrompting="false"/>
+	<parameter name="MODEL" class="java.util.HashMap"/>
+	<parameter name="CHECKBOX" class="java.io.InputStream" isForPrompting="false"/>
+	<parameter name="NOME_DO_RELATORIO" class="java.lang.String"/>
+	<parameter name="CHECKED" class="java.io.InputStream" isForPrompting="false"/>
+	<parameter name="cabecalho" class="java.util.HashMap"/>
+	<field name="model" class="java.util.HashMap">
+		<fieldDescription><![CDATA[model]]></fieldDescription>
+	</field>
+	<variable name="CONTAR_PRODUTOS" class="java.lang.Integer" resetType="Page" calculation="Sum">
+		<variableExpression><![CDATA[new Integer(1)]]></variableExpression>
+		<initialValueExpression><![CDATA[new Integer(1)]]></initialValueExpression>
+	</variable>
+	<variable name="currentPage" class="java.lang.Integer" resetType="Page">
+		<variableExpression><![CDATA[$V{PAGE_NUMBER}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="50">
+			<image isUsingCache="true">
+				<reportElement x="0" y="4" width="91" height="40" uuid="aca2d0ad-9278-484e-af16-12e3d05f5960"/>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+				<imageExpression><![CDATA[$P{LOGOTIPO}]]></imageExpression>
+			</image>
+			<textField isBlankWhenNull="true">
+				<reportElement mode="Transparent" x="100" y="0" width="551" height="18" uuid="8ee9cefc-cc2d-413e-bf89-c239d17eb0a5"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{MODEL}.get("tituloRelatorio")]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement mode="Transparent" x="100" y="18" width="194" height="14" uuid="b3dff8d0-5b0f-4ac2-8252-81636a9654ee"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Case ID: " + ($P{cabecalho}.get("caseIdFiltro") != null ? $P{cabecalho}.get("caseIdFiltro") : "")]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement mode="Transparent" x="318" y="18" width="201" height="14" uuid="a601d2c1-d00a-49de-93da-e4530aab0248"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Processo: " + ($P{cabecalho}.get("processoFiltro") != null ? $P{cabecalho}.get("processoFiltro") : "")]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement mode="Transparent" x="318" y="31" width="201" height="14" uuid="2b446e3a-02cb-4fc9-9a81-a4521dce95f6"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Usuário: " + ($P{cabecalho}.get("usuarioFiltro") != null ? $P{cabecalho}.get("usuarioFiltro") : "")]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement mode="Transparent" x="100" y="31" width="194" height="14" uuid="ec5f3d06-9f1a-424c-b371-ae89acb00ac3"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Estado: " + ($P{cabecalho}.get("estadoFiltro") != null ? $P{cabecalho}.get("estadoFiltro") : "")]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement mode="Transparent" x="547" y="18" width="229" height="14" uuid="b6a63362-cd3f-429d-b385-f51b2d079efc"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Grupo: " + ($P{cabecalho}.get("laneFiltro") != null ? $P{cabecalho}.get("laneFiltro") : "")]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement mode="Transparent" x="547" y="31" width="229" height="14" uuid="a4323423-5c5d-45f1-8767-979f99380bd4"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Data Instância: " + $P{cabecalho}.get("dataInicialFiltro") + " até: " + $P{cabecalho}.get("dataFinalFiltro")]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="20">
+			<rectangle radius="3">
+				<reportElement mode="Opaque" x="0" y="5" width="802" height="15" forecolor="#FFFFFF" backcolor="#579FEC" uuid="093637e7-9c7e-4f98-b2d6-5aa6d7eb3ef7">
+					<printWhenExpression><![CDATA[new Boolean(($V{COLUMN_COUNT}.intValue() % 2) == 0)]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.0" lineColor="#000000"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="3" y="5" width="45" height="15" forecolor="#FFFFFF" uuid="bf639773-25bc-4992-af57-e3764d30897b"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Case ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="47" y="5" width="102" height="15" forecolor="#FFFFFF" uuid="f77f3595-a8c3-4205-9ed2-ada7118c35a1"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Processo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="236" y="5" width="100" height="15" forecolor="#FFFFFF" uuid="6e6c8597-8d8b-4e91-b617-f7535de81c80"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Atividade]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="341" y="5" width="65" height="15" forecolor="#FFFFFF" uuid="8fcc01f0-e259-413c-9d7c-93d89f2b2fac"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Status]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="409" y="5" width="65" height="15" forecolor="#FFFFFF" uuid="fa55cc54-6a44-4df7-8729-055f7ffbc778"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Data Instância]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="477" y="5" width="65" height="15" forecolor="#FFFFFF" uuid="7a3bce0d-c007-428a-9c49-e7bf99125373"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Início Atividade]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="545" y="5" width="65" height="15" forecolor="#FFFFFF" uuid="1d9d835e-db21-40fa-98fa-0d1f7bed09a8"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fim Atividade]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="613" y="5" width="65" height="15" forecolor="#FFFFFF" uuid="854f0ae8-691d-46f7-98ca-53bfea9d050a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Duração]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="681" y="5" width="65" height="15" forecolor="#FFFFFF" uuid="41837bad-b48a-44df-a2fe-247a70cde4c8"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Grupo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="749" y="5" width="50" height="15" forecolor="#FFFFFF" uuid="903ff7cb-8b06-4936-ac71-53b0196c118a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Usuário]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<rectangle>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="0" y="0" width="802" height="15" isPrintWhenDetailOverflows="true" backcolor="#CCCCCC" uuid="fe3e95e1-8500-4ee0-9a82-350f0fa4c315">
+					<printWhenExpression><![CDATA[new Boolean( $V{COLUMN_COUNT}.intValue() % 2 == 0 )]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineStyle="Solid" lineColor="#FFFFFF"/>
+				</graphicElement>
+			</rectangle>
+			<textField>
+				<reportElement x="3" y="2" width="45" height="12" uuid="0d0eda44-743f-4aa6-be62-fb76ff310e0c"/>
+				<textElement verticalAlignment="Top">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[""+$F{model}.get("caseId")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="47" y="2" width="102" height="12" uuid="c1c310ea-d5ec-4044-9e89-0f2626b0f988"/>
+				<textElement verticalAlignment="Top">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[""+$F{model}.get("processo")]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToTallestObject" x="236" y="2" width="100" height="12" uuid="7e462c71-e02c-46c6-8ae7-9a16a8d6aec1"/>
+				<textElement verticalAlignment="Top">
+					<font size="7"/>
+					<paragraph spacingAfter="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[""+$F{model}.get("atividade")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Transparent" x="341" y="2" width="65" height="12" uuid="f67b586f-114b-4aee-b6ad-bfe4d9cfffd1"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[""+$F{model}.get("status")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Transparent" x="409" y="2" width="65" height="12" uuid="4dc09a05-b90c-45db-be1c-ebc0565a4e07"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[""+$F{model}.get("dataInstancia")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Transparent" x="477" y="2" width="65" height="12" uuid="32c7c2ee-c397-46f7-a21b-d8755a56bd09"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[""+$F{model}.get("dataInicioAtividade")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Transparent" x="545" y="2" width="65" height="12" uuid="9bbbd4f8-ae5e-4f55-9942-9c3386112aa1"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[""+$F{model}.get("dataFimAtividade")]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement mode="Transparent" x="613" y="2" width="65" height="12" uuid="ef5b3b21-bf4f-44ff-ab5b-02487cfa8f00"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{model}.get("duracaoAtividade")]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement mode="Transparent" x="681" y="2" width="65" height="12" uuid="9d2d9235-e07f-4bd2-92f2-3a5fc89ed986"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{model}.get("lane")]]></textFieldExpression>
+			</textField>
+			<elementGroup/>
+			<textField isBlankWhenNull="true">
+				<reportElement mode="Transparent" x="749" y="2" width="50" height="12" uuid="138e035b-57d3-4034-ae93-ab723fd0e4c9"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{model}.get("usuario")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="152" y="2" width="78" height="12" uuid="d652b697-b5b6-4838-b5e1-308c9086e89d"/>
+				<textElement verticalAlignment="Top">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[""+$F{model}.get("idAtividade")]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="17" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="2" width="802" height="1" forecolor="#666666" uuid="4f7e1663-302f-4db0-a2a5-8a3e56010808"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement mode="Transparent" x="0" y="5" width="250" height="10" forecolor="#000000" backcolor="#FFFFFF" uuid="420bbcfb-fb97-4f00-ad8f-e8572decd964">
+					<printWhenExpression><![CDATA[$V{currentPage}.equals ($V{PAGE_NUMBER}) ? true : false]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA["TOTAL DE ATIVIDADES POR PÁGINA " + $V{CONTAR_PRODUTOS}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="294" y="5" width="215" height="10" uuid="dbd7959b-bebd-4775-ae20-1b380b26820e"/>
+				<textElement textAlignment="Center">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA["PÁGINA "+$V{currentPage}+" DE " +$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="627" y="5" width="175" height="10" uuid="95b0c9f7-ebdf-477c-aac4-80a5534c1963"/>
+				<textElement textAlignment="Right">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA["EMITIDO EM: " + $P{cabecalho}.get("dataHoraImpressao")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="152" y="-30" width="78" height="15" forecolor="#FFFFFF" uuid="b8828854-06b9-4dbf-8efc-6551e96df14d"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ID Atividade]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="17">
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="0" y="5" width="250" height="10" forecolor="#000000" backcolor="#FFFFFF" uuid="d66eb3a3-4da9-48aa-a312-2b75ea26e38a"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA["QUANTIDADE TOTAL DE ATIVIDADES " + $V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

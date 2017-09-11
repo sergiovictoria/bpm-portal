@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns:wicket="http://wicket.apache.org"
+      xmlns:h="http://java.sun.com/jsf/html">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Solicitar Cadastro de Fornecedor</title>
+</head>
+<body>
+	<wicket:extend>
+		<link rel="stylesheet" href="resources/css/cadastro-fornecedor.css" />
+		<div class="panel panel-primary">
+			<form wicket:id="CadastroFornecedoresForm"  class="form-horizontal">
+				<div wicket:id="cadastroFornecedoresMarkupContainer">
+					<div class="panel-menu">
+						<button wicket:id="exibirPlanilhaBtn"  class="mb-xs mt-xs mr-xs btn btn-primary">
+							<i class="fa fa-table"></i> Exibir Dados
+						</button>
+						<button wicket:id="consultaCadastrosBtn" class="btn btn-primary">
+							<i class="fa fa-search" aria-hidden="true"></i> Consultar Cadastros
+						</button>
+					</div>
+					<div class="panel-body">
+							<div class="secao">
+								<div class="cabecalho-secao">Dados do responsável pelo preenchimento</div>
+								<div class="corpo-secao">
+									<div class="row">
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3">Nome</label>
+												<div class="col-sm-9">
+													<span wicket:id="nomeRespPreench" class="form-control disabled"></span>
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3">E-mail</label>
+												<div class="col-sm-9">
+													<span wicket:id="emailSolicitante" class="form-control disabled"></span>
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3">Telefone</label>
+												<div class="col-sm-9">
+													<span wicket:id="telefoneSolicitante" class="form-control disabled"></span>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="secao">
+								<div class="cabecalho-secao">Solicitação</div>
+								<div class="corpo-secao">
+									<div class="row">
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3">Área</label>
+												<div class="col-sm-9">
+													<span wicket:id="area" class="form-control disabled"></span>
+												</div>
+											</div>
+										</div>									
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3">Solicitante</label>
+												<div class="col-sm-9">
+										    	    <span wicket:id="nomeSolicitante" class="form-control disabled"></span>	
+											    </div>
+											</div>
+										</div>
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3">Data/Hora</label>
+												<div class="col-sm-9">
+													<span wicket:id="dataHoraSolicitacao" class="form-control disabled"></span>
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-12">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-1">Descrição</label>
+												<div class="col-sm-11">
+	                                                 <textarea wicket:id="descricao" class="form-control" rows="4" cols="40" disabled="disabled" ></textarea>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							
+							<div wicket:id="secaoAprovacao" class="secao">
+								<div class="cabecalho-secao">Aprovação Comercial - Aprovado</div>
+								<div class="corpo-secao">
+									<div class="row">
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3">Nome</label>
+												<div class="col-sm-9">
+													<span wicket:id="nomeAprovador" class="form-control disabled"></span>
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3">Data/Hora</label>
+												<div class="col-sm-9">
+													<span wicket:id="dataAprovacao" class="form-control disabled"></span>
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-12">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-1">Comentário</label>
+												<div class="col-sm-11">
+													<textarea wicket:id="comentariosAprovador"  class="form-control"
+														rows="4" cols="40" disabled="disabled"></textarea>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>		
+						
+						<div wicket:id="historicoContainer" class="secao">
+							<div class="cabecalho-secao">Histórico</div>
+							<div class="corpo-secao">
+								<div class="row">
+									<table class="historico table table-bordered table-hover table-condensed mb-none dataTable no-footer">
+										<thead>
+											<tr>
+												<th wicket:id="DisplayStatus">
+													<i class="fa fa-sort-asc"></i> 
+													<i class="fa fa-sort-desc"></i> 
+													<i class="fa fa-sort"></i> 
+													Status
+												</th>
+												<th wicket:id="DisplayNome">
+													<i class="fa fa-sort-asc"></i> 
+													<i class="fa fa-sort-desc"></i> 
+													<i class="fa fa-sort"></i> 	
+													Nome
+												</th>
+												<th wicket:id="displayData">
+													<i class="fa fa-sort-asc"></i> 
+													<i class="fa fa-sort-desc"></i> 
+													<i class="fa fa-sort"></i> 
+													Data
+												</th>
+												<th wicket:id="DisplayMotivo">
+													<i class="fa fa-sort-asc"></i> 
+													<i class="fa fa-sort-desc"></i> 
+													<i class="fa fa-sort"></i> 
+													Motivo
+												</th>
+												<th>Comentário</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr wicket:id="sortingHistorico">
+												<td> <span wicket:id="satus">[satus]</span></td> 
+												<td> <span wicket:id="nome">[nome]</span></td>
+												<td> <span wicket:id="data">[data]</span></td>
+												<td> <span wicket:id="motivo">[motivo]</span></td>
+												<td> <span wicket:id="comentario" class="comentarios-historico">[comentario]</span></td>
+											</tr>										
+										</tbody>
+									</table>
+									<div>
+										<span class="dataview-navigator" wicket:id="navigator">[dataview navigator]</span>
+									</div>
+								</div>
+							</div>						
+						</div>
+					
+				</div>
+			</div>
+			</form>
+		</div>
+	</wicket:extend>
+</body>
+</html>

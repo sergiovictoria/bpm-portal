@@ -1,0 +1,11 @@
+table.historico{
+	table-layout: fixed;
+}
+
+table.historico  td > span.comentarios-historico{
+	text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    display: block;
+}
+    

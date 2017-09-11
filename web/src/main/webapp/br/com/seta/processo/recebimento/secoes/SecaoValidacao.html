@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns:wicket="http://wicket.apache.org">
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+	<wicket:panel>
+		<div wicket:id="secaoDadosSolicitacao" class="secao">
+			<div class="cabecalho-secao">Solicitação</div>
+			<div class="corpo-secao">
+				<div class="row">
+					<div class="col-sm-4">
+						<div class="form-group form-group-sm">
+							<label class="control-label col-sm-4">Nº Intenção</label>
+							<div class="col-sm-8">
+								<input wicket:id="nroIntencaoTxt" class="form-control"></input>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="form-group form-group-sm">
+							<label class="control-label col-sm-4">Requisição C5</label>
+							<div class="col-sm-8">
+								<input wicket:id="requisicaoC5Txt" class="form-control"></input>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="form-group form-group-sm">
+							<label class="control-label col-sm-4">Tipo Despesa</label>
+							<div class="col-sm-8">
+								<input wicket:id="tipoDespesaTxt" class="form-control"></input>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="form-group form-group-sm">
+							<label class="control-label col-sm-4">Solicitação</label>
+							<div class="col-sm-8">
+								<input wicket:id="solicitacaoTxt" class="form-control"></input>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="form-group form-group-sm">
+							<label class="control-label col-sm-4">Inclusão C5</label>
+							<div class="col-sm-8">
+								<input wicket:id="inclusaoC5Txt" class="form-control"></input>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="form-group form-group-sm">
+							<label class="control-label col-sm-4">Compra C5</label>
+							<div class="col-sm-8">
+								<input wicket:id="compraC5Txt" class="form-control"></input>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div wicket:id="secaoDadosParaValidacao" class="secao">
+			<div class="cabecalho-secao">Validação</div>
+			<div class="corpo-secao">
+				<div wicket:id="secaoGuiaCega">
+					<div class="row">
+						<div class="col-sm-4">
+							<div class="form-group form-group-sm">
+								<label class="control-label col-sm-4">Box</label>
+								<div class="col-sm-8">
+									<input wicket:id="box" class="form-control"></input>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-4">
+							<div class="form-group form-group-sm">
+								<label class="control-label col-sm-4">Nº Nota</label>
+								<div class="col-sm-8">
+									<input wicket:id="nroNota" class="form-control"></input>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-8">
+							<div class="form-group form-group-sm">
+								<label class="control-label col-sm-2">Conferentes</label>
+								<div class="col-sm-10">
+									<input wicket:id="conferentes" class="form-control"></input>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-8">
+							<div class="form-group form-group-sm">
+								<label class="control-label col-sm-2">Descarregadores</label>
+								<div class="col-sm-10">
+									<input wicket:id="descarregadores" class="form-control"></input>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div wicket:id="secaoNotaFiscalSerie" class="row">
+					<div class="col-sm-4">
+						<div class="form-group form-group-sm">
+							<label class="control-label col-sm-4">NF/Série</label>
+							<div class="col-sm-8">
+								<input wicket:id="nfSerie" class="form-control"></input>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div wicket:id="secaoTipoDocumento" class="row">
+					<div class="col-sm-4">
+						<div class="form-group form-group-sm">
+							<label class="control-label col-sm-4">Tipo de Doc.</label>
+							<div class="col-sm-8">
+								<label class="glyphicon custom-select"> <select
+									wicket:id="tipoDocumento" class="form-control combo"></select>
+								</label>
+							</div>
+						</div>
+					</div>
+					<div wicket:id="campoDescTipoDocumento" class="col-sm-8">
+						<div class="form-group form-group-sm">
+							<label wicket:id="descTipoDocumentoLbl"
+								class="control-label col-sm-2">Descrever</label>
+							<div class="col-sm-10">
+								<input wicket:id="descTipoDocumento" class="form-control"></input>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div wicket:id="secaoDivergencias">
+					<div class="row">
+						<div class="col-sm-4">
+							<div class="form-group form-group-sm">
+								<label class="control-label col-sm-4">Possui
+									divergências?</label>
+								<div class="col-sm-8">
+									<label class="glyphicon custom-select"> <select
+										wicket:id="IsDivergencia" class="form-control combo"></select>
+									</label>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-4">
+							<div wicket:id="categoriaFormGroup"
+								class="form-group form-group-sm">
+								<div wicket:id="categoriaConteiner">
+									<label class="control-label col-sm-4">Categoria</label>
+									<div class="col-sm-8">
+										<label class="glyphicon custom-select"> <select
+											wicket:id="tipoDivergencia" class="form-control combo"></select>
+										</label>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-8">
+							<div wicket:id="motivoFormGroup" class="form-group form-group-sm">
+								<div wicket:id="motivoContainer">
+									<label class="control-label col-sm-2">Motivo</label>
+									<div class="col-sm-10">
+										<textarea wicket:id="motivoOuJustificativaDivergencia"
+											class="form-control" rows="4"></textarea>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div wicket:id="secaoAnexoDocRecebimento">
+						<div wicket:id="containerAnexo">
+							<div class="col-sm-4">
+								<button wicket:id="abrirModalAnexoDocRecebimento"
+									class="btn btn-primary pull-left" type="button"
+									data-target="#anexoDocRecebimentoModal" data-toggle="modal"
+									data-backdrop="static" data-keyboard="false">
+									<i class="fa fa-paperclip" aria-hidden="true"></i> Anexar
+									Documento de Recebimento
+								</button>
+							</div>
+							<div wicket:id="anexoDocRecebimentoModal"></div>
+						</div>
+					</div>
+				</div>				
+				<div class="row">
+					<div wicket:id="secaoAnexoDocDivergencia">
+						<div wicket:id="containerAnexo">
+							<div class="col-sm-4">
+								<button wicket:id="abrirModalAnexoDocDivergencia"
+									class="btn btn-primary pull-left" type="button"
+									data-target="#anexoDocDivergenciaModal" data-toggle="modal"
+									data-backdrop="static" data-keyboard="false">
+									<i class="fa fa-paperclip" aria-hidden="true"></i> Anexar
+									Documento de Divergência
+								</button>
+							</div>
+							<div wicket:id="anexoDocDivergenciaModal"></div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div wicket:id="secaoAjusteDeImpostos" class="col-sm-4">
+						<div class="form-group form-group-sm">
+							<label class="control-label col-sm-4">Ajuste de impostos</label>
+							<div class="col-sm-8">
+								<label class="glyphicon custom-select"> <select
+									wicket:id="ajusteDeImpostos" class="form-control combo"></select>
+								</label>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div wicket:id="secaoAnexoDocEscaneado">
+						<div class="col-sm-4">
+							<button class="btn btn-primary pull-left" type="button"
+								data-target="#anexoDocEscaneadoModal" data-toggle="modal"
+								data-backdrop="static" data-keyboard="false">
+								<i class="fa fa-paperclip" aria-hidden="true"></i> Anexar Documento Escaneado
+							</button>
+						</div>
+						<div wicket:id="anexoDocEscaneadoModal"></div>
+					</div>
+				</div>
+				<div wicket:id="secaoMensagem">
+					<div class="row">
+						<div wicket:id="mensagemLbl"
+							class="alertaContainer alert alert-info" style="display: block;">Uma
+							mensagem qualquer!</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	
+		<!-- início: Botão Fechar do modal de anexo -->
+		<wicket:fragment wicket:id="botaoFecharModalFragment">
+			<button type="button" class="btn btn-danger" data-dismiss="modal">
+				<i class="fa fa-times"></i> Fechar
+			</button>
+		</wicket:fragment>
+		<!-- fim: Botão Fechar do modal de anexo -->
+
+		<!-- início: corpo modal anexo documento de recebimento -->
+		<wicket:fragment wicket:id="corpoModalAnexoDocRecebimento">
+			<div wicket:id="uploadDocRecebimento"></div>
+		</wicket:fragment>
+		<!-- fim: corpo modal anexo documento de recebimento -->
+
+		<!-- início: corpo modal anexo documento com divergência -->
+		<wicket:fragment wicket:id="corpoModalAnexoDocDivergencia">
+			<div wicket:id="uploadDocDivergencia"></div>
+		</wicket:fragment>
+		<!-- fim: corpo modal anexo documento com divergência -->
+
+		<!-- início: corpo modal anexo documento com divergência -->
+		<wicket:fragment wicket:id="corpoModalAnexoDocEscaneado">
+			<div wicket:id="uploadDocEscaneado"></div>
+		</wicket:fragment>
+		<!-- fim: corpo modal anexo documento com divergência -->
+
+	</wicket:panel>
+</body>
+</html>

@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns:wicket="http://wicket.apache.org">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Parametrizar Solicitação de Pagamento</title>
+</head>
+<body>
+	<wicket:extend>
+		<link rel="stylesheet" href="resources/css/solicitacao-pagamento.css"></link>
+		<div class="panel panel-primary">
+			<form wicket:id="parametrizacaoForm">			
+				<div class="panel-menu">
+					<button wicket:id="salvarBtn" class="btn btn-primary" type="button" data-toggle="modal" data-backdrop="static" data-keyboard="false"
+						data-target="#confirmacaoSalvar">
+						<i class="fa fa-floppy-o"></i> Salvar
+					</button>
+					<button class="btn btn-primary" type="button" data-toggle="modal" data-backdrop="static" data-keyboard="false"
+						data-target="#replicarConfiguracoesModal">
+						<i class="fa fa-clone"></i> Replicar Loja
+					</button>
+				</div>
+				<div class="panel-body">
+					<div wicket:id="fontesPagadorasContainer" class="secao secao-fonte-pagadora">
+						<div class="cabecalho-secao">Fonte Pagadora</div>
+						<div class="corpo-secao">
+							<div class="row">
+								<div class="col-sm-12">
+									<div class="input-group input-group-sm">										
+										<input wicket:id="buscaFontePagadoraInput" type="text" class="form-control">
+										<span class="input-group-btn">
+											<button wicket:id="buscaFontePagadoraBtn" class="btn btn-primary btn-sm" type="button">
+												<i class="fa fa-search"></i>
+											</button>
+										</span>
+									</div>
+								</div>
+							</div>	
+							<div class="row">
+								<div wicket:id="msgFontePagadoraContainer" class="alertaContainer alert alert-info" style="clear: both;">	
+									Não foram encontrados resultados
+								</div>
+							</div>							
+							<div class="row">
+								<div class="col-sm-12">
+									<table wicket:id="fontePagadoraTabela" class="fonte-pagadora table table-bordered table-hover table-condensed mb-none dataTable">
+										<thead>
+											<tr>
+												<th>Id</th>
+												<th>Nome</th>
+									            <th>CNPJ</th>
+									            <th>Habilitar</th>
+											</tr>											
+										</thead>
+										<tbody>
+											<tr wicket:id="fontesPagadorasDataView">
+												<td wicket:id="tdNroEmpresa"><span wicket:id="nroEmpresa">[nroEmpresa]</span></td>
+												<td wicket:id="tdNomeReduzido"><span wicket:id="nomeReduzido">[nomeReduzido]</span></td>
+												<td wicket:id="tdCnpj"><span wicket:id="cnpj">[cnpj]</span></td>
+												<td class="tdCheck">													
+													<span class="checkbox-custom checkbox-primary">
+														<input wicket:id="habilitarFontePagadora" type="checkbox" />
+														<label wicket:id="labelCheckbox"></label>
+													</span>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+							<div class="row">
+								<span wicket:id="fontePagadoraNavigator" class="dataview-navigator"></span>
+							</div>
+						</div>
+					</div>
+					
+					<div wicket:id="naturezaDespesaContainer" class="secao secao-categoria">
+						<div class="cabecalho-secao">
+							Natureza Despesa
+						</div>
+						<div class="corpo-secao">
+							<div class="row">
+								<div class="col-sm-12">
+									<div class="input-group input-group-sm">
+										<input wicket:id="buscaNatDespesaInput" type="text" class="form-control"><span class="input-group-btn">
+											<button wicket:id="buscaNatDespesaBtn" class="btn btn-primary btn-sm" type="button">
+												<i class="fa fa-search"></i>
+											</button>
+										</span>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div wicket:id="msgNatDespesaContainer" class="alertaContainer alert alert-info" style="clear: both;">	
+									Não existem natureza de despesa associada a fonte pagadora. A parametrização deve ser realizada na Consinco
+								</div>
+							</div>							
+							<div class="row">
+								<div class="col-sm-12">
+									<table wicket:id="naturezaDespesaTabela" class="table table-bordered table-hover table-condensed mb-none dataTable">
+										<thead>
+											<tr>
+												<th>Id</th>
+												<th>Descrição</th>									            
+									            <th>Habilitar</th>
+									            <th>Chave Acesso</th>
+											</tr>											
+										</thead>
+										<tbody>
+											<tr wicket:id="natureDataView">
+												<td><span wicket:id="idNatDespesa">[id]</span></td>
+												<td><span wicket:id="descricao">[descricao]</span></td>												
+												<td class="tdCheck">													
+													<span class="checkbox-custom checkbox-primary">
+														<input wicket:id="habilitarDespesaNatureza" type="checkbox" />
+														<label></label>
+													</span>
+												</td>
+												<td class="tdCheck">													
+													<span class="checkbox-custom checkbox-primary">
+														<input wicket:id="habilitarChaveAcesso" type="checkbox" />
+														<label></label>
+													</span>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+							<div class="row">
+								<span wicket:id="naturezaDespesaNavigator" class="dataview-navigator"></span>
+							</div>
+						</div>
+					</div>
+					<div wicket:id="secaoConfiguracoes" class="secao secao-configuracoes">
+						<div class="cabecalho-secao">
+							Configurações de e-mail
+						</div>
+						<div class="corpo-secao">
+							<div class="row">
+								<div class="col-sm-12">
+									<div class="form-group form-group-sm">
+										<label class="control-label col-sm-3">E-mail para envio</label>
+										<div class="col-sm-9">
+											<input wicket:id="emailNotificacao" class="form-control" type="text" />
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</form>
+			
+			<!-- início: modal replicar configurações de loja -->
+			<form wicket:id="secaoReplicaLoja">
+				<div id="replicarConfiguracoesModal" class="modal" role="dialog">
+					<div class="vertical-alignment-helper">
+						<div class="modal-dialog vertical-align-center confirmacao">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h4 class="modal-title">Replicar as configurações de Loja</h4>
+								</div>
+								<div class="modal-body">
+									<div class="modal-wrapper">
+										<div class="modal-icon">
+											<i class="fa fa-question-circle"></i>
+										</div>
+										<div class="modal-text">
+											<div class="row">Copiar as configurações de natureza de despesa de uma determina loja:</div>
+											<div class="row">
+												<div class="col-sm-10">
+													<div class="form-group form-group-sm">
+														<label class="control-label col-sm-2">Origem</label>
+														<div class="col-sm-10">
+															<label class="glyphicon custom-select"> <select wicket:id="origem" class="form-control combo"></select>
+															</label>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-sm-10">
+													<div class="form-group form-group-sm">
+														<label class="control-label col-sm-2">Destino</label>
+														<div class="col-sm-10">
+															<label class="glyphicon custom-select"> <select wicket:id="destino" class="form-control combo"></select>
+															</label>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>									
+									</div>
+								</div>
+								<div class="modal-footer">
+									<button wicket:id="replicarBtn" type="button" class="btn btn-primary">
+										<i class="fa fa-clone"></i> Replicar
+									</button>
+									<button type="button" class="btn btn-primary" data-dismiss="modal">
+										<i class="fa fa-times"></i> Fechar
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</form>
+			<!-- fim: modal replicar configurações de loja -->
+		</div>
+		
+		<script>
+			var selecionaLinha = function(idLinha){				
+				$("table.fonte-pagadora > tbody > tr").removeClass("selecionado");
+				$("#" + idLinha).addClass("selecionado");				
+			}	
+
+			var selecionaPrimeiraLinha = function(){
+				$("table.fonte-pagadora > tbody > tr").first().addClass("selecionado");
+				
+			}		
+
+			$(function(){
+				selecionaPrimeiraLinha();				
+			});
+
+
+		</script>
+	</wicket:extend>
+</body>
+</html>

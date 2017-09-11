@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns:wicket="http://wicket.apache.org">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Parametrizar Solicitação de Pagamento</title>
+</head>
+<body>
+	<wicket:extend>
+	
+	<script wicket:id="scriptGrfUm"></script>
+	<script wicket:id="scriptGrfDois"></script>
+	
+		<div class="panel panel-primary">
+			<form wicket:id="form">			
+				<div class="panel-menu">
+					<button class="btn btn-primary" type="button" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#modalFiltro">
+						<i class="fa fa-filter" aria-hidden="true"></i> Filtros
+					</button>
+				</div>
+				<div class="panel-body">
+					<div class="row">
+					
+						<div class="col-md-12">					
+							<div class="row">
+	                			<div class="col-md-12 graficoTitulo">
+	                				<LABEL>SLA por Processo Consolidado</LABEL>
+	                			</div>
+	                		</div><!-- FIM ROW -->
+	                		<div class="row">
+	                			<div class="col-md-12">
+				            		<div id="parentContainer">
+				            			<div id="grfDois" class="col-md-12 col-sm-12"></div>
+				            		</div>
+			            		</div>
+		            		</div><!-- FIM ROW -->		            		
+						</div><!-- fim col -->
+												
+					</div><!-- fim row -->
+					
+					
+					
+					
+					<div class="row">
+						
+						<div class="col-md-3"></div>
+						
+						<div class="col-md-6">						
+							<div class="row">
+	                			<div class="col-md-12 graficoTitulo">
+	                				<LABEL>SLA Geral Consolidado</LABEL>
+	                			</div>
+	                		</div><!-- FIM ROW -->
+	                		<div class="row">
+	                			<div class="col-md-12">
+				            		<div id="parentContainer">
+				            			<div id="grfUm" class="col-md-12 col-sm-12"></div>
+				            		</div>
+			            		</div>
+		            		</div><!-- FIM ROW -->		            		
+						</div><!-- fim col -->
+						
+					</div><!-- fim row -->
+					
+					
+				</div>
+				
+				
+				
+				
+		<!-- MODAL FILTRO -->			
+		<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" data-backdrop="static" data-keyboard="false" id="modalFiltro" wicket:id="modalFiltro">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header" style="background-image: linear-gradient(#04519b, #044687 60%, #033769);">
+		        <h4 class="modal-title" id="myModalLabel" style="color:#fff;">Filtros</h4>
+		      </div>
+		      <div class="modal-body" style="background: #eeeeee;">
+		      	<div class="row">
+                    <div class="col-md-12">
+                   	  <div class="form-group form-group-sm">
+                         <label class="col-sm-3 control-label">Período De</label>
+                         <div class="col-sm-3">
+                           <input wicket:id="txtDataDe" id="txtDataDe" type="text" class="form-control" data-plugin-datepicker data-plugin-options='{"language":"pt-BR", "format": "dd/mm/yyyy"}'>
+                         </div>
+                         <label class="col-sm-1 control-label">Até</label>
+                         <div class="col-sm-3">
+                           <input wicket:id="txtDataAte" id="txtDataAte" type="text" class="form-control" data-plugin-datepicker data-plugin-options='{"language":"pt-BR", "format": "dd/mm/yyyy"}'>
+                         </div>
+                       </div> 
+                      </div><!-- fim col -->					                    	
+               </div><!-- fim row -->
+		    </div>
+		    <div class="modal-footer" style="background-color: #f5f5f5;">
+	        	<button type="button" class="btn btn-primary" wicket:id="btnPesquisar" onclick="$('#modalFiltro').modal('hide');$('#carregamentoModal').modal('show');"><i class="fa fa-search"></i> Pesquisar</button>
+	        	<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>				        
+	        </div>
+		  </div>
+		</div>
+		</div><!-- fim modal filtro -->
+				
+			</form>
+			
+		</div>
+		
+	</wicket:extend>
+</body>
+</html>

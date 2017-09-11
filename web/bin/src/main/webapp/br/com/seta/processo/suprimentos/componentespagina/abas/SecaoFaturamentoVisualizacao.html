@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns:wicket="http://wicket.apache.org">
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+	<wicket:panel>
+		<div wicket:id="secaoFaturamento">
+			<div class="secao">
+				<div class="cabecalho-secao">Solicitação</div>
+				<div class="corpo-secao">
+					<div class="row">
+						<div class="col-sm-4">
+							<div class="form-group form-group-sm">
+								<label class="control-label col-sm-3">Nº Intenção</label>
+								<div class="col-sm-9">
+									<input wicket:id="numeroIntencaoSolicitacaoCompra" class="form-control"></input>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-4">
+							<div class="form-group form-group-sm">
+								<label class="control-label col-sm-3">Tipo de Despesa</label>
+								<div class="col-sm-9">
+									<input wicket:id="tipoDespesa" class="form-control"></input>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-4">
+							<div class="form-group form-group-sm">
+								<label class="control-label col-sm-3">Data/Hora</label>
+								<div class="col-sm-9">
+									<input wicket:id="dtainclusao" class="form-control"></input>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="secao">
+				<div class="cabecalho-secao">Intenção de Compra</div>
+				<div class="corpo-secao">
+					<div class="row">
+						<div class="col-sm-4">
+							<div class="form-group form-group-sm">
+								<label class="col-sm-3 control-label">Fornecedor</label>
+								<div class="col-sm-9">
+									<input wicket:id="nomeFornecedor" type="text" class="form-control" />
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-4">
+							<div class="form-group form-group-sm">
+								<label class="control-label col-sm-3">Empresa</label>
+								<div class="col-sm-9">
+									<input wicket:id="nomeEmpresa" type="text" class="form-control" />
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-8">
+					<button wicket:id="abrirModalAnexoOrcamentoBtn" class="btn btn-primary pull-left" type="button" data-target="#anexarOrcamentoDialog" data-toggle="modal" data-backdrop="static"
+						data-keyboard="false">
+						<i class="fa fa-paperclip" aria-hidden="true"></i> Anexar Orçamento
+					</button>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-sm-8">
+					<button wicket:id="abrirModalAnexoCadFornecedorBtn" class="btn btn-primary pull-left" type="button" data-target="#anexarCadastroFornecedorDialog" data-toggle="modal" data-backdrop="static"
+						data-keyboard="false">
+						<i class="fa fa-paperclip" aria-hidden="true"></i> Anexar Cadastro de Fornecedor
+					</button>
+					<button wicket:id="cadastroFornecedorDownload" class="btn btn-primary pull-left" type="button">
+						<i class="fa fa-download" aria-hidden="true"></i> Arquivo de Cadastro de Fornecedor
+					</button>
+				</div>
+			</div>
+		</div>
+
+		<div wicket:id="secaoAnexoOrcamento" style="margin-top: 20px"></div>
+		<div wicket:id="secaoAnexoCadastroFornecedor" style="margin-top: 20px"></div>
+
+		<!-- início: dialog anexo  -->
+		<div id="anexarOrcamentoDialog" class="modal" role="dialog">
+			<div class="vertical-alignment-helper">
+				<div wicket:id="anexarOrcamentoDialog" class="modal-dialog vertical-align-center">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h4 class="modal-title">Anexar Orçamento</h4>
+						</div>
+						<div class="modal-body">
+							<div class="row">
+								<div class="col-sm-12">
+									<div class="fileupload fileupload-new" style="margin: 0 20px" data-provides="fileupload">
+										<div class="input-append">
+											<div class="input-group input-group-sm">
+												<div class="uneditable-input form-control">
+													<span class="fa fa-file fileupload-exists"></span> <span class="fileupload-preview"></span>
+												</div>
+												<span class="input-group-btn"> <span class="btn btn-primary btn-file"> <span class="fileupload-exists"> <i class="fa fa-refresh"> </i> Trocar
+													</span> <span class="fileupload-new"> <i class="fa fa-search"></i>
+													</span> <input type="file" wicket:id="anexoOrcamento" />
+												</span>
+													<button class="btn btn-primary fileupload-exists" data-dismiss="fileupload">
+														<i class="fa fa-trash-o"></i> Remover
+													</button>
+												</span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button wicket:id="anexoBtn" type="button" class="btn btn-primary" data-dismiss="modal">
+								<i class="fa fa-upload" aria-hidden="true"></i> Anexar
+							</button>
+							<button type="button" class="btn btn-danger" data-dismiss="modal">
+								<i class="fa fa-times"></i> Fechar
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- fim: dialog anexo  -->
+	</wicket:panel>
+</body>
+</html>

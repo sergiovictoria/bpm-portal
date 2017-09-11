@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:wicket="http://wicket.apache.org">
+<head>
+<title>Perfil do Usuário</title>
+
+</head>	
+<body>
+	<wicket:extend>
+		<div class="panel panel-primary">
+			<div class="panel-menu">
+				<button class="btn btn-primary" type="button"><i class="fa fa-floppy-o"></i> Salvar Alterações</button>				
+			</div>
+			<div class="panel-body">
+				<div class="tabs tabs-primary">
+					<!-- início: abas -->
+					<ul class="nav nav-tabs">
+						<li class="active">
+							<a data-toggle="tab" href="#dados-gerais" ><i class="fa fa-list-alt"></i> Dados Gerais</a>
+						</li>		
+						<li>
+							<a href="#contatos-profissionais" data-toggle="tab"><i class="fa fa-briefcase"></i> Contatos Profissionais</a>
+						</li>
+						<li>
+							<a href="#contatos-pessoais" data-toggle="tab"><i class="fa fa-user"></i> Contatos Pessoais</a>
+						</li>						
+					</ul>
+					<!-- fim: abas -->
+				</div>
+				<!-- início: conteudo seções -->
+				<div class="tab-content">	
+					
+					<!--início: Dados Gerais -->
+					<div id="dados-gerais" class="tab-pane active">
+						<div class="secao">
+							<div class="cabecalho-secao">Dados Gerais</div>
+							<div class="corpo-secao">
+								<div class="row">
+									<div class="col-sm-6">
+										<div class="form-group form-group-sm">
+											<label class="control-label col-sm-3">Nome</label>
+											<div class="col-sm-9">
+												<input class="form-control" type="text" />
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-6">
+										<div class="form-group form-group-sm">
+											<label class="control-label col-sm-3">Sobrenome</label>
+											<div class="col-sm-9">
+												<input class="form-control" type="text" />
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-sm-6">
+										<div class="form-group form-group-sm">
+											<label class="control-label col-sm-3">Título</label>
+											<div class="col-sm-9">
+												<input class="form-control" type="text" />
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-6">
+										<div class="form-group form-group-sm">
+											<label class="control-label col-sm-3">Cargo</label>
+											<div class="col-sm-9">
+												<input class="form-control" type="text" />
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-sm-6">
+										<div class="form-group form-group-sm">
+											<label class="control-label col-sm-3">Gerente</label>
+											<div class="col-sm-9">
+												<input class="form-control" type="text" />
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-6">
+										<div class="form-group form-group-sm">
+											<label class="control-label col-sm-3">Usuário</label>
+											<div class="col-sm-9">
+												<input class="form-control" type="text" />
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-sm-6">
+										<div class="form-group form-group-sm">
+											<label class="control-label col-sm-3">Senha</label>
+											<div class="col-sm-9">
+												<input class="form-control" type="text" />
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-6">
+										<div class="form-group form-group-sm">
+											<label class="control-label col-sm-3">Confirmação da Senha</label>
+											<div class="col-sm-9">
+												<input class="form-control" type="text" />
+											</div>
+										</div>
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+					<!--fim: Dados Gerais -->
+					
+					<!--início: Contatos Profissionais -->
+					<div id="contatos-profissionais" class="tab-pane">
+						<div class="secao">
+							<div class="cabecalho-secao">Contatos Profissionais</div>
+							<div class="corpo-secao">
+								<div class="row">
+									<div class="col-sm-6">
+										<div class="form-group form-group-sm">
+											<label class="control-label col-sm-2">Endereço</label>
+											<div class="col-sm-10">
+												<input class="form-control" type="text" />
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-6">
+										<div class="form-group form-group-sm">
+											<label class="control-label col-sm-3">Cidade</label>
+											<div class="col-sm-9">
+												<input class="form-control" type="text" />
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-sm-4">
+										<div class="form-group form-group-sm">
+											<label class="control-label col-sm-3">Estado</label>
+											<div class="col-sm-9">
+												<input class="form-control" type="text" />
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-4">
+										<div class="form-group form-group-sm">
+											<label class="control-label col-sm-3">País</label>
+											<div class="col-sm-9">
+												<input class="form-control" type="text" />
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-4">
+										<div class="form-group form-group-sm">
+											<label class="control-label col-sm-3">CEP</label>
+											<div class="col-sm-9">
+												<input class="form-control" type="text" />
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-sm-4">
+										<div class="form-group form-group-sm">
+											<label class="control-label col-sm-3">E-mail</label>
+											<div class="col-sm-9">
+												<input class="form-control" type="text" />
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-4">
+										<div class="form-group form-group-sm">
+											<label class="control-label col-sm-3">Telefone</label>
+											<div class="col-sm-9">
+												<input class="form-control" type="text" />
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-4">
+										<div class="form-group form-group-sm">
+											<label class="control-label col-sm-3">Celular</label>
+											<div class="col-sm-9">
+												<input class="form-control" type="text" />
+											</div>
+										</div>
+									</div>
+								</div>								
+							</div>
+						</div>
+					</div>
+					<!--fim: Contatos Profissionais -->
+					
+					<!--início: Contatos Pessoais -->
+					<div id="contatos-pessoais" class="tab-pane">
+						<div class="secao">
+							<div class="cabecalho-secao">Contatos Pessoais</div>
+							<div class="corpo-secao">
+								<div class="corpo-secao">
+									<div class="row">
+										<div class="col-sm-6">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-2">Endereço</label>
+												<div class="col-sm-10">
+													<input class="form-control" type="text" />
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-6">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3">Cidade</label>
+												<div class="col-sm-9">
+													<input class="form-control" type="text" />
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3">Estado</label>
+												<div class="col-sm-9">
+													<input class="form-control" type="text" />
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3">País</label>
+												<div class="col-sm-9">
+													<input class="form-control" type="text" />
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3">CEP</label>
+												<div class="col-sm-9">
+													<input class="form-control" type="text" />
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3">E-mail</label>
+												<div class="col-sm-9">
+													<input class="form-control" type="text" />
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3">Telefone</label>
+												<div class="col-sm-9">
+													<input class="form-control" type="text" />
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3">Celular</label>
+												<div class="col-sm-9">
+													<input class="form-control" type="text" />
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--fim: Contatos Pessoais -->
+				</div>
+				<!-- fim: conteudo seções -->
+			</div>
+		</div>
+	</wicket:extend>
+</body>
+</html>

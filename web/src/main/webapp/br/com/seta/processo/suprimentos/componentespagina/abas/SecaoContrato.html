@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns:wicket="http://wicket.apache.org">
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+	<wicket:panel>
+		<div class="row">
+			<div class="col-sm-4">
+				<div class="form-group form-group-sm">
+					<label class="col-sm-3 control-label">Fornecedor</label>
+					<div class="col-sm-9">
+						<input wicket:id="fornecedor" type="text" class="form-control" />
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div wicket:id="secaoItensSemContrato" class="secao">
+			<div class="cabecalho-secao">Itens sem Contrato</div>
+			<div class="corpo-secao">
+				<table class="table table-bordered table-hover table-condensed mb-none dataTable no-footer">
+					<thead>
+						<tr>
+							<th>Código</th>
+							<th>Descrição</th>						
+						</tr>
+					</thead>
+					<tbody>
+						<tr wicket:id="itensSemContrato">
+							<td><span wicket:id="codItem"></span></td>	
+							<td><span wicket:id="descricaoItem"></span></td>							
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div wicket:id="secaoContratosAnteriores" class="secao">
+			<div class="cabecalho-secao">Datas vigentes de contratos anteriores</div>
+			<div class="corpo-secao">
+				<table class="table table-bordered table-hover table-condensed mb-none dataTable no-footer">
+					<thead>
+						<tr>
+							<th>Fornecedor</th>
+							<th>Início contrato</th>
+							<th>Fim contrato</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr wicket:id="contratosAnteriores">
+							<td><span wicket:id="contrato"></span></td>
+							<td><span wicket:id="inicioContrato"></span></td>
+							<td><span wicket:id="fimContrato"></span></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</wicket:panel>
+</body>
+</html>

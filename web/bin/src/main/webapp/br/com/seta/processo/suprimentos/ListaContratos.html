@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns:wicket="http://wicket.apache.org">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+
+</head>
+<body>
+	<wicket:extend>
+	
+		<div class="panel panel-primary">
+			<form wicket:id="form">			
+				<div class="panel-menu">
+					<button wicket:id="btnModalEnviar" class="btn btn-primary" type="button" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#modalEnviar">
+						<i class="fa fa-hdd-o" aria-hidden="true"></i> Enviar
+					</button>
+				</div>
+				<div class="panel-body">
+					
+					<div wicket:id="rptListaContratos">
+						<div class="row">
+							<div class="col-md-12">
+								<table class="table table-bordered table-hover table-condensed mb-none historico" id="datatable-default">
+									<thead>
+										<tr>
+											<th class="text-center">No. Sub-Processo</th>
+											<th class="text-center">No. Intenção de Compra</th>
+											<th class="text-center">Fornecedor</th>
+											<th class="text-center">Ações</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr wicket:id="dtvListaContratos">
+											<td><span wicket:id="lblDtvSubProcesso"></span></td>
+											<td><span wicket:id="lblDtvIntencaoCompra"></span></td>
+											<td><span wicket:id="lblDtvFornecedor"></span></td>
+											<td class="text-center">
+												<button wicket:id="btnModalDetalhes" class="btn btn-primary" type="button" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#modalDetalhes">
+													<i class="fa fa-pencil-square-o" aria-hidden="true"></i> 
+												</button>
+		                                        <input type="checkbox" id="checkboxListaContratos" wicket:id="chkRootcontainer" class="marcar" />
+		                                        <label for="checkboxListaContratos"></label>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12">
+								<span wicket:id="ajaxPagingNavigator" class="dataview-navigator" style="margin-top: 10px;">[NAVIGATOR]</span>
+							</div>
+						</div>
+					</div>
+					
+				</div>
+
+				<!-- MODAL ENVIAR -->
+				<div class="modal fade" role="dialog" data-backdrop="static"
+					data-keyboard="false" id="modalEnviar" wicket:id="modalEnviar">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header"
+								style="background-image: linear-gradient(#04519b, #044687 60%, #033769);">
+								<h4 class="modal-title" id="myModalLabel" style="color: #fff;">Enviar</h4>
+							</div>
+							<div class="modal-body">
+								<div class="modal-wrapper">
+									<div class="modal-icon">
+										<i class="fa fa-question-circle"></i>
+									</div>
+									<div class="modal-text">Tem certeza que deseja enviar o contrato selecionado?</div>
+								</div>
+							</div>
+							
+							<div class="modal-footer" style="background-color: #f5f5f5;">
+								<button type="button" class="btn btn-primary"
+									wicket:id="btnEnviar"
+									onclick="$('#modalEnviar').modal('hide');">
+									<i class="fa fa-hdd-o"></i> Enviar
+								</button>
+								<button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- fim modal enviar -->
+				
+				<!-- MODAL DETALHES -->
+				<div class="modal fade" role="dialog" data-backdrop="static"
+					data-keyboard="false" id="modalDetalhes" wicket:id="modalDetalhes">
+					<div class="modal-dialog modal-lg">
+						<div class="modal-content">
+							<div class="modal-header"
+								style="background-image: linear-gradient(#04519b, #044687 60%, #033769);">
+								<h4 class="modal-title" id="myModalLabel" style="color: #fff;">Detalhes de Contrato</h4>
+							</div>
+							<div class="modal-body">
+								<div class="row">
+									<div class="col-sm-6">
+										<div class="form-group form-group-sm">
+											<label class="control-label col-sm-3 text-left">Fornecedor</label>
+											<div class="col-sm-9">
+												<span>
+													<label wicket:id="nomeFornecedor" class="form-control disabled text-left"></label>
+												</span>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-4">
+										<div class="form-group form-group-sm">
+											<label class="control-label col-sm-3 ">Contrato</label>
+											<div class="col-sm-9">
+												<input type="file" wicket:id="anexoField" required="required" />
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-sm-6">
+										<div class="form-group form-group-sm">
+											<label class="col-sm-3 control-label ">Ínicio</label>
+											<div class="col-sm-4 text-left">
+												<div class="input-group input-group-sm date">									
+													<input wicket:id="dataInicioContrato" id="campoInicioContrato" type="text" required="required" class="form-control date" data-plugin-datepicker data-plugin-options='{"language":"pt-BR", "format": "dd/mm/yyyy"}'>
+												</div>									
+											</div>
+											<label class="col-sm-1 control-label ">Fim</label>
+											<div class="col-sm-4 text-left">
+												<div class="input-group input-group-sm date">									
+													<input wicket:id="dataFimContrato" id="campoFimContrato" type="text" required="required" class="form-control date" data-plugin-datepicker data-plugin-options='{"language":"pt-BR", "format": "dd/mm/yyyy"}'>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-3">
+										<div class="form-group form-group-sm">
+											<label class="control-label col-sm-6 text-left">Nº Contrato</label>
+											<div class="col-sm-6">
+												<input wicket:id="numeroContrato" class="form-control" required="required"></input>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-3">
+										<div class="form-group form-group-sm">
+											<label class="control-label col-sm-6 text-left">Nº Jurídico</label>
+											<div class="col-sm-6">
+												<input wicket:id="numeroInstanciaJuridico" class="form-control" required="required"></input>
+											</div>
+										</div>
+									</div>
+								</div>
+								
+								<div class="row">
+									<div class="col-sm-12">
+										<div class="form-group form-group-sm">
+											<label class="control-label col-sm-1 text-right">Obs</label>
+											<div class="col-sm-11">
+												<textarea wicket:id="observacaoContrato"  class="form-control" rows="4" cols="40" required="required"></textarea>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							
+							<div class="modal-footer" style="background-color: #f5f5f5;">
+								<button type="button" class="btn btn-primary"
+									wicket:id="btnConfirmar"
+									onclick="$('#modalDetalhes').modal('hide');">
+									<i class="fa fa-hdd-o"></i> Confirmar
+								</button>
+								<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- fim modal DETALHES -->
+				
+			</form>
+			
+		</div>
+		
+	</wicket:extend>
+</body>
+</html>

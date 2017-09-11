@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>br.com.seta.processo</groupId>
+	<artifactId>Processo</artifactId>
+	<version>1.1.13-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<name>Processo</name>
+
+	<url>http://jboss.org/jbossas</url>
+	<licenses>
+		<license>
+			<name>Apache License, Version 2.0</name>
+			<distribution>repo</distribution>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
+		</license>
+	</licenses>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<version.jboss.maven.plugin>7.4.Final</version.jboss.maven.plugin>
+		<version.jboss.bom.eap>6.4.0.GA</version.jboss.bom.eap>
+		<version.jboss.as>7.5.0.Final-redhat-21</version.jboss.as>
+		<bonita.engine.version>7.0.2</bonita.engine.version>
+		<version.ear.plugin>2.8</version.ear.plugin>
+		<version.ejb.plugin>2.3</version.ejb.plugin>
+		<version.surefire.plugin>2.10</version.surefire.plugin>
+		<version.war.plugin>2.1.1</version.war.plugin>
+		<maven.compiler.target>1.7</maven.compiler.target>
+		<maven.compiler.source>1.7</maven.compiler.source>
+		<apache.wicket.version>6.19.0</apache.wicket.version>
+		<jersey.version>1.19</jersey.version>
+		<httpclient.version>4.2</httpclient.version>
+		<service-version>1.1.13</service-version>
+		<jboss-as.deploy.hostname>localhost</jboss-as.deploy.hostname>
+		<jboss-as.deploy.user>admin</jboss-as.deploy.user>
+		<jboss-as.deploy.pass>admin123.</jboss-as.deploy.pass>
+		<jboss-as.deploy.port>9999</jboss-as.deploy.port>
+		<global.version>1.1.13-SNAPSHOT</global.version>
+	</properties>
+
+	<modules>
+		<module>ejb</module>
+		<module>web</module>
+		<module>ear</module>
+		<module>dto</module>
+	</modules>
+
+	<dependencyManagement>
+		<dependencies>
+
+			<dependency>
+				<groupId>br.com.seta.processo</groupId>
+				<artifactId>Processo-ejb</artifactId>
+				<version>${project.version}</version>
+				<type>ejb</type>
+			</dependency>
+
+			<dependency>
+				<groupId>br.com.seta.processo</groupId>
+				<artifactId>Processo-web</artifactId>
+				<version>${project.version}</version>
+				<type>war</type>
+				<scope>compile</scope>
+			</dependency>
+
+
+			<dependency>
+				<groupId>br.com.seta.processo</groupId>
+				<artifactId>Processo-dto</artifactId>
+				<version>${project.version}</version>
+				<type>jar</type>
+				<scope>compile</scope>
+			</dependency>
+
+
+			<dependency>
+				<groupId>org.jboss.bom.eap</groupId>
+				<artifactId>jboss-javaee-6.0-with-tools</artifactId>
+				<version>${version.jboss.bom.eap}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.jboss.bom.eap</groupId>
+				<artifactId>jboss-javaee-6.0-with-hibernate</artifactId>
+				<version>${version.jboss.bom.eap}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+
+				<plugin>
+					<groupId>org.jboss.as.plugins</groupId>
+					<artifactId>jboss-as-maven-plugin</artifactId>
+					<version>7.6.Final</version>
+					<inherited>true</inherited>
+					<configuration>
+						<skip>true</skip>
+						<force>true</force>
+						<hostname>${jboss-as.deploy.hostname}</hostname>
+						<username>${jboss-as.deploy.user}</username>
+						<password>${jboss-as.deploy.pass}</password>
+						<port>${jboss-as.deploy.port}</port>
+						<timeout>9999</timeout>
+						<fileNames>
+							<fileName>target/${plugin.ear.earName}.ear</fileName>
+						</fileNames>
+					</configuration>
+					<executions>
+						<execution>
+							<phase>install</phase>
+							<goals>
+								<goal>deploy</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+
+			</plugins>
+		</pluginManagement>
+	</build>
+
+	<distributionManagement>
+	
+		<repository>
+			<id>releases</id>
+			<name>Releases</name>
+			<url>http://192.168.2.47:8081/nexus/content/repositories/releases</url>
+		</repository>
+		
+		<snapshotRepository>
+			<name>Snapshots</name>
+			<id>snapshots</id>
+			<url>http://192.168.2.47:8081/nexus/content/repositories/snapshots</url>
+		</snapshotRepository>
+
+	</distributionManagement>
+
+	<!-- <profiles> <profile> <id>jboss-product-repository</id> <activation> 
+		<property> <name>!jboss-product-repository</name> </property> </activation> 
+		<repositories> <repository> <id>redhat-techpreview-all-repository</id> <url>http://maven.repository.redhat.com/techpreview/all/</url> 
+		</repository> </repositories> </profile> </profiles> -->
+
+</project>

@@ -1,0 +1,588 @@
+/**
+Sobrescrita do template padrão da Porto e do Bootstrap para adequação a aplicação de Processos
+
+@author Hromenique Cezniowscki Leite Batista
+*/
+
+/*
+movido para o bootstrap.css do vendor
+.col-sm-1_5{
+	width: 12.5%;
+}
+
+.col-sm-10_5{
+	width: 87.5%;
+}
+*/
+
+.page-header > .dados-adicionais{
+    float: right;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    padding: 0 22px 0 20px;    
+    line-height: 50px;
+}
+
+/*Label mais próxima do campo*/
+label.control-label {
+    padding-right: 0px;
+}
+
+/*span e divs como valores*/
+.form-value{
+    text-align: left;    
+}
+
+.form-horizontal .form-value{
+	margin-top: 6px;
+}
+
+.form-control:not(.disabled), .form-control:not([disabled]){
+	color: #000 !important;
+}
+
+.form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control, .form-control.disabled,
+.radio-custom input[type="radio"]:disabled + label:before {
+    background-color: #ccc !important;   
+}
+
+.radio-primary input[type="radio"]:checked + label:after {
+    background: #044687 !important;
+   /* -webkit-box-shadow: 0px 0px 1px #0088cc;
+    box-shadow: 0px 0px 1px #0088cc; */
+}
+
+/*Simula um campo desabilitado. 
+Campos utilizados pelo Wicket não podem ser desabilitados, pois teremos problemas com binding de valores.
+Para os casos onde precisamos de um campo readonly que simule um campo de input utilizar um span com esta classe.
+
+Ex: <span class="form-control disabled"></span>
+*/
+.form-control.disabled{
+	background-color: #eee;
+    opacity: 1;
+}
+
+/*span que simula um input*/
+/*alinhamento a esquerda*/
+span.form-control{
+	text-align: left;
+}
+
+.uneditable-input{
+	text-align: left;
+}
+
+.fileupload .uneditable-input .fa {
+    top: 9px !important;
+}
+
+/*início: Correção do espaçamento do checkbox do template*/
+td.checkbox-custom{
+	width: 26px;
+}
+
+td.checkbox-custom label:before{
+	margin-left: 3px;
+    margin-right: 3px;
+}
+/*fim: Correção do espaçamento do checkbox do template*/
+.checkbox-custom{
+	text-align: left;
+}
+/*início: buttons*/
+.btn-success, .btn-danger{
+    font-weight: bold !important;
+    border: 1px solid #ccc !important;
+}
+
+/*
+.btn:hover{
+	background-image: none !important;
+	background-color: #033769 !important;
+	border-color: #dc9843 !important;
+	color: #dc9843 !important;
+}*/
+
+.btn-success{
+    background-image: linear-gradient(#47a447, #47a447 60%, #388038) !important;
+}
+
+body .btn-success:hover, body .btn-success:focus, body .btn-success:active {
+    background-image: none !important;
+    background-color: #388038 !important;
+    border: 1px solid #ccc !important;
+}
+/*fim: buttons*/
+
+.content-body{
+ /* padding: 0 !important;   */   
+  overflow-y: auto
+}
+
+.nav-tabs{
+	margin-left: 10px;
+	text-align: left;
+}
+
+.sidebar-left ul.nav-main{
+	text-align: left;
+}
+
+.sidebar-left .sidebar-title{
+	text-align: left;
+}
+
+/*in�cio: centraliza��o da modal do bootstrap*/
+.vertical-alignment-helper {
+    display:table;
+    height: 100%;
+    width: 100%;
+}
+.vertical-align-center {
+    /* To center vertically */
+    display: table-cell;
+    vertical-align: middle;
+}
+.modal-content {
+    /* Bootstrap sets the size of the modal in the modal-dialog class, we need to inherit it */
+    width:inherit;
+    height:inherit;
+    /* To center horizontally */
+    margin: 0 auto;
+}
+/*fim: centraliza��o da modal do bootstrap*/
+
+/*in�cio: modals/dialogs */
+.modal-dialog .modal-title{
+	text-align: left;
+}
+
+.modal-dialog .modal-footer{
+	clear: both;
+}
+
+.modal-dialog.vertical-align-center .modal-body .modal-wrapper .modal-text{
+	text-align: left;
+}
+
+.modal-dialog.confirmacao .modal-body, .modal-dialog.sucesso .modal-body {
+	padding-bottom: 35px;
+}
+
+.modal-dialog.confirmacao .modal-body .modal-wrapper > .modal-icon > .fa{
+	color: #044687 !important;
+}
+
+.modal-dialog.sucesso .modal-body .modal-wrapper > .modal-icon > .fa{
+	color: #47a447 !important;
+}
+
+.modal-dialog.atencao .modal-body .modal-wrapper > .modal-icon > .fa{
+	color: #ed9c28 !important;
+}
+
+.modal-dialog.sucesso .modal-header{
+	background-color: #47a447;
+	background-image: none !important;
+}
+
+.modal-dialog.atencao .modal-header{
+	background-color: #ed9c28;
+	background-image: none !important;
+}
+
+.modal-dialog.erro .modal-body .modal-wrapper > .modal-icon > .fa{
+	color: #d2322d !important;
+}
+
+.modal-dialog.erro .modal-header{
+	background-color: #d2322d;
+	background-image: none !important;
+}
+/*fim: modals/dialogs */
+
+/*alinhamento dos botões do menu abaixo das abas*/
+.tab-menu, .panel-menu{
+	text-align: left;	
+}
+
+.tab-content{
+	border-color: #DCD5D5 !important
+}
+
+.tab-menu{
+    border-right: #044687 1px solid !important;
+    border-left: #044687 1px solid !important;
+}
+
+.tab-menu.vazia, .panel-menu.vazia{
+	height: 44px;
+}
+
+table.table{
+	font-size: 13px;
+	margin-bottom: 20px;
+}
+
+.dataview-navigator{
+	float: right;
+    margin-top: 15px;
+}
+
+/*Opacidade do bloqueio de tela*/
+.mfp-lock-screen.mfp-bg{
+	opacity: .5;
+}
+
+/*os form no bootstrap recebem a altura (height) de 100% do componente pai. O css abaixo altera este comportamento*/
+form.form-horizontal {
+    height: auto;
+}
+/*corrigi o espaço a mais que o form recebe do css do template padrão*/
+form{
+	margin-bottom: 0px;
+}
+
+/*início: Timeline*/
+
+.timeline .tm-title{
+	float: left;
+}
+
+.timeline .tm-body:after{
+	left: 230px !important;
+}
+
+.timeline .tm-items > li .tm-icon{
+	left: 230px !important;
+	background-color: white !important;
+}
+
+.timeline .tm-items > li .tm-datetime{
+	width: 180px !important;
+}
+
+.timeline .tm-items > li {
+    padding: 0 0 0 280px !important;
+}
+
+.timeline .tm-items > li .tm-box{
+	text-align: left;
+}
+
+.timeline .tm-items > li .tm-box:before {
+    border: solid rgba(255, 255, 255, .15);
+    content: ' ';
+    height: 0;
+    width: 0;
+    top: 50%;
+    margin-top: -10px;
+    border-width: 10px;
+    position: absolute;
+    pointer-events: none;
+    border-right-color: #e9e9e9;
+    right: 100%;
+    /* z-index: 3; */
+}
+
+.timeline .tm-items > li .tm-icon
+
+/*fim: Timeline*/
+
+/*início: Notificações/Alertas*/
+/* Notifications */
+.ui-pnotify {
+	right: 15px;
+	top: 15px;
+}
+
+.alert.ui-pnotify-container {
+    border: none;
+}
+
+.ui-pnotify .alert {
+	border-radius: 5px;
+	box-shadow: none;
+	padding: 15px 15px 15px 75px;
+}
+
+.ui-pnotify .alert .ui-pnotify-icon {
+	left: 0;
+	position: absolute;
+	top: 0;
+	width: 75px;
+	text-align: center;
+}
+
+.ui-pnotify .alert .ui-pnotify-icon > span {
+	border: 2px solid #FFF;
+	border-radius: 50%;
+	display: inline-block;
+	float: none;
+	font-size: 35px;
+	height: 50px;
+	line-height: 48px;
+	margin: 8px 0 0;
+	padding: 0;
+	width: 50px;
+	text-align: center;
+}
+
+.ui-pnotify .alert .ui-pnotify-title {
+	font-size: 14px;
+	letter-spacing: 0;
+}
+
+.ui-pnotify .alert .ui-pnotify-text {
+	font-size: 12px;
+	line-height: 1.3em;
+}
+
+.ui-pnotify .alert.alert-danger .ui-pnotify-icon > span.fa-times {
+	line-height: 47px;
+}
+
+.ui-pnotify .ui-pnotify-shadow {
+	box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.4);
+}
+
+.ui-pnotify.ui-pnotify-no-icon .alert {
+	padding-left: 15px;
+}
+
+.ui-pnotify .ui-pnotify-sharp {
+	border-radius: 0;
+}
+
+body .ui-pnotify.icon-nb .alert .ui-pnotify-icon > span {
+	border-color: transparent;
+	border-radius: 0;
+}
+
+.ui-pnotify.stack-bar-top {
+	right: 0;
+	top: 0;
+}
+
+.ui-pnotify.stack-bar-top .alert {
+	border-radius: 0;
+}
+
+.ui-pnotify.stack-bar-top .alert .ui-pnotify-icon > span {
+	margin-top: 7px;
+}
+
+.ui-pnotify.stack-bar-bottom {
+	bottom: 0;
+	left: auto;
+	margin-left: 15%;
+	right: auto;
+	top: auto;
+}
+
+.ui-pnotify.stack-bar-bottom .alert {
+	border-radius: 0;
+}
+
+.ui-pnotify.stack-bar-bottom .alert .ui-pnotify-icon > span {
+	margin-top: 9px;
+}
+
+.ui-pnotify.click-2-close {
+	cursor: pointer;
+}
+
+/* alert States */
+.ui-pnotify .alert-primary {
+	background: rgba(204, 204, 204, 0.95);
+	color: rgba(255, 255, 255, 0.7);
+}
+
+.ui-pnotify .alert-primary .ui-pnotify-icon > span {
+	border-color: rgba(255, 255, 255, 0.7);
+}
+
+.ui-pnotify.stack-bar-top .alert-primary, .ui-pnotify.stack-bar-bottom .alert-primary {
+	background: #CCC;
+}
+
+.ui-pnotify.alert-primary .alert,
+.ui-pnotify.alert-primary .alert-primary {
+	background: rgba(204, 204, 204, 0.95);
+	color: rgba(255, 255, 255, 0.7);
+}
+
+.ui-pnotify.alert-primary .alert .ui-pnotify-icon > span,
+.ui-pnotify.alert-primary .alert-primary .ui-pnotify-icon > span {
+	border-color: rgba(255, 255, 255, 0.7);
+}
+
+.ui-pnotify.alert-primary.stack-bar-top .alert,
+.ui-pnotify.alert-primary.stack-bar-top .alert-primary, .ui-pnotify.alert-primary.stack-bar-bottom .alert,
+.ui-pnotify.alert-primary.stack-bar-bottom .alert-primary {
+	background: #CCC;
+}
+
+.ui-pnotify .alert-success {
+	background: rgba(71, 164, 71, 0.95);
+	color: rgba(255, 255, 255, 0.7);
+}
+
+.ui-pnotify .alert-success .ui-pnotify-icon > span {
+	border-color: rgba(255, 255, 255, 0.7);
+}
+
+.ui-pnotify.stack-bar-top .alert-success, .ui-pnotify.stack-bar-bottom .alert-success {
+	background: #47a447;
+}
+
+.ui-pnotify.alert-success .alert,
+.ui-pnotify.alert-success .alert-success {
+	background: rgba(71, 164, 71, 0.95);
+	color: rgba(255, 255, 255, 0.7);
+}
+
+.ui-pnotify.alert-success .alert .ui-pnotify-icon > span,
+.ui-pnotify.alert-success .alert-success .ui-pnotify-icon > span {
+	border-color: rgba(255, 255, 255, 0.7);
+}
+
+.ui-pnotify.alert-success.stack-bar-top .alert,
+.ui-pnotify.alert-success.stack-bar-top .alert-success, .ui-pnotify.alert-success.stack-bar-bottom .alert,
+.ui-pnotify.alert-success.stack-bar-bottom .alert-success {
+	background: #47a447;
+}
+
+.ui-pnotify .alert-warning {
+	background: rgba(237, 156, 40, 0.95);
+	color: rgba(255, 255, 255, 0.7);
+}
+
+.ui-pnotify .alert-warning .ui-pnotify-icon > span {
+	border-color: rgba(255, 255, 255, 0.7);
+}
+
+.ui-pnotify.stack-bar-top .alert-warning, .ui-pnotify.stack-bar-bottom .alert-warning {
+	background: #ed9c28;
+}
+
+.ui-pnotify.alert-warning .alert,
+.ui-pnotify.alert-warning .alert-warning {
+	background: rgba(237, 156, 40, 0.95);
+	color: rgba(255, 255, 255, 0.7);
+}
+
+.ui-pnotify.alert-warning .alert .ui-pnotify-icon > span,
+.ui-pnotify.alert-warning .alert-warning .ui-pnotify-icon > span {
+	border-color: rgba(255, 255, 255, 0.7);
+}
+
+.ui-pnotify.alert-warning.stack-bar-top .alert,
+.ui-pnotify.alert-warning.stack-bar-top .alert-warning, .ui-pnotify.alert-warning.stack-bar-bottom .alert,
+.ui-pnotify.alert-warning.stack-bar-bottom .alert-warning {
+	background: #ed9c28;
+}
+
+.ui-pnotify .alert-danger {
+	background: rgba(210, 50, 45, 0.95);
+	color: rgba(255, 255, 255, 0.7);
+}
+
+.ui-pnotify .alert-danger .ui-pnotify-icon > span {
+	border-color: rgba(255, 255, 255, 0.7);
+}
+
+.ui-pnotify.stack-bar-top .alert-danger, .ui-pnotify.stack-bar-bottom .alert-danger {
+	background: #d2322d;
+}
+
+.ui-pnotify.alert-danger .alert,
+.ui-pnotify.alert-danger .alert-danger {
+	background: rgba(210, 50, 45, 0.95);
+	color: rgba(255, 255, 255, 0.7);
+}
+
+.ui-pnotify.alert-danger .alert .ui-pnotify-icon > span,
+.ui-pnotify.alert-danger .alert-danger .ui-pnotify-icon > span {
+	border-color: rgba(255, 255, 255, 0.7);
+}
+
+.ui-pnotify.alert-danger.stack-bar-top .alert,
+.ui-pnotify.alert-danger.stack-bar-top .alert-danger, .ui-pnotify.alert-danger.stack-bar-bottom .alert,
+.ui-pnotify.alert-danger.stack-bar-bottom .alert-danger {
+	background: #d2322d;
+}
+
+.ui-pnotify .alert-info {
+	background: rgba(91, 192, 222, 0.95);
+	color: rgba(255, 255, 255, 0.7);
+}
+
+.ui-pnotify .alert-info .ui-pnotify-icon > span {
+	border-color: rgba(255, 255, 255, 0.7);
+}
+
+.ui-pnotify.stack-bar-top .alert-info, .ui-pnotify.stack-bar-bottom .alert-info {
+	background: #5bc0de;
+}
+
+.ui-pnotify.alert-info .alert,
+.ui-pnotify.alert-info .alert-info {
+	background: rgba(91, 192, 222, 0.95);
+	color: rgba(255, 255, 255, 0.7);
+}
+
+.ui-pnotify.alert-info .alert .ui-pnotify-icon > span,
+.ui-pnotify.alert-info .alert-info .ui-pnotify-icon > span {
+	border-color: rgba(255, 255, 255, 0.7);
+}
+
+.ui-pnotify.alert-info.stack-bar-top .alert,
+.ui-pnotify.alert-info.stack-bar-top .alert-info, .ui-pnotify.alert-info.stack-bar-bottom .alert,
+.ui-pnotify.alert-info.stack-bar-bottom .alert-info {
+	background: #5bc0de;
+}
+
+.ui-pnotify .alert-dark {
+	background: rgba(23, 23, 23, 0.95);
+	color: rgba(255, 255, 255, 0.7);
+}
+
+.ui-pnotify .alert-dark .ui-pnotify-icon > span {
+	border-color: rgba(255, 255, 255, 0.7);
+}
+
+.ui-pnotify.stack-bar-top .alert-dark, .ui-pnotify.stack-bar-bottom .alert-dark {
+	background: #171717;
+}
+
+.ui-pnotify.alert-dark .alert,
+.ui-pnotify.alert-dark .alert-dark {
+	background: rgba(23, 23, 23, 0.95);
+	color: rgba(255, 255, 255, 0.7);
+}
+
+.ui-pnotify.alert-dark .alert .ui-pnotify-icon > span,
+.ui-pnotify.alert-dark .alert-dark .ui-pnotify-icon > span {
+	border-color: rgba(255, 255, 255, 0.7);
+}
+
+.ui-pnotify.alert-dark.stack-bar-top .alert,
+.ui-pnotify.alert-dark.stack-bar-top .alert-dark, .ui-pnotify.alert-dark.stack-bar-bottom .alert,
+.ui-pnotify.alert-dark.stack-bar-bottom .alert-dark {
+	background: #171717;
+}
+/*fim: Notificações/Alertas*/
+
+@media only screen and (max-width: 768px){
+	.content-body{
+  		padding: 0 !important;      
+  		overflow-y: none !important
+	}
+	
+	.form-group{
+    	text-align: left !important;
+	}
+}

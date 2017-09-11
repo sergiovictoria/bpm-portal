@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns:wicket="http://wicket.apache.org">
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+	<wicket:panel>
+		<div class="row">
+			<div class="form-group form-group-sm">
+				<label class="control-label col-sm-2">Forma Pagto.</label>
+				<div class="col-sm-4">
+					<label class="glyphicon custom-select"> <select wicket:id="formaPagamento" class="form-control combo"></select>
+					</label>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group form-group-sm col-sm-6">
+				<label class="control-label col-sm-4">Transportadora?</label>
+				<div class="col-sm-5">
+					<label class="glyphicon custom-select"> <select wicket:id="transportadoraCb" class="form-control combo"></select>
+					</label>
+				</div>
+			</div>
+			<div class="col-sm-6">
+				<div wicket:id="transportadoraContainer">
+					<div wicket:id="secaoTransportadora" class="form-group form-group-sm">
+						<label class="control-label col-sm-2">Nome</label>
+						<div class="col-sm-8">
+							<label class="glyphicon custom-select"> <select wicket:id="valorTranspCb" class="form-control combo"></select>
+							</label>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group form-group-sm col-sm-6">
+				<label class="control-label col-sm-4">Frete?</label>
+				<div class="col-sm-5">
+					<label class="glyphicon custom-select"> <select wicket:id="freteCb" class="form-control combo"></select>
+					</label>
+				</div>
+			</div>
+			<div class="col-sm-6">
+				<div wicket:id="valorFreteContainer">
+					<div wicket:id="secaoValorFrete" class="form-group form-group-sm">
+						<label class="control-label col-sm-2">Frete</label>
+						<div class="col-sm-8">
+							<input wicket:id="valorFrete" class="form-control monetario" type="text" />
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group form-group-sm">
+				<label class="control-label col-sm-2">Local</label>
+				<div class="col-sm-4">
+					<label class="glyphicon custom-select"> <select wicket:id="localDeEntrega" class="form-control combo"></select>
+					</label>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group form-group-sm">
+				<label class="control-label col-sm-2">Obs</label>
+				<div class="col-sm-9">
+					<textarea wicket:id="observacao" class="form-control" rows="4"></textarea>
+				</div>
+			</div>
+		</div>
+		<div class="secao">
+			<div class="cabecalho-secao">Vencimentos</div>
+			<div class="corpo-secao">
+				<div class="row">
+					<div class="col-sm-6">
+						<div class="form-group form-group-sm">
+							<label class="control-label col-sm-4">Prazo Pgto.</label>
+							<div class="col-sm-8">
+								<input wicket:id="prazoPgto" type="text" class="form-control">
+							</div>
+						</div>
+					</div>
+
+					<button wicket:id="geraVencimentosBtn" class="btn btn-primary col-sm-3">Gerar Vencimentos</button>
+					<div class="col-sm-3" style="font-weight: bold;">Ex: 15/20/30/40 dias</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-8">
+						<table wicket:id="tabelaDesdobramentos" class="table table-bordered table-hover table-condensed mb-none dataTable no-footer">
+							<thead>
+								<tr>
+									<th>Data Vencimento</th>
+									<th>Número da Parcela</th>
+									<th>Valor Parcela</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr wicket:id="desdobramentos">
+									<td><span wicket:id="dtavencimento"></span></td>
+									<td><span wicket:id="nroparcela"></span></td>
+									<td><input wicket:id="vlrtotal" type="text" class="monetario" style="width: 100%" /></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+
+	</wicket:panel>
+</body>
+</html>

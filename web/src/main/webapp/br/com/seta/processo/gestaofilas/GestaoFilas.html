@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org">
+<head>
+<title>Atividades</title>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="../../../../../resources/assets/components/font-awesome-4.4.0/css/font-awesome.min.css" />
+<link rel="stylesheet" href="../../../../../resources/css/processos.css"></link>
+
+
+</head>
+<body>
+	<wicket:extend>
+		<form wicket:id="atividadesForm">
+			<div wicket:id="painelGestaoFilas">
+				<div class="alertaContainer alert alert-info">Não foram encontradas atividades para este filtro!</div>
+
+				<div class="atividadesContainer clearfix">
+
+					<!-- início: seção atividades -->
+					<div class="secaoAtividades">
+						<div class="panel panel-primary">
+
+							<div class="panel-menu">
+								<button class="btn btn-primary" type="button" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#modalFiltro">
+									<i class="fa fa-filter" aria-hidden="true"></i> Filtros
+								</button>
+
+								<label wicket:id="lblProcesso" class="panel-filter"></label>
+							</div>
+
+							<div class="panel-body">
+								<div class="secao-filtro-atividades">
+									<div class="row" style="padding-bottom: 10px;">
+										<div class="col-md-5" style="padding-left: 0px;">
+											<a href="#" onclick="checkBoxHandler.marcarDesmarcarTodos()" class="btn btn-primary"> <i class="fa fa-check-square-o" aria-hidden="true"></i> <span id="lblBotaoSelecao">Selecionar
+													Todos</span>
+											</a>
+										</div>
+
+										<div class="col-md-7" style="text-align: right;">
+											<button id="btnAtribuir" type="button" class="btn btn-primary" href="#" onclick="$('#modalAtribuir').modal('show');" disabled>
+												<i class="fa fa-check"></i> Atribuir
+											</button>
+											<button id="buscaAtividadeBtn" type="button" class="btn btn-primary" href="#" onclick="$('#modalCancelar').modal('show');" disabled>
+												<i class="fa fa-undo"></i> Cancelar Atribuição
+											</button>
+										</div>
+									</div>
+								</div>
+								<div wicket:id="atividadesContainer">
+									<div class="atividadesTabela">
+										<div class="panel-group">
+											<div wicket:id="atividadesDataView" class="atividadePanel panel panel-default">
+												<div class="atividades-check-selectionar">
+													<div class="checkbox-custom checkbox-primary control-label">
+														<input type="checkbox" id="checkboxExample3" wicket:id="chkRootcontainer" class="marcar" /> <label for="checkboxExample3"></label>
+													</div>
+												</div>
+												<div class="atividade panel-body" wicket:id="atividadeDados">
+													<span wicket:id="prioridadeIcone" class="prioridade-icone"><i class="fa fa-exclamation"></i></span>
+													<div wicket:id="descricao" class="labelAtividade">[Nome Atividade]</div>
+													<div class="rootContainerId">
+														<span class="labelDadosAtividade">Case ID: </span> <span wicket:id="rootContainerId"></span>
+													</div>
+													<div class="rootContainer">
+														<span class="labelDadosAtividade">Usuário: </span> <span wicket:id="rootContainerUsuario"></span>
+													</div>
+													<div class="rootContainer">
+														<span class="labelDadosAtividade">Processo: </span> <span wicket:id="rootContainer"></span>
+													</div>
+													<div class="lado-equerdo">
+														<div class="prazo">
+															<span wicket:id="prazoRelogio" class="prazoRelogio fa fa-clock-o"></span> <span wicket:id="prazo">[Prazo]</span>
+														</div>
+													</div>
+													<div class="prioridade">
+														<span class="labelDadosAtividade">Prioridade: </span><span wicket:id="prioridade">[Prioridade]</span>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-sm-12">
+											<span wicket:id="navigator" class="dataview-navigator"></span>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- FIM DO PANEL BODY -->
+						</div>
+						<!-- FIM .panel .panel-primary -->
+
+					</div>
+					<!-- fim: seção atividades -->
+
+					<!-- início: seção timeline -->
+					<div wicket:id="secaoTimeline" class="panel panel-primary secaoTimeline secao">
+						<div class="panel-menu" style="padding: 12px;">
+							<span class="titulo-secao">Linha do Tempo</span>
+						</div>
+						<div class="panel-body">
+							<div wicket:id="timeline"></div>
+						</div>
+					</div>
+					<!-- fim: seção timeline -->
+				</div>
+			</div>
+			<!-- MODAL FILTRO -->
+			<div class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false" id="modalFiltro" wicket:id="modalFiltro">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header" style="background-image: linear-gradient(#04519b, #044687 60%, #033769);">
+							<h4 class="modal-title" id="myModalLabel" style="color: #fff;">Filtros</h4>
+						</div>
+						<div class="modal-body" style="background: #eeeeee;">
+							<div class="row">
+								<div class="col-md-12">
+									<div class="form-group form-group-sm">
+										<label class="col-sm-3 control-label">Processo </label>
+										<div class="col-sm-7">
+											<label class="glyphicon custom-select"> <select wicket:id="cmbProcesso" class="form-control combo"></select>
+											</label>
+										</div>
+									</div>
+								</div>
+								<!-- fim col -->
+							</div>
+							<!-- fim row -->
+							<div class="row">
+								<div class="col-md-12">
+									<div class="form-group form-group-sm">
+										<label class="col-sm-3 control-label">Ator </label>
+										<div class="col-sm-7">
+											<label class="glyphicon custom-select"> <select wicket:id="cmbAtor" class="form-control combo"></select>
+											</label>
+										</div>
+									</div>
+								</div>
+								<!-- fim col -->
+							</div>
+							<!-- fim row -->
+							<div class="row">
+								<div class="col-md-12">
+									<div class="form-group form-group-sm">
+										<label class="col-sm-3 control-label">Usuário </label>
+										<div class="col-sm-7">
+											<label class="glyphicon custom-select"> <select wicket:id="cmbUsuario" class="form-control combo"></select>
+											</label>
+										</div>
+									</div>
+								</div>
+								<!-- fim col -->
+							</div>
+							<!-- fim row -->
+						</div>
+						<div class="modal-footer" style="background-color: #f5f5f5;">
+							<button wicket:id="btnPesquisar" type="button" class="btn btn-primary" onclick="$('#modalFiltro').modal('hide'); exibeCarregamento();">
+								<i class="fa fa-search"></i> Pesquisar
+							</button>
+							<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- fim modal filtro -->
+
+			<!-- MODAL ATRIBUIR -->
+			<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" data-backdrop="static" data-keyboard="false" id="modalAtribuir" wicket:id="modalAtribuir">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header" style="background-image: linear-gradient(#04519b, #044687 60%, #033769);">
+							<h4 class="modal-title" id="myModalLabel" style="color: #fff;">Selecione o Usuário para atribuir tarefa</h4>
+						</div>
+						<div class="modal-body" style="background: #eeeeee;">
+							<div class="row">
+								<div class="col-md-12">
+									<div class="form-group form-group-sm">
+										<label class="col-sm-3 control-label">Processo </label>
+										<div class="col-sm-7">
+											<label class="glyphicon custom-select"> <select wicket:id="cmbProcessoAtribuir" class="form-control combo"></select>
+											</label>
+										</div>
+									</div>
+								</div>
+								<!-- fim col -->
+							</div>
+							<div class="row">
+								<div class="col-md-12">
+									<div class="form-group form-group-sm">
+										<label class="col-sm-3 control-label">Ator </label>
+										<div class="col-sm-7">
+											<label class="glyphicon custom-select"> <select wicket:id="cmbAtorAtribuir" class="form-control combo"></select>
+											</label>
+										</div>
+									</div>
+								</div>
+								<!-- fim col -->
+							</div>
+							<!-- fim row -->
+							<div class="row">
+								<div class="col-md-12">
+									<div class="form-group form-group-sm">
+										<label class="col-sm-3 control-label">Usuário </label>
+										<div class="col-sm-7">
+											<label class="glyphicon custom-select"> <select wicket:id="cmbUsuarioAtribuir" class="form-control combo"></select>
+											</label>
+										</div>
+									</div>
+								</div>
+								<!-- fim col -->
+							</div>
+							<!-- fim row -->
+						</div>
+						<div class="modal-footer" style="background-color: #f5f5f5;">
+							<button type="button" class="btn btn-primary" wicket:id="btnAtribuir" onclick="$('#modalAtribuir').modal('hide');">
+								<i class="fa fa-search"></i> Atribuir
+							</button>
+							<button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- fim modal atribuir -->
+
+			<!-- MODAL CANCELAR -->
+			<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" data-backdrop="static" data-keyboard="false" id="modalCancelar" wicket:id="modalCancelar">
+				<div class="vertical-alignment-helper">
+					<div class="modal-dialog vertical-align-center confirmacao">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h4 class="modal-title">Cancelar Atribuição</h4>
+							</div>
+							<div class="modal-body">
+								<div class="modal-wrapper">
+									<div class="modal-icon">
+										<i class="fa fa-question-circle"></i>
+									</div>
+									<div class="modal-text">Tem certeza que deseja cancelar a atribuição da atividade ao usuário ?</div>
+								</div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-primary" wicket:id="btnCancelar" onclick="$('#modalCancelar').modal('hide');">
+									<i class="fa fa-search"></i> Sim
+								</button>
+								<button type="button" class="btn btn-danger" data-dismiss="modal">
+									<i class="fa fa-times"></i> Não
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- fim modal cancelar atribuir -->
+		</form>
+		<script src="resources/js/gestao-filas/gestao-filas.js"></script>
+		<script>
+			$(function(){
+				setEstiloAtividades(); 
+				existeAtividades();
+				habilitaDesabilitaBotoesAtribuicaoNoEventoDeCheck();
+				checkBoxHandler = new CheckBoxHandler() ;
+
+			});
+		</script>
+	</wicket:extend>
+</body>
+</html>

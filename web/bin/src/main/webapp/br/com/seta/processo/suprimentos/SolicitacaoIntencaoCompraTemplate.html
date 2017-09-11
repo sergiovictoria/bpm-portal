@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns:wicket="http://wicket.apache.org">
+<head>
+<meta charset="UTF-8">
+<title>Solicitação de Intenção de Compra</title>
+</head>
+<body>
+	<wicket:extend>
+		<div class="panel panel-primary">
+			<form wicket:id="formSolicitacao">
+				<div class="panel-menu">
+					<div wicket:id="secaoBotoesAcao"></div>
+				</div>
+				<div class="panel-body">
+					<div wicket:id="solicitacaoContainer">
+						<div class="secao">
+							<div class="cabecalho-secao">Dados do responsável pelo preenchimento</div>
+							<div class="corpo-secao">
+								<div class="row">
+									<div class="col-sm-4">
+										<div class="form-group form-group-sm">
+											<label class="control-label col-sm-3">Nome</label>
+											<div class="col-sm-9">
+												<input wicket:id="nomeRespPreenchimento" class="form-control"></input>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-4">
+										<div class="form-group form-group-sm">
+											<label class="control-label col-sm-3">E-mail</label>
+											<div class="col-sm-9">
+												<input wicket:id="emailRespPreenchimento" class="form-control"></input>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-4">
+										<div class="form-group form-group-sm">
+											<label class="control-label col-sm-3">Telefone</label>
+											<div class="col-sm-9">
+												<input wicket:id="telRespPreenchimento" class="form-control"></input>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="secao">
+							<div class="cabecalho-secao">Solicitação</div>
+							<div class="corpo-secao">
+								<div class="row">
+									<div class="col-sm-4">
+										<div class="form-group form-group-sm">
+											<label class="control-label col-sm-3">Despesa</label>
+											<div class="col-sm-4">
+												<div wicket:id="tipoDespesa">
+													<div class="radio-custom radio-primary">
+														<input wicket:id="tipoDespesa_0" type="radio"/> <label for="rdbSimplesNacional_Sim">Serviço</label>
+													</div>
+													<div class="radio-custom radio-primary">
+														<input wicket:id="tipoDespesa_1" type="radio"/> <label for="rdbSimplesNacional_Nao">Produto</label>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-4">
+										<div class="form-group form-group-sm">
+											<label class="control-label col-sm-3">Área Solic.</label>
+											<div class="col-sm-9">
+												<label class="glyphicon custom-select"> <select wicket:id="areaSolicitante" class="form-control combo"></select>
+												</label>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-sm-4">
+										<div class="form-group form-group-sm">
+											<label class="control-label col-sm-3">Nome</label>
+											<div class="col-sm-9">
+												<label class="glyphicon custom-select"> <select wicket:id="nomeSolicitante" class="form-control combo"></select>
+												</label>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-4">
+										<div class="form-group form-group-sm">
+											<label class="control-label col-sm-3">E-mail</label>
+											<div class="col-sm-9">
+												<input wicket:id="emailSolicitante" class="form-control"></input>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-4">
+										<div class="form-group form-group-sm">
+											<label class="control-label col-sm-3">Telefone</label>
+											<div class="col-sm-9">
+												<input wicket:id="foneSolicitante" class="form-control"></input>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-sm-4">
+										<div class="form-group form-group-sm">
+											<label class="control-label col-sm-3">Diretoria</label>
+											<div class="col-sm-9">
+												<label class="glyphicon custom-select"> <select wicket:id="diretoria" class="form-control combo"></select>
+												</label>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-4">
+										<div class="form-group form-group-sm">
+											<label class="control-label col-sm-3">Gerência</label>
+											<div class="col-sm-9">
+												<label class="glyphicon custom-select"> <select wicket:id="gerencia" class="form-control combo"></select>
+												</label>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-4">
+										<div class="form-group form-group-sm">
+											<label class="control-label col-sm-3">Comprador</label>
+											<div class="col-sm-9">
+												<label class="glyphicon custom-select"> <select wicket:id="comprador" class="form-control combo"></select>
+												</label>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-12">
+										<div class="form-group form-group-sm">
+											<label class="control-label col-sm-1">Desc. Compra</label>
+											<div class="col-sm-11">
+												<textarea wicket:id="descricaoCompra" class="form-control" rows="4"></textarea>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div wicket:id="secaoHistorico"></div>
+				</div>
+			</form>
+		</div>
+	</wicket:extend>
+</body>
+</html>

@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns:wicket="http://wicket.apache.org">
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+	<wicket:panel>
+		<div wicket:id="secaoFornecedorSemCadastro" class="secao">
+			<div class="cabecalho-secao">Fornecedor para Cadastro</div>
+			<div class="corpo-secao">
+				<div class="row">
+					<div class="col-sm-7">
+						<div class="form-group form-group-sm">
+							<label class="control-label col-sm-3">Fornecedor</label>
+							<div class="col-sm-9">
+								<input wicket:id="nomeFornecedor" class="form-control">
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-2">
+						<div class="form-group form-group-sm">
+							<label class="control-label col-sm-3">Cód</label>
+							<div class="col-sm-9">
+								<input wicket:id="codFornecedor" class="form-control">
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<button wicket:id="validaFornecedorBtn" type="button" class="btn btn-primary">Validar Fornecedor</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<!-- início: Produtos selecionados para o cadastro -->
+		<div class="secao">
+			<div class="cabecalho-secao">Produtos Selecionados para Cadastro</div>
+			<div class="corpo-secao">
+				<div class="row">
+					<table wicket:id="secaoProdutosSemCadastro" class="table table-bordered table-hover table-condensed mb-none dataTable no-footer">
+						<thead>
+							<tr>
+								<th>Descrição</th>
+								<th>CFOP</th>
+								<th>Quantidade</th>
+								<th>Valor Unitário</th>
+								<th>ID</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr wicket:id="produtos">
+								<td><span wicket:id="descricao"></span></td>
+								<td><span wicket:id="cfop"></span></td>
+								<td><span wicket:id="quantidade"></span></td>
+								<td><span wicket:id="vlritem" class="monetario"></span></td>
+								<td><input wicket:id="codProduto" type="text" /></td>
+								<td><button wicket:id="validarBtn" class="btn btn-primary">Validar</button></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<!-- fim: Produtos selecionados para o cadastro -->
+		
+		<!-- início: Produtos validados -->
+		<div class="secao">
+			<div class="cabecalho-secao">Produtos Validados</div>
+			<div class="corpo-secao">
+				<div class="row">
+					<table wicket:id="secaoProdutosValidados" class="table table-bordered table-hover table-condensed mb-none dataTable no-footer">
+						<thead>
+							<tr>
+								<th>ID</th>
+								<th>Descrição</th>
+								<th>CFOP</th>
+								<th>Quantidade</th>
+								<th>Valor Unitário</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr wicket:id="produtosValidados">
+								<td><span wicket:id="codproduto"></span></td>
+								<td><span wicket:id="descricao"></span></td>
+								<td><span wicket:id="cfop"></span></td>
+								<td><span wicket:id="quantidade"></span></td>
+								<td><span wicket:id="vlritem" class="monetario"></span></td>
+								<td style="text-align: center"><a wicket:id="exclusaoBtn" type="button"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<!-- fim: Produtos validados -->
+
+
+		<!-- início: Validação Fornecedor  -->
+		<div id="validacaoFornecedorModal" class="modal" role="dialog">
+			<div class="vertical-alignment-helper">
+				<div wicket:id="validacaoFornecedorModal" class="modal-dialog vertical-align-center">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h4 class="modal-title">Fornecedor</h4>
+						</div>
+						<div class="modal-body">
+							<div wicket:id="camposDescritivosFornecedor" class="row">
+								<div class="col-sm-4">
+									<div class="form-group form-group-sm">
+										<label class="control-label col-sm-2">Cód</label>
+										<div class="col-sm-10">
+											<input wicket:id="codFornecedorInput" type="text" class="form-control">
+										</div>
+									</div>
+								</div>
+
+								<div class="col-sm-8">
+									<div class="form-group form-group-sm">
+										<label class="control-label col-sm-3">Descrição</label>
+										<div class="col-sm-9">
+											<input wicket:id="nomeFornecedorInput" type="text" class="form-control">
+										</div>
+									</div>
+								</div>
+							</div>
+							<div wicket:id="mensagem" class="row">
+								<div class="alertaContainer alert alert-danger" style="display: block;">Fornecedor Inexistente</div>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button wicket:id="addOutroCodigoBtn" type="button" class="btn btn-danger" data-dismiss="modal">
+								<i class="fa fa-times"></i> Adicionar outro código
+							</button>
+							<button wicket:id="confirmarBtn" type="button" class="btn btn-primary" data-dismiss="modal">
+								<i class="fa fa-check"></i> Confirmar
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- fim: Validação Fornecedor   -->
+
+		<!-- início: Validação Produto  -->
+		<div id="validacaoProdutoModal" class="modal" role="dialog">
+			<div class="vertical-alignment-helper">
+				<div wicket:id="validacaoProdutoModal" class="modal-dialog vertical-align-center">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h4 class="modal-title">Produto</h4>
+						</div>
+						<div class="modal-body">
+							<div wicket:id="camposDescritivosProduto" class="row">
+								<div class="col-sm-4">
+									<div class="form-group form-group-sm">
+										<label class="control-label col-sm-2">Cód</label>
+										<div class="col-sm-10">
+											<input wicket:id="codProdutoInput" type="text" class="form-control">
+										</div>
+									</div>
+								</div>
+
+								<div class="col-sm-8">
+									<div class="form-group form-group-sm">
+										<label class="control-label col-sm-3">Descrição</label>
+										<div class="col-sm-9">
+											<input wicket:id="nomeProdutoInput" type="text" class="form-control">
+										</div>
+									</div>
+								</div>
+							</div>
+							<div wicket:id="mensagemContainer" class="row">
+								<div wicket:id="mensagem" class="alertaContainer alert alert-danger" style="display: block;">Produto Inexistente</div>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button wicket:id="addOutroCodigoBtn" type="button" class="btn btn-danger" data-dismiss="modal">
+								<i class="fa fa-times"></i> Adicionar outro código
+							</button>
+							<button wicket:id="confirmarBtn" type="button" class="btn btn-primary" data-dismiss="modal">
+								<i class="fa fa-check"></i> Confirmar
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- fim: Validação Produto   -->
+	</wicket:panel>
+</body>
+</html>

@@ -1,0 +1,12 @@
+package br.com.seta.processo.cadastroprodutos;
+
+/**
+ * Constantes que representam as atividades do processo de Cadastro de Produtos
+ * 
+ * @author Sérgio da victória
+ *
+ */
+public enum AtividadeCadastroProduto {
+	SOLICITAR_CADASTRO_PRODUTO, PRE_CADASTRO_PRODUTO, APROVAR_CADASTRO_PRODUTO, DEFINIR_CLASSIFICAO,
+	VALIDAR_DADOS_LOGISTICO, VERIFICA_INFORMACOES, CORRIGIR_DADOS_FORNECEDOR, VERIFICA_INFORMACOES_PENDENTES,CADASTRAR_INFORMACOES_C5, INCLUIR_DADOS_FISCAIS, CORRIGIR_DADOS_FISCAIS_FORNECEDOR
+}

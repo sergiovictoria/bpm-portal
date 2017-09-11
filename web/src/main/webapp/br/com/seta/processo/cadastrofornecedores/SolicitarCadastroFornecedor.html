@@ -1,0 +1,1401 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns:wicket="http://wicket.apache.org">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Solicitar Cadastro de Fornecedor</title>
+</head>
+<body>
+	<wicket:extend>
+		<link rel="stylesheet" href="resources/css/wizard.css" />
+		
+		<SCRIPT type="text/javascript">
+		function funCarregaCep(){
+		$.ajax({
+			url : 'https://viacep.com.br/ws/' + $("#cep").val() + '/json/?callback=callback_name',
+			dataType: 'jsonp',
+			type: 'GET',
+			success: function(data) {
+
+			// Preenchendo campos na tela
+			 $("#complemento").val(data.complemento);
+			 $("#bairro").val(data.bairro);
+			 $("#localidade").val(data.localidade);
+			// $("#unidade").val(data.unidade);
+			// $("#ibge").val(data.ibge);
+			// $("#gia").val(data.gia);
+			 
+			// Extrai o Tipo de Logradouro, Apaga o mesmo do próprio Logradouro e Seta ele no Combo.
+			 temp = new String(data.logradouro);
+			 logradouro = temp.split(" ");
+			 temp = temp.replace(logradouro[0], "");
+			 logradouro[0] = logradouro[0].toUpperCase();
+			 
+			 $("#logradouro").val(temp);
+
+			 switch (logradouro[0])
+			 {
+			 	case "ALAMEDA" 		: $("#tipoLogradouro").val("0");  break;
+			 	case "APARTAMENTO" 	: $("#tipoLogradouro").val("1");  break;
+			 	case "AVENIDA" 		: $("#tipoLogradouro").val("2");  break;
+			 	case "BECO" 		: $("#tipoLogradouro").val("3");  break;
+			 	case "BLOCO" 		: $("#tipoLogradouro").val("4");  break;
+			 	case "CAMINHO" 		: $("#tipoLogradouro").val("5");  break;
+			 	case "ESCADINHA"	: $("#tipoLogradouro").val("6");  break;
+			 	case "ESTAÇÃO" 		: $("#tipoLogradouro").val("7");  break;
+			 	case "ESTRADA"		: $("#tipoLogradouro").val("8");  break;
+			 	case "FAZENDA" 		: $("#tipoLogradouro").val("9");  break;
+			 	case "FORTALEZA"	: $("#tipoLogradouro").val("10"); break;
+			 	case "GALERIA" 		: $("#tipoLogradouro").val("11"); break;
+			 	case "LADEIRA" 		: $("#tipoLogradouro").val("12"); Break;
+			 	case "LARGO" 		: $("#tipoLogradouro").val("13"); break;
+			 	case "PRAÇA" 		: $("#tipoLogradouro").val("14"); break;
+			 	case "PARQUE" 		: $("#tipoLogradouro").val("15"); break;
+			 	case "PRAIA" 		: $("#tipoLogradouro").val("16"); break;
+			 	case "QUADRA" 		: $("#tipoLogradouro").val("17"); break;
+			 	case "QUILÔMETRO" 	: $("#tipoLogradouro").val("18"); break;
+			 	case "QUINTA" 	  	: $("#tipoLogradouro").val("19"); break;
+			 	case "RODOVIA" 	  	: $("#tipoLogradouro").val("20"); break;
+			 	case "RUA" 		  	: $("#tipoLogradouro").val("21"); break;
+			 	case "SUPER" 		: $("#tipoLogradouro").val("22"); break;
+			 	case "TRAVESSA" 	: $("#tipoLogradouro").val("23"); break;
+			 	case "VIADUTO"		: $("#tipoLogradouro").val("24"); break;
+			 	case "VILA"			: $("#tipoLogradouro").val("25"); break;
+			 }
+			 
+			 switch (data.uf)
+			 {
+			 	case "AC" : $("#uf").val("0"); 	break;
+			 	case "AL" : $("#uf").val("1"); 	break;
+			 	case "AM" : $("#uf").val("2"); 	break;
+			 	case "AP" : $("#uf").val("3"); 	break;
+			 	case "BA" : $("#uf").val("4"); 	break;
+			 	case "CE" : $("#uf").val("5"); 	break;
+			 	case "DF" : $("#uf").val("6"); 	break;
+			 	case "ES" : $("#uf").val("7"); 	break;
+			 	case "GO" : $("#uf").val("8"); 	break;
+			 	case "MA" : $("#uf").val("9"); 	break;
+			 	case "MG" : $("#uf").val("10"); break;
+			 	case "MS" : $("#uf").val("11"); break;
+ 			 	case "MT" : $("#uf").val("12"); break;
+			 	case "PA" : $("#uf").val("13"); break;
+			 	case "PB" : $("#uf").val("14"); break;
+			 	case "PE" : $("#uf").val("15");	break;
+			 	case "PI" : $("#uf").val("16"); break;
+			 	case "PR" : $("#uf").val("17"); break;
+			 	case "RJ" : $("#uf").val("18");	break;
+			 	case "RN" : $("#uf").val("19"); break;
+			 	case "RO" : $("#uf").val("20"); break;
+			 	case "RR" : $("#uf").val("21"); break;
+			 	case "RS" : $("#uf").val("22"); break;
+			 	case "SC" : $("#uf").val("23"); break;
+			 	case "SE" : $("#uf").val("24"); break;
+			 	case "SP" : $("#uf").val("25"); break;
+			 	case "TO" : $("#uf").val("26"); break;
+			 }
+			
+			},error: function(data) {}});
+		}
+		</SCRIPT>
+		
+		<SCRIPT type="text/javascript">
+		function funCarregaCepTitularConta(){
+		$.ajax({
+			url : 'https://viacep.com.br/ws/' + $("#cepTitularConta").val() + '/json/?callback=callback_name',
+			dataType: 'jsonp',
+			type: 'GET',
+			success: function(data) {
+
+			// Preenchendo campos na tela
+			 $("#complementoTitularConta").val(data.complemento);
+			 $("#bairroTitularConta").val(data.bairro);
+			 $("#cidadeTitularConta").val(data.localidade);
+			// $("#unidade").val(data.unidade);
+			// $("#ibge").val(data.ibge);
+			// $("#gia").val(data.gia);
+			 $("#enderecoTitularConta").val(data.logradouro);
+			 
+			switch (data.uf)
+			 {
+			 	case "AC" : $("#ufTitularConta").val("0"); 	break;
+			 	case "AL" : $("#ufTitularConta").val("1"); 	break;
+			 	case "AM" : $("#ufTitularConta").val("2"); 	break;
+			 	case "AP" : $("#ufTitularConta").val("3"); 	break;
+			 	case "BA" : $("#ufTitularConta").val("4"); 	break;
+			 	case "CE" : $("#ufTitularConta").val("5"); 	break;
+			 	case "DF" : $("#ufTitularConta").val("6"); 	break;
+			 	case "ES" : $("#ufTitularConta").val("7"); 	break;
+			 	case "GO" : $("#ufTitularConta").val("8"); 	break;
+			 	case "MA" : $("#ufTitularConta").val("9"); 	break;
+			 	case "MG" : $("#ufTitularConta").val("10"); break;
+			 	case "MS" : $("#ufTitularConta").val("11"); break;
+ 			 	case "MT" : $("#ufTitularConta").val("12"); break;
+			 	case "PA" : $("#ufTitularConta").val("13"); break;
+			 	case "PB" : $("#ufTitularConta").val("14"); break;
+			 	case "PE" : $("#ufTitularConta").val("15");	break;
+			 	case "PI" : $("#ufTitularConta").val("16"); break;
+			 	case "PR" : $("#ufTitularConta").val("17"); break;
+			 	case "RJ" : $("#ufTitularConta").val("18");	break;
+			 	case "RN" : $("#ufTitularConta").val("19"); break;
+			 	case "RO" : $("#ufTitularConta").val("20"); break;
+			 	case "RR" : $("#ufTitularConta").val("21"); break;
+			 	case "RS" : $("#ufTitularConta").val("22"); break;
+			 	case "SC" : $("#ufTitularConta").val("23"); break;
+			 	case "SE" : $("#ufTitularConta").val("24"); break;
+			 	case "SP" : $("#ufTitularConta").val("25"); break;
+			 	case "TO" : $("#ufTitularConta").val("26"); break;
+			 }
+			
+			},error: function(data) {}});
+		}
+		</SCRIPT>
+
+		<div class="panel panel-primary">
+			<form wicket:id="SolicitacaoForm" class="form-horizontal">
+				<div class="panel-menu">
+					<span wicket:id="secaoBotoesComercial">
+						<button class="btn btn-primary" type="button" data-toggle="modal"
+							data-backdrop="static" data-keyboard="false"
+							data-target="#importarPlanilhaModal">
+							<i class="fa fa-upload"></i> Importar Planilha
+						</button>
+					</span>
+					<button class="btn btn-primary" type="button" data-toggle="modal"
+						data-backdrop="static" data-keyboard="false"
+						data-target="#confirmacaoEnvioDialog">
+						<i class="fa fa-envelope-o"></i> Enviar
+					</button>
+				</div>
+				<div class="panel panel-primary form-wizard">
+					<div wicket:id="solicitacaoWebMarkupContainer" class="panel-body"
+						id="solicitacaoContainer">
+						<!-- início: wizard -->
+						<div class="wizard-progress wizard-progress-lg">
+							<div class="steps-progress">
+								<div class="progress-indicator" style="width: 100%;"></div>
+							</div>
+							<ul class="wizard-steps">
+								<li class="completed active"><a
+									href="#secao-responsavel-preenchimento" data-toggle="tab"
+									aria-expanded="false"><span>1</span>Responsável<br />preenchimento</a>
+								</li>
+								<li class="completed"><a href="#secao-fornecedor"
+									data-toggle="tab" aria-expanded="false"><span>2</span>Fornecedor</a>
+								</li>
+								<li class="completed"><a href="#secao-endereco-contato"
+									data-toggle="tab" aria-expanded="false"><span>3</span>Endereço
+										e <br />Contato</a></li>
+								<li class="completed"><a href="#secao-dados-financeiros"
+									data-toggle="tab" aria-expanded="false"><span>4</span>Dados
+										<br />Financeiros</a></li>
+								<li class="completed"><a href="#secao-negociacao"
+									data-toggle="tab" aria-expanded="false"><span>5</span>Dados
+										de <br />Negociação</a></li>
+								<li class="completed"><a href="#secao-dados-reponsavel"
+									data-toggle="tab" aria-expanded="false"><span>6</span>Dados
+										dos <br />Responsáveis</a></li>
+							</ul>
+						</div>
+						<!-- fim: wizard -->
+						<div class="tab-content">
+
+							<!-- início: seção responsavel preenchimento -->
+							<div id="secao-responsavel-preenchimento" class="tab-pane active">
+
+								<div class="secao">
+									<div class="cabecalho-secao">Dados do responsável pelo
+										preenchimento</div>
+									<div class="corpo-secao">
+										<div class="row">
+											<div class="col-sm-4">
+												<div class="form-group form-group-sm">
+													<label class="control-label col-sm-3">Nome</label>
+													<div class="col-sm-9">
+														<span wicket:id="nomeRespPreench"
+															class="form-control disabled"></span>
+													</div>
+												</div>
+											</div>
+											<div class="col-sm-4">
+												<div class="form-group form-group-sm">
+													<label class="control-label col-sm-3">E-mail</label>
+													<div class="col-sm-9">
+														<span wicket:id="emailSolicitante"
+															class="form-control disabled"></span>
+													</div>
+												</div>
+											</div>
+											<div class="col-sm-4">
+												<div class="form-group form-group-sm">
+													<label class="control-label col-sm-3">Telefone</label>
+													<div class="col-sm-9">
+														<span wicket:id="telefoneSolicitante"
+															class="form-control disabled"></span>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="secao">
+									<div class="cabecalho-secao">Solicitação</div>
+									<div class="corpo-secao">
+										<div class="row">
+											<div class="col-sm-4">
+												<div class="form-group form-group-sm">
+													<label class="control-label col-sm-3">Área</label>
+													<div class="col-sm-9">
+														<span wicket:id="area" class="form-control disabled"></span>
+													</div>
+												</div>
+											</div>
+											<div class="col-sm-4">
+												<div class="form-group form-group-sm">
+													<label class="control-label col-sm-3">Solicitante</label>
+													<div class="col-sm-9">
+														<label class="glyphicon custom-select"> <select
+															wicket:id="nomeSolicitante" class="form-control combo"></select>
+														</label>
+													</div>
+												</div>
+											</div>
+											<div class="col-sm-12">
+												<div class="form-group form-group-sm">
+													<label class="control-label col-sm-1">Descrição</label>
+													<div class="col-sm-11">
+														<textarea wicket:id="descricao" class="form-control"
+															rows="4" cols="40"></textarea>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="secao">
+									<div class="cabecalho-secao">Planilha de cadastro</div>
+									<div class="corpo-secao">
+										<div class="row">
+											<div class="col-sm-12">
+												<div class="form-group form-group-sm">
+													<label class="control-label col-sm-3">Template em
+														Office Excel</label>
+													<div class="col-sm-9 form-value">
+														<button wicket:id="cadastroFormecedorXLS"
+															class="btn btn-primary ">
+															<i class="fa fa-download"></i> Baixar o arquivo F-06
+															Cadastro de Fornecedores.xls
+														</button>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="form-group form-group-sm">
+												<div class="col-sm-12">
+													<label class="control-label col-sm-3">Template em
+														Libre Office</label>
+													<div class="col-sm-9 form-value">
+														<button wicket:id="cadastroFormecedorODS"
+															class="btn btn-primary">
+															<i class="fa fa-download"></i> Baixar o arquivo F-06
+															Cadastro de Fornecedores.ods
+														</button>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- fim: seção responsavel preenchimento -->
+
+							<!-- início: seção fornecedor -->
+							<div  id="secao-fornecedor" class="tab-pane">
+								<div wicket:id="secaoDadosFornecedor">
+									<div class="row">
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3">Fornecedor</label>
+												<div class="col-sm-9">
+													<label class="glyphicon custom-select"> <select
+														wicket:id="tipoFornecedor" class="form-control combo"></select>
+													</label>
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3">Comprador</label>
+												<div class="col-sm-9">
+													<label class="glyphicon custom-select"> <select
+														wicket:id="comprador" class="form-control combo"></select>
+													</label>
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-4">
+											<div wicket:id="grpMicroEmpresa" class="col-sm-6">
+												<div class="checkbox-custom checkbox-primary">
+													<input wicket:id="microEmpresa" type="checkbox" /> <label>Micro
+														Empresa</label>
+												</div>
+											</div>
+											<div wicket:id="grpIeProdutorRural" class="col-sm-6">
+												<div class="checkbox-custom checkbox-primary">
+													<input wicket:id="ieProdutorRural" type="checkbox" /> <label>IE.
+														Produtor Rural</label>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3">Solicitação</label>
+												<div class="col-sm-9">
+													<label class="glyphicon custom-select"> <select
+														wicket:id="tipoSolicatacao" class="form-control combo"></select>
+													</label>
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-4">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-3">Categoria</label>
+												<div class="col-sm-9">
+													<label class="glyphicon custom-select"> <select
+														wicket:id="categoria" class="form-control combo"></select>
+													</label>
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-4">
+											<div class="col-sm-6">
+												<div wicket:id="grpContribuinteIPI"
+													class="checkbox-custom checkbox-primary">
+													<input wicket:id="contribuinteIPI" type="checkbox" /> <label>É
+														Contribuinte de IPI</label>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="secao">
+										<div class="cabecalho-secao">Fornecedor</div>
+										<div class="corpo-secao">
+											<div class="row">
+												<div class="col-sm-4">
+													<div class="form-group form-group-sm">
+														<label class="control-label col-sm-3">Tipo Pessoa</label>
+														<div class="col-sm-9">
+															<label class="glyphicon custom-select"> <select
+																wicket:id="tipoPessoa" class="form-control combo"></select>
+															</label>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div wicket:id="secaoPJ">
+												<div class="row">
+													<div class="col-sm-4">
+														<div class="form-group form-group-sm">
+															<label class="control-label col-sm-3"
+																title="Razão Social Completo">Razão Social</label>
+															<div class="col-sm-9">
+																<input wicket:id="razaoSocialFornedor" maxlength="40"
+																	class="form-control" type="text" />
+															</div>
+														</div>
+													</div>
+													<div class="col-sm-4">
+														<div class="form-group form-group-sm">
+															<label class="control-label col-sm-3"
+																title="Razão Social Reduzido">Razão Reduzido</label>
+															<div class="col-sm-9">
+																<input wicket:id="razaoSocialReduzido" maxlength="30"
+																	class="form-control" type="text" />
+															</div>
+														</div>
+													</div>
+													<div class="col-sm-4">
+														<div class="form-group form-group-sm">
+															<label class="control-label col-sm-3">Inscr.
+																Estadual</label>
+															<div class="col-sm-9">
+																<input wicket:id="inscricaoEstadual" maxlength="15"
+																	class="form-control" type="text" />
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-sm-4">
+														<div class="form-group form-group-sm">
+															<label class="control-label col-sm-3">CNPJ</label>
+															<div class="col-sm-9">
+																<input wicket:id="cpnjJuridico" class="form-control" maxlength="15"
+																	type="text" />
+															</div>
+														</div>
+													</div>
+													<div class="col-sm-4">
+														<div class="form-group form-group-sm">
+															<label class="control-label col-sm-3">Simples
+																Nacional</label>
+															<div class="col-sm-3">
+																<div wicket:id="simplesNacional">
+																	<div class="radio-custom radio-primary">
+																		<input wicket:id="simplesNacional_0" type="radio"
+																			name="rdbSimplesNacional" /> <label
+																			for="rdbSimplesNacional_Sim">Sim</label>
+																	</div>
+																	<div class="radio-custom radio-primary">
+																		<input wicket:id="simplesNacional_1" type="radio"
+																			name="rdbSimplesNacional" /> <label
+																			for="rdbSimplesNacional_Nao">Não</label>
+																	</div>
+																</div>
+															</div>
+															<label class="control-label col-sm-3">Data Fund.</label>
+															<div class="col-sm-3">
+																<input wicket:id="dataFundacao"
+																	class="form-control date" type="text" />
+															</div>
+														</div>
+													</div>
+													<div class="col-sm-4">
+														<div class="form-group form-group-sm">
+															<label class="control-label col-sm-3">Inscr.
+																Municipal</label>
+															<div class="col-sm-9">
+																<input wicket:id="inscricaoMunicipal" maxlength="15"
+																	class="form-control" type="text" />
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div wicket:id="secaoPF">
+												<div class="row">
+													<div class="col-sm-4">
+														<div class="form-group form-group-sm">
+															<label class="control-label col-sm-3">Nome</label>
+															<div class="col-sm-9">
+																<input wicket:id="nome" class="form-control" type="text" />
+															</div>
+														</div>
+													</div>
+													<div class="col-sm-4">
+														<div class="form-group form-group-sm">
+															<label class="control-label col-sm-3">Nome
+																Reduzido</label>
+															<div class="col-sm-9">
+																<input wicket:id="nomeReduzido" class="form-control"
+																	type="text" />
+															</div>
+														</div>
+													</div>
+													<div class="col-sm-4">
+														<div class="form-group form-group-sm">
+															<label class="control-label col-sm-3">CPF</label>
+															<div class="col-sm-6">
+																<input wicket:id="cpfFisica" class="form-control"
+																	type="text" />
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-sm-4">
+														<div class="form-group form-group-sm">
+															<label class="control-label col-sm-3">RG</label>
+															<div class="col-sm-6">
+																<input wicket:id="rg" class="form-control" type="text" />
+															</div>
+														</div>
+													</div>
+													<div class="col-sm-4">
+														<div class="form-group form-group-sm">
+															<label class="control-label col-sm-3">Órg.
+																Emissor/UF</label>
+															<div class="col-sm-3">
+																<input wicket:id="orgaoExpUF" class="form-control"
+																	type="text" />
+															</div>
+															<label class="control-label col-sm-3">Data Exp.</label>
+															<div class="col-sm-3">
+																<input wicket:id="dataExpedicao"
+																	class="form-control date" type="text" />
+															</div>
+														</div>
+													</div>
+													<div class="col-sm-4">
+														<div class="form-group form-group-sm">
+															<label class="control-label col-sm-3">Data Nasc.</label>
+															<div class="col-sm-3">
+																<input wicket:id="dataNascimento"
+																	class="form-control date" type="text" />
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- fim: seção fornecedor -->
+
+							<!-- inicio: seção endereço e contato -->
+							<div id="secao-endereco-contato" class="tab-pane">
+								<div class="secao">
+									<div class="cabecalho-secao">Endereço</div>
+									<div class="corpo-secao">
+										<div class="row">
+											<div class="col-sm-4">
+												<div class="form-group form-group-sm">
+													<label class="control-label col-sm-3">Lograd.</label>
+													<div class="col-sm-3">
+														<label class="glyphicon custom-select"> <select
+															wicket:id="tipoLogradouro" id="tipoLogradouro" class="form-control combo"></select>
+														</label>
+													</div>
+													<div class="col-sm-6">
+														<input wicket:id="logradouro" id="logradouro" class="form-control" maxlength="35"
+															type="text" />
+													</div>
+												</div>
+											</div>
+											<div class="col-sm-4">
+												<div class="form-group form-group-sm">
+													<label class="control-label col-sm-3">Número</label>
+													<div class="col-sm-3">
+														<input wicket:id="numero" class="form-control" type="text"  maxlength="10" />
+													</div>
+													<label class="control-label col-sm-3">CEP</label>
+													<div class="col-sm-3">
+														<input wicket:id="cep" id="cep" onblur="funCarregaCep();" maxlength="12" class="form-control" type="text" />
+													</div>
+												</div>
+											</div>
+											<div class="col-sm-4">
+												<div class="form-group form-group-sm">
+													<label class="control-label col-sm-3">Compl</label>
+													<div class="col-sm-9">
+														<input wicket:id="complemento" id="complemento" class="form-control" maxlength="10"
+															type="text" />
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-sm-4">
+												<div class="form-group form-group-sm">
+													<label class="control-label col-sm-3">Bairro</label>
+													<div class="col-sm-9">
+														<input wicket:id="bairro" id="bairro" class="form-control" type="text"  maxlength="30"/>
+													</div>
+												</div>
+											</div>
+											<div class="col-sm-4">
+												<div class="form-group form-group-sm">
+													<label class="control-label col-sm-3">Cidade</label>
+													<div class="col-sm-9">
+														<input wicket:id="cidade" id="localidade" class="form-control" type="text" maxlength="30" />
+													</div>
+												</div>
+											</div>
+											<div class="col-sm-4">
+												<div class="form-group form-group-sm">
+													<label class="control-label col-sm-3">Estado/UF</label>
+													<div class="col-sm-9">
+														<label class="glyphicon custom-select"> <select
+															wicket:id="estadoUf" id="uf" class="form-control combo"></select>
+														</label>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="secao">
+									<div class="cabecalho-secao">Contato</div>
+									<div class="corpo-secao">
+										<div class="row">
+											<div class="col-sm-4">
+												<div class="form-group form-group-sm">
+													<label class="control-label col-sm-3">Email</label>
+													<div class="col-sm-9">
+														<input wicket:id="emailContato" class="form-control" maxlength="50"
+															type="text" />
+													</div>
+												</div>
+											</div>
+											<div class="col-sm-4">
+												<div class="form-group form-group-sm">
+													<label class="control-label col-sm-3">Site</label>
+													<div class="col-sm-9">
+														<input wicket:id="homePage" class="form-control" maxlength="80"
+															type="text" />
+													</div>
+												</div>
+											</div>
+											<div class="col-sm-4">
+												<div class="form-group form-group-sm">
+													<label class="control-label col-sm-3">Tel.
+														Comercial</label>
+													<div class="col-sm-3">
+														<input wicket:id="ddFoneComercial" class="form-control" maxlength="2"
+															type="text" />
+													</div>
+													<div class="col-sm-6">
+														<input wicket:id="foneComercial" class="form-control" maxlength="10"
+															type="text" />
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-sm-4">
+												<div class="form-group form-group-sm">
+													<label class="control-label col-sm-3">Email NF-e</label>
+													<div class="col-sm-9">
+														<input wicket:id="emailParaNf" class="form-control"  maxlength="250"
+															type="text" />
+													</div>
+												</div>
+											</div>
+											<div class="col-sm-4">
+												<div class="form-group form-group-sm">
+													<label class="control-label col-sm-3">Tel. Fiscal</label>
+													<div class="col-sm-3">
+														<input wicket:id="ddFoneFiscal" class="form-control" maxlength="2"
+															type="text" />
+													</div>
+													<div class="col-sm-6">
+														<input wicket:id="foneFiscal" class="form-control" maxlength="10"
+															type="text" />
+													</div>
+												</div>
+											</div>
+											<div class="col-sm-4">
+												<div class="form-group form-group-sm">
+													<label class="control-label col-sm-3">Tel.
+														Financeiro</label>
+													<div class="col-sm-3">
+														<input wicket:id="ddFoneFinanceiro" class="form-control" maxlength="2"
+															type="text" />
+													</div>
+													<div class="col-sm-6">
+														<input wicket:id="foneFinanceiro" class="form-control" maxlength="10"
+															type="text" />
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- fim: seção endereço e contato -->
+
+							<!-- início: seção dados financeiros para pagamento -->
+							<div id="secao-dados-financeiros" class="tab-pane">
+								<div class="secao">
+									<div class="cabecalho-secao">Dados financeiros para
+										Pagamento</div>
+									<div class="corpo-secao">
+										<div class="row">
+											<div class="col-sm-4">
+												<div class="form-group form-group-sm">
+													<label class="control-label col-sm-3"
+														title="Forma de Pagamento">Forma Pgto.</label>
+													<div class="col-sm-9">
+														<label class="glyphicon custom-select"> <select
+															wicket:id="formaPagamento" class="form-control combo"></select>
+														</label>
+													</div>
+												</div>
+											</div>
+											<div class="col-sm-4">
+												<div class="form-group form-group-sm">
+													<label class="control-label col-sm-3"
+														title="Informar o nome completo da pessoa titular da conta">Titular
+														da Conta</label>
+													<div class="col-sm-9">
+														<input wicket:id="nomeTitularConta" class="form-control" maxlength="30"
+															type="text" />
+													</div>
+												</div>
+											</div>
+											<div class="col-sm-4"></div>
+										</div>
+										<div class="row">
+											<div class="col-sm-4">
+												<div class="form-group form-group-sm">
+													<label class="control-label col-sm-3"
+														title="Informar o tipo de conta que será usada para pagamentos">Tipo
+														da Conta</label>
+													<div class="col-sm-9">
+														<label class="glyphicon custom-select"> <select
+															wicket:id="tipoDaConta" class="form-control combo"></select>
+														</label>
+													</div>
+												</div>
+											</div>
+											<div class="col-sm-4">
+												<div class="form-group form-group-sm">
+													<label class="control-label col-sm-3"
+														title="Informar o CNPJ ou CPF do Titular da Conta">CNPJ
+														/ CPF</label>
+													<div class="col-sm-6">
+														<input wicket:id="cpfCnpjTitularConta" maxlength="15"
+															class="form-control" type="text" />
+													</div>
+												</div>
+											</div>
+											<div class="col-sm-4"></div>
+										</div>
+										<div class="row">
+											<div class="col-sm-4">
+												<div class="form-group form-group-sm">
+													<label class="control-label col-sm-3">Banco</label>
+													<div class="col-sm-9">
+														<label class="glyphicon custom-select"> <select
+															wicket:id="bancoTitularConta" class="form-control combo"></select>
+														</label>
+													</div>
+												</div>
+											</div>
+											<div class="col-sm-4">
+												<div class="form-group form-group-sm">
+													<label class="control-label col-sm-3" title="">Endereço</label>
+													<div class="col-sm-9">
+														<input wicket:id="enderecoTitularConta" id="enderecoTitularConta" maxlength="30"
+															class="form-control" type="text" />
+													</div>
+												</div>
+											</div>
+											<div class="col-sm-4">
+												<div class="form-group form-group-sm">
+													<div>
+														<label class="control-label col-sm-3" title="">Nº</label>
+														<div class="col-sm-3">
+															<input wicket:id="numeroTitularConta" maxlength="5"
+																class="form-control" type="text" />
+														</div>
+													</div>
+													<div>
+														<label class="control-label col-sm-3" title="">CEP</label>
+														<div class="col-sm-3">
+															<input wicket:id="cepTitularConta" onblur="funCarregaCepTitularConta();" id="cepTitularConta" class="form-control"
+																type="text" maxlength="8" />
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-sm-4">
+												<div class="form-group form-group-sm">
+													<label class="control-label col-sm-3"
+														title="Informar o número da agência">Agência</label>
+													<div class="col-sm-3">
+														<input wicket:id="agenciaTitularConta" maxlength="5"
+															class="form-control" type="text" />
+													</div>
+													<label class="control-label col-sm-3" title="">Dígito</label>
+													<div class="col-sm-3">
+														<input wicket:id="digitoAgenciaTitularConta" maxlength="2"
+															class="form-control" type="text" />
+													</div>
+												</div>
+											</div>
+											<div class="col-sm-4">
+												<div class="form-group form-group-sm">
+													<label class="control-label col-sm-3" title="">Bairro</label>
+													<div class="col-sm-9">
+														<input wicket:id="bairroTitularConta" id="bairroTitularConta" class="form-control" maxlength="15"
+															type="text" />
+													</div>
+												</div>
+											</div>
+											<div class="col-sm-4">
+												<div class="form-group form-group-sm">
+													<label class="control-label col-sm-3">Complemento</label>
+													<div class="col-sm-9">
+														<input wicket:id="complementoTitularConta" id="complementoTitularConta" maxlength="15"
+															class="form-control" type="text" />
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-sm-4">
+												<div class="form-group form-group-sm">
+													<label class="control-label col-sm-3"
+														title="Informar o número da conta">Conta</label>
+													<div class="col-sm-3">
+														<input wicket:id="contaTitularConta" class="form-control" maxlength="15"
+															type="text" />
+													</div>
+													<label class="control-label col-sm-3" title="">Dígito</label>
+													<div class="col-sm-3">
+														<input wicket:id="digitoContaTitularConta" maxlength="2"
+															class="form-control" type="text" />
+													</div>
+												</div>
+											</div>
+											<div class="col-sm-4">
+												<div class="form-group form-group-sm">
+													<label class="control-label col-sm-3" title="">Cidade</label>
+													<div class="col-sm-9">
+														<input wicket:id="cidadeTitularConta" id="cidadeTitularConta" class="form-control" maxlength="20"
+															type="text" />
+													</div>
+												</div>
+											</div>
+											<div class="col-sm-4">
+												<div class="form-group form-group-sm">
+													<div>
+														<label class="control-label col-sm-3">Estado/UF</label>
+														<div class="col-sm-9">
+															<label class="glyphicon custom-select"> <select
+																wicket:id="ufTitularConta" id="ufTitularConta" class="form-control combo"></select>
+															</label>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-sm-4">
+												<div class="form-group form-group-sm">
+													<div>
+														<label class="control-label col-sm-3"
+															title="Informar o tipo da conta bancária">Tipo de
+															Conta</label>
+														<div class="col-sm-9">
+															<label class="glyphicon custom-select"> <select
+																wicket:id="tipoDeConta" class="form-control combo"></select>
+															</label>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="col-sm-4">
+												<div class="form-group form-group-sm">
+													<label class="control-label col-sm-3"
+														title="Informar a quantidade de dias de prazo para pagamentos">Prazo
+														de Pgto.</label>
+													<div class="col-sm-6">
+														<input wicket:id="prazoPagamento" class="form-control" maxlength="5"
+															type="text" />
+													</div>
+												</div>
+											</div>
+											<div class="col-sm-4">
+												<div class="form-group form-group-sm">
+													<label class="control-label col-sm-3" title="">Observação</label>
+													<div class="col-sm-9">
+														<input wicket:id="observacaoTitularConta" maxlength="250"
+															class="form-control" type="text" />
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- fim: seção dados financeiros para pagamento -->
+
+							<!-- início: seção negociação, entrega e dados adicionais -->
+							<div id="secao-negociacao" class="tab-pane">
+								<div class="secao">
+									<div class="cabecalho-secao">Negociação</div>
+									<div class="corpo-secao">
+										<div class="row">
+
+											<!-- MELHORIAS INICIO -->
+											<div class="col-sm-3">
+												<div class="form-group form-group-sm">
+													<div>
+														<label class="control-label col-sm-3"
+															title="Recebe NF Devolução">Rec. NF Devol.</label>
+														<div class="col-sm-3">
+															<div wicket:id="recebeNfDevolucao" class="col-sm-3">
+																<div class="radio-custom radio-primary">
+																	<input wicket:id="recebeNfDevolucao_0" type="radio"
+																		name="rdbRecebeNfDevolucao" /> <label>Sim</label>
+																</div>
+																<div class="radio-custom radio-primary">
+																	<input wicket:id="recebeNfDevolucao_1" type="radio"
+																		name="rdbRecebeNfDevolucao" /> <label>Não</label>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div>
+														<label class="control-label col-sm-3"
+															title="Negociação de Boleto">Negoc. de Boleto</label>
+														<div wicket:id="negocicacaoBoleto">
+															<div class="col-sm-3">
+																<div class="radio-custom radio-primary">
+																	<input wicket:id="negocicacaoBoleto_0" type="radio"
+																		name="rdbNegocicacaoBoleto" /> <label>Sim</label>
+																</div>
+																<div class="radio-custom radio-primary">
+																	<input wicket:id="negocicacaoBoleto_1" type="radio"
+																		name="rdbNegocicacaoBoleto" /> <label>Não</label>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+
+											<!--  -->
+
+											<div class="col-sm-3">
+												<div class="form-group form-group-sm">
+													<div>
+														<label class="control-label col-sm-3"
+															title="Troca c/NF ou Bonificação">c/NF ou Bonif.</label>
+														<div wicket:id="trocaNfBonificacao">
+															<div class="col-sm-3">
+																<div class="radio-custom radio-primary">
+																	<input wicket:id="trocaNfBonificacao_0" type="radio"
+																		name="rdbSimplesNacional" /> <label
+																		for="rdbSimplesNacional_Sim">Sim</label>
+																</div>
+																<div class="radio-custom radio-primary">
+																	<input wicket:id="trocaNfBonificacao_1" type="radio"
+																		name="rdbSimplesNacional" /> <label
+																		for="rdbSimplesNacional_Nao">Não</label>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div>
+														<label class="control-label col-sm-3"
+															title="Troca Produto X Produto">Troca Prod. X
+															Prod.</label>
+														<div wicket:id="trocaProdutoProduto">
+															<div class="col-sm-3">
+																<div class="radio-custom radio-primary">
+																	<input wicket:id="trocaProdutoProduto_0" type="radio"
+																		name="rdbTrocaProdutoProduto" /> <label
+																		for="rdbTrocaProdutoProduto_Sim">Sim</label>
+																</div>
+																<div class="radio-custom radio-primary">
+																	<input wicket:id="trocaProdutoProduto_1" type="radio"
+																		name="rdbTrocaProdutoProduto" /> <label
+																		for="rdbTrocaProdutoProduto_Nao">Não</label>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+
+											<!--  -->
+
+											<div class="col-sm-3">
+												<div class="form-group form-group-sm">
+													<div>
+														<label class="control-label col-sm-3"
+															title="Troca Recolhe os Produtos">Recolhe os
+															Prod.</label>
+														<div wicket:id="trocaRecolheProduto">
+															<div class="col-sm-3">
+																<div class="radio-custom radio-primary">
+																	<input wicket:id="trocaRecolheProduto_0" type="radio"
+																		name="rdbTrocaRecolheProduto" /> <label
+																		for="rdbTrocaRecolheProduto_Sim">Sim</label>
+																</div>
+																<div class="radio-custom radio-primary">
+																	<input wicket:id="trocaRecolheProduto_1" type="radio"
+																		name="rdbTrocaRecolheProduto" /> <label
+																		for="rdbTrocaRecolheProduto_Nao">Não</label>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div>
+														<label class="control-label col-sm-3"
+															title="Negociação de Boleto">Indeniza Troca</label>
+														<div wicket:id="indenizaTroca">
+															<div class="col-sm-3">
+																<div class="radio-custom radio-primary">
+																	<input wicket:id="indenizaTroca_0" type="radio"
+																		name="rdbNegocicacaoBoleto" /> <label>Sim</label>
+																</div>
+																<div class="radio-custom radio-primary">
+																	<input wicket:id="indenizaTroca_1" type="radio"
+																		name="rdbNegocicacaoBoleto" /> <label>Não</label>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+
+											<!--  -->
+
+											<div class="col-sm-3">
+												<div class="form-group form-group-sm">
+													<div>
+														<label class="control-label col-sm-3"
+															title="Recebe NF Devolução">Acordo Comercial</label>
+														<div class="col-sm-3">
+															<div wicket:id="acordoComercial" class="col-sm-3">
+																<div class="radio-custom radio-primary">
+																	<input wicket:id="acordoComercial_0" type="radio"
+																		name="rdbRecebeNfDevolucao" /> <label>Sim</label>
+																</div>
+																<div class="radio-custom radio-primary">
+																	<input wicket:id="acordoComercial_1" type="radio"
+																		name="rdbRecebeNfDevolucao" /> <label>Não</label>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<!-- MELHORIAS FIM -->
+
+										</div>
+									</div>
+								</div>
+								<div class="secao">
+									<div class="cabecalho-secao">Entrega</div>
+									<div class="corpo-secao">
+										<div class="row">
+											<div class="col-sm-4">
+												<div class="form-group form-group-sm">
+													<label class="control-label col-sm-3">Prazo de
+														Entrega</label>
+													<div class="col-sm-9">
+														<div class="input-group">
+															<input wicket:id="prazoEntrega" type="text" maxlength="5"
+																class="form-control" /> <span class="input-group-addon">dias</span>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="col-sm-4">
+												<div class="form-group form-group-sm">
+													<label class="control-label col-sm-3"
+														title="Prazo de Atraso de Entrega">Prazo de Atraso</label>
+													<div class="col-sm-9">
+														<div class="input-group">
+															<input wicket:id="prazoAtrasoEntrega" type="text" maxlength="5"
+																class="form-control" /> <span class="input-group-addon">dias</span>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="col-sm-4">
+												<div class="form-group form-group-sm">
+													<label class="control-label col-sm-3">Prazo de
+														Visita</label>
+													<div class="col-sm-9">
+														<div class="input-group">
+															<input wicket:id="prazoVisita" type="text" maxlength="5"
+																class="form-control" /> <span class="input-group-addon">dias</span>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-sm-4">
+												<div class="form-group form-group-sm">
+													<div>
+														<label class="control-label col-sm-3">Tipo de
+															Frete</label>
+														<div class="col-sm-6">
+															<label class="glyphicon custom-select"> <select
+																wicket:id="tipoFrete" class="form-control combo"></select>
+															</label>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="col-sm-4">
+												<div class="form-group form-group-sm">
+													<label class="control-label col-sm-3">Observação</label>
+													<div class="col-sm-9">
+														<input wicket:id="observacaoEntrega" class="form-control" maxlength="250"
+															type="text" />
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="secao">
+									<div class="cabecalho-secao">Dados Adicionais</div>
+									<div class="corpo-secao">
+										<div class="row">
+											<div class="row">
+												<div class="col-sm-12">
+													<div class="col-sm-12">
+														<textarea wicket:id="dadosAdicionais" class="form-control"
+															row="4"></textarea>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- fim: seção negociação, entrega e dados adicionais -->
+
+							<!-- início: dados do responsável -->
+							<div id="secao-dados-reponsavel" class="tab-pane">
+								<div class="secao">
+									<div class="cabecalho-secao">Responsável para Acordos</div>
+									<div class="corpo-secao">
+										<div class="row">
+											<div class="col-sm-4">
+												<div class="form-group form-group-sm">
+													<label class="control-label col-sm-3">Nome</label>
+													<div class="col-sm-9">
+														<input wicket:id="nomeCompletoReponsavelAcordo" maxlength="40"
+															class="form-control" type="text" />
+													</div>
+												</div>
+											</div>
+											<div class="col-sm-4">
+												<div class="form-group form-group-sm">
+													<label class="control-label col-sm-3">CPF</label>
+													<div class="col-sm-6">
+														<input wicket:id="cpfReponsavelAcordo" maxlength="11"
+															class="form-control" type="text" />
+													</div>
+												</div>
+											</div>
+											<div class="col-sm-4">
+												<div class="form-group form-group-sm">
+													<label class="control-label col-sm-3">Telefone</label>
+													<div class="col-sm-3">
+														<input wicket:id="ddFoneReponsavelAcordo"
+															class="form-control" type="text" maxlength="2" />
+													</div>
+													<div class="col-sm-6">
+														<input wicket:id="foneReponsavelAcordo"
+															class="form-control" type="text" maxlength="10" />
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-sm-4">
+												<div class="form-group form-group-sm">
+													<label class="control-label col-sm-3">Cargo</label>
+													<div class="col-sm-9">
+														<input wicket:id="cargoReponsavelAcordo" maxlength="40"
+															class="form-control" type="text" />
+													</div>
+												</div>
+											</div>
+											<div class="col-sm-4">
+												<div class="form-group form-group-sm">
+													<label class="control-label col-sm-3">RG</label>
+													<div class="col-sm-6">
+														<input wicket:id="rgReponsavelAcordo" class="form-control" maxlength="20"
+															type="text" />
+													</div>
+												</div>
+											</div>
+											<div class="col-sm-4">
+												<div class="form-group form-group-sm">
+													<label class="control-label col-sm-3">E-mail
+														Contato</label>
+													<div class="col-sm-9">
+														<input wicket:id="emailReponsavelAcordo" maxlength="50"
+															class="form-control" type="text" />
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="secao">
+									<div class="cabecalho-secao">Preposto/Representante</div>
+									<div class="corpo-secao">
+										<div class="row">
+											<div class="col-sm-4">
+												<div class="form-group form-group-sm">
+													<label class="control-label col-sm-3">Nome</label>
+													<div class="col-sm-9">
+														<input wicket:id="nomePrepostoRepresentante" maxlength="40"
+															class="form-control" type="text" />
+													</div>
+												</div>
+											</div>
+											<div class="col-sm-4">
+												<div class="form-group form-group-sm">
+													<label class="control-label col-sm-3">CPF</label>
+													<div class="col-sm-6">
+														<input wicket:id="cpfPrepostoRepresentante" maxlength="11"
+															class="form-control" type="text" />
+													</div>
+												</div>
+											</div>
+											<div class="col-sm-4">
+												<div class="form-group form-group-sm">
+													<label class="control-label col-sm-3">Telefone</label>
+													<div class="col-sm-3">
+														<input wicket:id="ddFonePrepostoRepresentante" maxlength="2"
+															class="form-control" type="text" />
+													</div>
+													<div class="col-sm-6">
+														<input wicket:id="fonePrepostoRepresentante" maxlength="10"
+															class="form-control" type="text" />
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-sm-4">
+												<div class="form-group form-group-sm">
+													<label class="control-label col-sm-3">Cargo</label>
+													<div class="col-sm-9">
+														<input wicket:id="cargoPrepostoRepresentante" maxlength="40"
+															class="form-control" type="text" />
+													</div>
+												</div>
+											</div>
+											<div class="col-sm-4">
+												<div class="form-group form-group-sm">
+													<label class="control-label col-sm-3">RG</label>
+													<div class="col-sm-6">
+														<input wicket:id="rgPrepostoRepresentante" maxlength="20"
+															class="form-control" type="text" />
+													</div>
+												</div>
+											</div>
+											<div class="col-sm-4">
+												<div class="form-group form-group-sm">
+													<label class="control-label col-sm-3">E-mail
+														Contato</label>
+													<div class="col-sm-9">
+														<input wicket:id="emailPrepostoRepresentante" maxlength="50"
+															class="form-control" type="text" />
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- fim: dados do responsável -->
+						</div>
+					</div>
+
+				</div>
+
+				<!-- início: dialog confirmação  -->
+				<div id="confirmacaoEnvioDialog" class="modal" role="dialog">
+					<div class="vertical-alignment-helper">
+						<div class="modal-dialog vertical-align-center confirmacao">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h4 class="modal-title">Confirmação</h4>
+								</div>
+								<div class="modal-body">
+									<div class="modal-wrapper">
+										<div class="modal-icon">
+											<i class="fa fa-question-circle"></i>
+										</div>
+										<div class="modal-text">Tem certeza que deseja enviar o
+											formulário?</div>
+									</div>
+								</div>
+								<div class="modal-footer">
+									<button wicket:id="enviar" type="button"
+										class="btn btn-primary" data-dismiss="modal"
+										onclick="$('#confirmacaoEnvioDialog').modal('hide');">
+										<i class="fa fa-check"></i> Sim
+									</button>
+									<button type="button" class="btn btn-danger"
+										data-dismiss="modal">
+										<i class="fa fa-times"></i> Não
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- fim: dialog confirmação  -->
+
+			</form>
+
+			<!-- início: modal importar planilha -->
+			<div id="importarPlanilhaModal" class="modal" role="dialog">
+				<div class="vertical-alignment-helper">
+					<div class="modal-dialog vertical-align-center">
+						<div class="modal-content">
+							<form wicket:id="importacaoPlanilhaModalForm"
+								class="form-horizontal">
+								<div class="modal-header">
+									<h4 class="modal-title">Importar planilha preenchida</h4>
+								</div>
+								<div class="modal-body">
+									<div class="row">
+										<div class="fileupload fileupload-new"
+											data-provides="fileupload">
+											<div class="col-sm-12">
+												<div class="form-group form-group-sm">
+													<label class="control-label col-sm-2">Planilha</label>
+													<div class="col-sm-9">
+														<div class="input-append">
+															<div class="input-group input-group-sm">
+																<div class="uneditable-input form-control">
+																	<span class="fa fa-file fileupload-exists"></span> <span
+																		class="fileupload-preview"></span>
+																</div>
+																<span class="input-group-btn"> <span
+																	class="btn btn-primary btn-file"> <span
+																		class="fileupload-exists"> <i
+																			class="fa fa-refresh"> </i> Trocar
+																	</span> <span class="fileupload-new"> <i
+																			class="fa fa-search"></i>
+																	</span> <input wicket:id="fileUploadField" type="file" /> <!-- wicketId vem aqui!  -->
+																</span>
+																	<button class="btn btn-primary fileupload-exists"
+																		data-dismiss="fileupload">
+																		<i class="fa fa-trash-o"></i> Remover
+																	</button>
+																</span>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="modal-footer">
+									<button wicket:id="importBtn" type="button"
+										class="btn btn-primary"
+										onclick="$('#importarPlanilhaModal').modal('hide')">
+										<i class="fa fa-upload"></i> Importar
+									</button>
+									<button type="button" class="btn btn-primary"
+										data-dismiss="modal">
+										<i class="fa fa-times"></i> Fechar
+									</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- fim: modal importar planilha -->
+
+		</div>
+	</wicket:extend>
+</body>
+</html>

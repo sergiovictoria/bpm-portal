@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org">
+
+<head>
+</head>
+<body>
+	<wicket:panel>
+		<div wicket:id="tabelaAnexos">
+			<table class="table table-bordered table-hover table-condensed mb-none">
+				<thead>
+					<tr>
+						<th>Data Criação</th>
+						<th>Descrição</th>
+						<th>Nome Arquivo</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr wicket:id="anexos">
+						<td><span wicket:id="dataCriacao">[DATA CRIAÇÃO]</span></td>
+						<td><span wicket:id="descricao">[DESCRIÇÃO]</span></td>
+						<td><span wicket:id="nomeArquivo">[NOME ARQUIVO]</span></td>
+						<td style="text-align: center">
+							<a wicket:id="downloadBtn" class="btn btn-primary" target="_blank"> 
+								<i class="fa fa-download"></i> Download
+							</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</wicket:panel>
+</body>
+</html>

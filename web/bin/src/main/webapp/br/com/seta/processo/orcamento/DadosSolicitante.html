@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns:wicket="http://wicket.apache.org">
+<head>
+<title>Dados do Solicitante</title>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../../../../../resources/assets/components/moment/moment.js"></script>
+<script type="text/javascript" src="../../../../../resources/assets/components/moment/min/moment-with-locales.min.js"></script>	
+<script type="text/javascript" src="../../../../../resources/assets/components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+<link rel="stylesheet"
+	href="../../../../../resources/assets/components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
+</head>
+<body>
+	<wicket:extend>
+		<form wicket:id="DadosSolicitanteForm">
+			<div class="panel panel-default">
+				<div class="panel-menu">
+					<button wicket:id="Proximo" class="btn btn-primary"><i class="fa fa-play"></i> Próximo</button>
+				</div>
+				<div class="panel-body">
+				    <div wicket:id="DadosSolicitanteContainer">
+						<div class="row">
+							<div class="col-sm-12">
+								<div class="form-group form-group-sm">
+									<label class="control-label col-sm-1_5">Responsável</label>
+									<span wicket:id="Solicitante" class="form-value col-sm-10_5">[Solicitante]</span>								
+								</div>
+							</div>	
+						</div>
+						<div class="row">
+							<div class="col-sm-6">
+								<div class="form-group form-group-sm">
+									<label class="control-label col-sm-3">Tipo de Despesa</label>
+									<div class="col-sm-9">
+										<div class="form-value" style="font-weight: normal;">
+											<span wicket:id="TipoRequisicao"></span>
+										</div>
+									</div>
+								</div>							
+							</div>						
+						</div>
+						<div class="row">
+							<div class="col-sm-6">
+								<div class="form-group form-group-sm">
+									<label class="control-label col-sm-3">Área Solicitante</label>
+									<div class="col-sm-9">
+								    	<label class="glyphicon custom-select">
+								    		<select wicket:id="Membros" class="form-control combo"></select>
+								    	</label>
+								    </div>
+								</div>
+							</div>	
+							<div class="col-sm-6">
+								<div class="form-group form-group-sm">
+									<label class="control-label col-sm-3">Nome Solicitante</label>
+									<div class="col-sm-9">
+								    	<label class="glyphicon custom-select">
+								    		<select wicket:id="Usuarios" class="form-control combo"></select>
+								    	</label>
+								    </div>
+								</div>
+							</div>				
+						</div>
+						<div class="row">
+							<div class="col-sm-6">
+							    <div class="form-group form-group-sm">
+									<label class="control-label col-sm-3">E-mail Solicitante</label>
+									<div class="col-sm-9">
+										<input wicket:id="emailSolicitante" type="text" class="form-control" />
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-6">
+							    <div class="form-group form-group-sm">
+									<label class="control-label col-sm-3">Telefone Solicitante</label>
+									<div class="col-sm-9">
+										<input wicket:id="telefoneSolicitante" type="text" class="form-control" />
+									</div>
+								</div>
+							</div>							
+						</div>
+						<div class="row">
+							<div class="col-sm-6">
+								<div class="form-group form-group-sm">
+									<label class="control-label col-sm-3">Diretoria</label>
+									<div class="col-sm-9">
+								    	<label class="glyphicon custom-select">
+								    		<select wicket:id="diretorias" class="form-control combo"></select>
+								    	</label>
+								    </div>
+								</div>
+							</div>
+							
+							<div class="col-sm-6">
+								<div class="form-group form-group-sm">
+									<label class="control-label col-sm-3">Gerência</label>
+									<div class="col-sm-9">
+								    	<label class="glyphicon custom-select">
+								    		<select wicket:id="gerencias" class="form-control combo"></select>
+								    	</label>
+								    </div>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-12">
+							    <div class="form-group form-group-sm">
+									<label class="control-label col-sm-1_5">Descrição da compra</label>
+									<div class="col-sm-10_5">
+										<textarea wicket:id="descricaoCompra" class="form-control" rows="4"></textarea>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>		
+			</div>
+		</form>
+	</wicket:extend>
+</body>
+</html>
+

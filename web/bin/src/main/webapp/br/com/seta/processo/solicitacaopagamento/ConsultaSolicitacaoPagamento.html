@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns:wicket="http://wicket.apache.org">
+
+<head>
+<meta charset="UTF-8">
+<title>dashboard Seta Atacadista</title>
+</head>
+<body>
+	<wicket:extend>
+		<link rel="stylesheet" href="resources/css/solicitacao-pagamento.css" />
+		<span wicket:id="msbAlerta"></span>
+		<section class="panel panel-primary">
+			<form wicket:id="form" class="form-horizontal">
+				<div class="panel-menu">
+					<button wicket:id="btnFiltro" class="mb-xs mt-xs mr-xs btn btn-primary">
+						<i class="fa fa-filter"></i> Filtros
+					</button>
+				</div>
+				<div wicket:id="secaoSolicitacoesPagto" class="panel-body">
+					<div wicket:id="tabelaSolicitacoesContainer">
+						<div class="row">
+							<div class="col-md-12">
+								<table class="table table-bordered table-hover table-condensed mb-none historico" id="datatable-default">
+									<thead>
+										<tr>
+											<th wicket:id="orderId">
+												<i class="fa fa-sort-asc"></i> 
+												<i class="fa fa-sort-desc"></i> 
+												<i class="fa fa-sort"></i>  
+												ID
+											</th>
+											<th wicket:id="orderFornecedor">
+												<i class="fa fa-sort-asc"></i> 
+												<i class="fa fa-sort-desc"></i> 
+												<i class="fa fa-sort"></i> 
+												Fornecedor
+											</th>
+											<th wicket:id="orderNotaDespesa">
+												<i class="fa fa-sort-asc"></i> 
+												<i class="fa fa-sort-desc"></i> 
+												<i class="fa fa-sort"></i> 
+												Nota de Despesa
+											</th>
+											<th wicket:id="orderValor">
+												<i class="fa fa-sort-asc"></i> 
+												<i class="fa fa-sort-desc"></i> 
+												<i class="fa fa-sort"></i> 
+												Valor
+											</th>
+											<th wicket:id="orderVencimento">
+												<i class="fa fa-sort-asc"></i> 
+												<i class="fa fa-sort-desc"></i> 
+												<i class="fa fa-sort"></i> 
+												Vencimento
+											</th>
+											<th wicket:id="orderStatus">
+												<i class="fa fa-sort-asc"></i> 
+												<i class="fa fa-sort-desc"></i> 
+												<i class="fa fa-sort"></i> 
+												Status
+											</th>
+											<th>Comentário</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr wicket:id="dtvSolicitacao">
+											<td><span wicket:id="lblDtvCaseId"></span></td>
+											<td><span wicket:id="lblDtvEmpresa"></span></td>
+											<td><span wicket:id="lblDtvNotaDespesa"></span></td>
+											<td><span wicket:id="lblDtvValor"></span></td>
+											<td><span wicket:id="lblDtvVencimento"></span></td>
+											<td><span wicket:id="lblDtvStatus"></span></td>
+											<td><span wicket:id="lblDtvComentario" class="comentarios"></span></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12">
+								<span wicket:id="ajaxPagingNavigator" class="dataview-navigator" style="margin-top: 10px;">[NAVIGATOR]</span>
+							</div>
+						</div>
+					</div>
+					<div wicket:id="msgSolicitacaoPagamento" class="alertaContainer alert alert-danger">
+						Não foram encontradas solicitações para o seu usuário
+					</div>
+				</div>
+				<!-- MODAL FILTRO -->
+				<div class="modal" role="dialog" aria-labelledby="myLargeModalLabel" data-backdrop="static" data-keyboard="false" id="modalFiltro">
+					<div class="vertical-alignment-helper">
+						<div class="modal-dialog vertical-align-center">
+							<div class="modal-content" wicket:id="modalPesquisa">
+								<div class="modal-header">
+									<h4 class="modal-title" id="myModalLabel">Filtros</h4>
+								</div>
+								<div class="modal-body">
+									<div class="row">
+										<div class="col-md-12">
+											<div class="form-group form-group-sm">
+												<label class="col-sm-3 control-label">Fornecedor</label>
+												<div class="col-sm-7">
+													<div class="input-group input-group-sm">
+														<input wicket:id="txtFornecedor" type="text" class="form-control" />
+														<div class="input-group-btn">
+															<button type="button" class="btn btn-primary btn-sm" data-dismiss="modal" data-target="#consultarFornecedorDialog" data-toggle="modal" data-backdrop="static" data-keyboard="false">
+																<i class="fa fa-search"></i>
+															</button>
+															<button wicket:id="limparFornecedorSelecionadoBtn" type="button" class="btn btn-primary btn-sm">
+																<i class="fa fa-eraser"></i>
+															</button>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<!-- fim col -->
+									</div>
+									<!-- fim row -->
+									<div class="row">
+										<div class="col-md-12">
+											<div class="form-group form-group-sm">
+												<label class="col-sm-3 control-label">Nota de Despesa </label>
+												<div class="col-sm-7">
+													<input wicket:id="txtNotaDepesa" type="text" class="form-control">
+												</div>
+											</div>
+										</div>
+										<!-- fim col -->
+									</div>
+									<!-- fim row -->
+									<div class="row">
+										<div class="col-md-12">
+											<div class="form-group form-group-sm">
+												<label class="col-sm-3 control-label">Valor De </label>
+												<div class="col-sm-3">
+													<input wicket:id="txtValorDe" type="text" class="form-control monetario">
+												</div>
+												<label class="col-sm-1 control-label">Até</label>
+												<div class="col-sm-3">
+													<input wicket:id="txtValorAte" type="text" class="form-control monetario">
+												</div>
+											</div>
+										</div>
+										<!-- fim col -->
+									</div>
+									<!-- fim row -->
+									<div class="row">
+										<div class="col-md-12">
+											<div class="form-group form-group-sm">
+												<label class="col-sm-3 control-label">Período </label>
+												<div class="col-sm-3">
+													<input wicket:id="txtDataDe" id="campoData" type="text" class="form-control" data-plugin-datepicker data-plugin-options='{"language":"pt-BR", "format": "dd/mm/yyyy"}'>
+												</div>
+												<label class="col-sm-1 control-label">Até</label>
+												<div class="col-sm-3">
+													<input wicket:id="txtDataAte" id="campoData" type="text" class="form-control" data-plugin-datepicker data-plugin-options='{"language":"pt-BR", "format": "dd/mm/yyyy"}'>
+												</div>
+											</div>
+										</div>
+										<!-- fim col -->
+									</div>
+									<!-- fim row -->
+									<div class="row">
+										<div class="col-md-12">
+											<div class="form-group form-group-sm">
+												<label class="col-sm-3 control-label">Status </label>
+												<div class="col-sm-7">
+													<label class="glyphicon custom-select"> <select wicket:id="cmbStatus" class="form-control combo"></select>
+													</label>
+												</div>
+											</div>
+										</div>
+										<!-- fim col -->
+									</div>
+									<!-- fim row -->
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-primary" wicket:id="btnPesquisar" 
+										onclick="$('#modalFiltro').modal('hide'); exibeCarregamento()">
+										<i class="fa fa-search"></i> Pesquisar
+									</button>
+									<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- fim modal filtro -->
+				
+				<!-- início: dialog consultar fornecedor  -->
+				<div wicket:id="modalConsultarFornecedor" id="consultarFornecedorDialog" class="modal" role="dialog">
+					<div class="vertical-alignment-helper">
+						<div class="modal-dialog vertical-align-center">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h4 class="modal-title">Consultar Fornecedor</h4>
+								</div>
+								<div class="modal-body" wicket:id="secaoConsultarFornecedor">
+									<div class="row">
+										<div class="col-sm-12">
+											<div class="form-group form-group-sm">
+												<label class="control-label col-sm-2">Buscar</label>
+												<div class="col-sm-10">
+													<div class="input-group input-group-sm">
+														<input wicket:id="txtFiltroFornecedor" type="text" class="form-control"><span
+															class="input-group-btn">
+															<button wicket:id="btnPesquisarFornecedor" class="btn btn-primary" type="button" name="solicitacaoPagamentoContainer:buscaFornecedorBtn">
+																<i class="fa fa-search"></i>
+															</button>
+														</span>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="separador"></div>
+									<div wicket:id="tabelaFornecedores">
+										<table class="table table-bordered table-hover table-condensed mb-none" id="datatable-default">
+											<thead>
+												<tr>
+													<th>Código</th>
+													<th>Descrição</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr wicket:id="dtvFornecedorConsulta">
+													<td><span wicket:id="lblCodigoFornec"></span></td>
+													<td><span wicket:id="lblDescricaoFornec"></span></td>
+												</tr>
+											</tbody>
+										</table>
+										<div class="row">
+											<div class="col-sm-12">
+												<span wicket:id="navigator" class="dataview-navigator"></span>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div wicket:id="msgFonecedores" class="alertaContainer alert alert-info">
+											Não foram encontrados resultados
+										</div>
+									</div>
+									
+								</div>
+								<div class="modal-footer">
+									<button wicket:id="btnFecharModalFornecedor" type="button" class="btn btn-danger">
+										<i class="fa fa-times"></i> Fechar
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- fim: dialog consultar fornecedor  -->
+			</form>
+		</section>
+		<!-- end: page -->
+	</wicket:extend>
+</body>
+</html>

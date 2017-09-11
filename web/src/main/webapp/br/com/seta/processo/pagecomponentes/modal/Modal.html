@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:wicket="http://wicket.apache.org">
+
+<head>
+</head>
+<body>
+	<wicket:panel>
+		<div wicket:id="container" class="modal in" role="dialog">
+			<div class="vertical-alignment-helper">
+				<div wicket:id="modalDialog" class="modal-dialog vertical-align-center">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h4 wicket:id="tituloLbl" class="modal-title">TITULO MODAL</h4>
+						</div>
+						<div wicket:id="corpoContainer" class="modal-body">
+							<wicket:container wicket:id="corpoModal" ></wicket:container>
+						</div>
+						<div class="modal-footer">
+							<wicket:container wicket:id="botoesListView" >
+								<wicket:container wicket:id="botao" ></wicket:container>
+							</wicket:container>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</wicket:panel>
+</body>
+</html>

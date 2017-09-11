@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:wicket="http://wicket.apache.org"> 
+
+<head>
+	<title>Processos</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"></link>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="../../../../../resources/assets/components/font-awesome-4.4.0/css/font-awesome.min.css" ></link>
+	<link rel="stylesheet" href="../../../../../resources/css/processos.css" ></link>
+</head> 
+<body>
+	<wicket:extend> 
+		<div class="alertaProcessos alert alert-info" style="display: none">	
+				Não existem processos para o seu usuário!
+		</div>	
+	
+		<form wicket:id="processoForm">
+			<div wicket:id="processoContainer" class="processoContainer" style="display: none">
+				<div class="secaoProcessos panel-group">
+					<div class="panel panel-default processo" wicket:id="pessoasRow">
+						<div class="panel-body">
+							<div wicket:id="nomeProcesso" class="nomeProcesso">[Processo]</div>
+							<div wicket:id="versaoProcesso" class="versaoProcesso">[Versão]</div>							
+							<div class="botoesProcesso">
+								<button class="btn btn-primary" wicket:id="iniciarProcessoBtn" >
+									<i class="fa fa-play"></i> Iniciar
+								</button>
+							</div>
+							<p wicket:id="descricaoProcesso" class="descricaoProcesso">[Descricao]</p>
+						</div>
+					</div>				
+				</div>
+			</div>
+		</form>
+		<script>
+			var existeProcessos = function(){
+				if($(".panel.processo").length === 0){
+					$(".processoContainer").hide();
+					$(".alertaProcessos").show();
+				}else{
+					$(".alertaProcessos").hide();
+					$(".processoContainer").show();
+				}
+			}
+
+			$(document).ready(function(){
+				existeProcessos();
+			});
+		</script>
+	</wicket:extend>
+</body> 
+
+</html>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns:wicket="http://wicket.apache.org">
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+	<wicket:panel>		
+		<button class="btn btn-primary" type="button" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#confirmacaoEnvioDialog">
+			<i class="fa fa-envelope-o"></i> Enviar Solicitação
+		</button>
+
+		<div id="confirmacaoEnvioDialog" class="modal in" role="dialog">
+			<div class="vertical-alignment-helper">
+				<div class="modal-dialog vertical-align-center confirmacao">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h4 class="modal-title">Confirmação</h4>
+						</div>
+						<div class="modal-body">
+							<div class="modal-wrapper">
+								<div class="modal-icon">
+									<i class="fa fa-question-circle"></i>
+								</div>
+								<div class="modal-text">Tem certeza que deseja enviar a solicitação de pagamento?</div>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button wicket:id="enviarSolicPagtoBtn" type="button" class="btn btn-primary" data-dismiss="modal">
+								<i class="fa fa-check"></i> Sim
+							</button>
+							<button type="button" class="btn btn-danger" data-dismiss="modal">
+								<i class="fa fa-times"></i> Não
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<!-- início: modal fornecedor criado com sucesso modal -->
+		<div id="sucessoEnvioSolicitacao" class="modal" role="dialog">
+			<div class="vertical-alignment-helper">
+				<div class="modal-dialog sucesso vertical-align-center">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h4 class="modal-title">Sucesso</h4>
+						</div>
+						<div class="modal-body">
+							<div class="modal-wrapper">
+								<div class="modal-icon">
+									<i class="fa fa-check"></i>
+								</div>
+								<div class="modal-text">
+									<!--<h4>Fornecedor criado com sucesso.</h4> -->
+									Solicitação de pagamento foi enviada com sucesso
+								</div>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button wicket:id="confirmacaoOkBtn" type="button" class="btn btn-success">OK</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- fim: modal fornecedor criado com sucesso modal -->
+		
+		
+		
+	</wicket:panel>
+</body>
+</html>

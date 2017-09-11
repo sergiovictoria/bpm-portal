@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns:wicket="http://wicket.apache.org">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Solicitar Pagamento</title>
+</head>
+<body>
+	<wicket:extend>
+		<form wicket:id="form">
+			<div class="panel panel-primary">
+				<div class="panel-menu">				
+					<!-- Seção que alocará os botões de ação -->
+					<div wicket:id="botoesAcaoPanel">				
+					</div>
+				</div>
+				<div wicket:id="solicitacaoPagamentoContainer" class="panel-body">
+					<!-- início: dados do responsável pelo preenchimento -->
+					<div class="secao">
+						<div class="cabecalho-secao">
+							Dados do responsável pelo preenchimento
+						</div>
+						<div class="corpo-secao">
+							<div class="row">
+								<div class="col-sm-4">
+									<div class="form-group form-group-sm">
+										<label class="control-label col-sm-3">Nome</label>
+										<div class="col-sm-9">
+											<input wicket:id="nomeSolicitante" class="form-control" type="text" />
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-4">
+									<div class="form-group form-group-sm">
+										<label class="control-label col-sm-3">E-mail</label>
+										<div class="col-sm-9">
+											<input wicket:id="emailSolicitante" class="form-control" type="text" />
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-4">
+									<div class="form-group form-group-sm">
+										<label class="control-label col-sm-3">Telefone</label>
+										<div class="col-sm-9">
+											<input wicket:id="telefoneSolicitante" class="form-control" type="text" />
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>				
+					</div>
+					<!-- fim: dados do responsável pelo preenchimento -->
+					
+					<!-- início: seção solicitação -->
+					<div class="secao">
+						<div class="cabecalho-secao">
+							Solicitação
+						</div>
+						<div class="corpo-secao">
+							<div class="row">
+								<div class="col-sm-4">
+									<div class="form-group form-group-sm">
+										<label class="control-label col-sm-3">Empresa</label>
+									    <div class="col-sm-9">
+									    	<label class="glyphicon custom-select">
+									    		<select wicket:id="empresas" class="form-control combo"></select>
+									    	</label>
+									    </div>
+									</div>
+								</div>
+								<div class="col-sm-4">
+									<div class="form-group form-group-sm">
+										<label class="control-label col-sm-3">Nat. Despesa</label>
+									    <div class="col-sm-9">
+									    	<label class="glyphicon custom-select">
+									    		<select wicket:id="naturezaDespesas" class="form-control combo"></select>
+									    	</label>
+									    </div>
+									</div>
+								</div>
+								<div class="col-sm-4">
+									<div class="form-group form-group-sm">
+										<label class="control-label col-sm-3">Fornec.</label>
+										<div class="col-sm-9">
+											<div class="input-group input-group-sm">										
+												<input wicket:id="fornecedor"  type="text" class="form-control">
+												<span class="input-group-btn">
+													<button class="btn btn-primary btn-sm" type="button" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#pesquisarFornecedorModal">
+														<i class="fa fa-search"></i>
+													</button>
+												</span>
+											</div>
+										</div>
+										
+										
+									</div>
+								</div>
+							</div>
+							<div class="row">							
+								<div class="col-sm-4">
+									<div class="form-group form-group-sm">
+										<label class="col-sm-3 control-label">Emissão</label>
+										<div class="col-sm-9 text-left">
+											<input wicket:id="dataEmissao" type="text" class="form-control date" />
+										</div>
+									</div>
+								</div>					
+								<div class="col-sm-4">
+									<div class="form-group form-group-sm">
+										<label class="col-sm-3 control-label">Venc.</label>
+										<div class="col-sm-9">
+											<input wicket:id="dataVencimento" type="text" class="form-control date" />
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-4">
+									<div class="form-group form-group-sm">
+										<label class="control-label col-sm-3">Cód. de Barras</label>
+										<div class="col-sm-9">
+											<input wicket:id="codBarras" class="form-control" type="text" />
+										</div>
+									</div>
+								</div>
+							</div>
+							
+							<div class="row">
+								<div class="col-sm-4">
+									<div class="form-group form-group-sm">
+										<label class="control-label col-sm-3">Valor</label>
+										<div class="col-sm-9">
+											<input wicket:id="valor" class="form-control monetario" type="text" />
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-4">
+									<div class="form-group form-group-sm">
+										<label class="control-label col-sm-3">Número Nota</label>
+										<div class="col-sm-9">
+											<input wicket:id="nroNota" class="form-control numerico" type="text" />
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-sm-12">
+									<!-- início: seção para anexo/download do boleto -->
+									<div wicket:id="secaoAnexo"></div>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-sm-12">
+									<div class="form-group form-group-sm">
+										<label class="control-label col-sm-1">Mensagem</label>
+										<div class="col-sm-11">
+											<textarea wicket:id="mensagem" class="form-control" rows="4" cols="40"></textarea>
+										</div>
+									</div>
+								</div>
+	
+							</div>
+						</div>				
+					</div>
+					<!-- fim: seção solicitação -->	
+
+					<!-- início: modal busca fornecedor -->
+					<div id="pesquisarFornecedorModal" class="modal" role="dialog">
+						<div class="vertical-alignment-helper">
+							<div class="modal-dialog vertical-align-center">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h4 class="modal-title">Pesquisar</h4>
+									</div>
+									<div class="modal-body">
+										<div class="row">
+											<div class="col-sm-12">
+												<div class="form-group form-group-sm">
+													<label class="control-label col-sm-2">Buscar</label>
+													<div class="col-sm-10">
+														<div class="input-group input-group-sm">
+															<input wicket:id="buscaFornecedorInput" type="text" class="form-control"><span class="input-group-btn">
+																<button wicket:id="buscaFornecedorBtn" class="btn btn-primary btn-sm" type="button">
+																	<i class="fa fa-search"></i>
+																</button>
+															</span>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div wicket:id="pesquisarFornecedorModal">
+											<div class="row">
+												<div wicket:id="msgFonecedoresNaoEncontrados" class="alertaContainer alert alert-info">Não foram encontrados resultados</div>
+											</div>
+											<div wicket:id="tabelaForncedorContainer">
+												<div class="row">
+													<div class="col-sm-12">
+														<table class="table table-bordered table-hover table-condensed mb-none dataTable no-footer" style="margin-bottom: 15px !important">
+															<thead>
+																<tr>
+																	<th>Código</th>
+																	<th>Descrição</th>
+																</tr>
+															</thead>
+															<tbody>
+																<tr wicket:id="fornecedores">
+																	<td><span wicket:id="codFornecedor">[CÓDIGO]</span></td>
+																	<td><span wicket:id="descricaoFornecedor">[DESCRICAO]</span></td>
+																</tr>
+															</tbody>
+														</table>
+													</div>
+												</div>
+												<div class="row">
+													<span wicket:id="navigatorFornecedores" class="dataview-navigator">[NAVIGATOR]</span>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-primary" data-dismiss="modal">
+											<i class="fa fa-times"></i> Fechar
+										</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- fim: modal busca fornecedor -->
+				</div>
+			</div>
+		</form>
+	</wicket:extend>
+</body>
+</html>

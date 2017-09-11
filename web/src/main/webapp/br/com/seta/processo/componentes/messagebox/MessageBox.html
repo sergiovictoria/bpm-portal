@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns:wicket="http://wicket.apache.org">
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+	<wicket:panel>
+		<form wicket:id="frmModalMessageBox">
+		<div wicket:id="grpModal" id="modalMessageBox" class="">
+            <section class="panel">
+                <header class="panel-heading">
+                    <h2 wicket:id="lblTitulo" class="panel-title">[TITULO]</h2>
+                </header>
+                <div class="panel-body">
+                    <div class="modal-wrapper">
+                        <div class="modal-icon">
+                            <i wicket:id="lblIcon" class=""></i>
+                        </div>
+                        <div class="modal-text">
+                            <p wicket:id="lblMensagem">[MENSAGEM]</p>
+                        </div>
+                        <div align="center">
+                       		<IMG alt="Aguarde" wicket:id="imgMessageBoxLoading" />
+                        </div>
+                    </div>
+                </div>
+                <footer class="panel-footer">
+                    <div class="row">
+                        <div class="col-md-12 text-right">
+                            <button wicket:id="btnConfirmar" class="btn btn-success"><span wicket:id="lblConfirmar"></span></button>
+                            <button wicket:id="btnCancelar" class="btn btn-danger modal-dismiss"><span wicket:id="lblCancelar"></span></button>
+                        </div>
+                    </div>
+                </footer>
+            </section>
+        </div>
+        </form>
+</wicket:panel>
+</body>
+</html>

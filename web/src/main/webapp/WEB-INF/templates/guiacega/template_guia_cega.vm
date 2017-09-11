@@ -1,0 +1,419 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<style>		
+	@media print {
+		body{
+		margin:0;
+		padding:0;
+		}
+	}
+	
+	.principal{
+		width: 21cm;
+		height: 29.7cm;
+		padding: 0.2cm;
+		font-family: "Open Sans", Arial, sans-serif;
+	}
+
+	.cabecalho{
+
+	}
+
+	.corpo{
+
+	}
+
+	.rodape{
+    	/*top: 29.8cm;
+		position: fixed;*/
+		width: 21cm;
+	    font-size: 0.3cm;
+	    position: running(rodape)
+  	}
+
+	.logo{
+		float: left;
+		width: 3.5cm;			
+	}
+
+	.titulo{
+		margin: 0;
+	}
+
+	.dados-recebimento{	
+		font-size: 0.3cm;
+		width: 17.5cm;
+		float: right;
+	}
+
+	.dados-recebimento label{
+	 	display: inline-block;
+		width: 3cm;
+  		text-align: right;
+  		font-weight: bold;
+	}
+
+	.dados-recebimento label:after{
+	 	content: ": ";
+	}
+
+	.dados-recebimento span{
+	    margin-left: 0.1cm;
+	}
+
+	.cabecalho .titulo{
+		width: 4cm;
+		float: left;
+		text-align: left;
+		padding-left: 0.7cm;
+	}
+
+	.dados-recebimento .col{
+		width: 33.33%;
+		float: left;
+	}
+
+	.secao{
+		border: 1px solid black;
+		border-radius: 0.1cm;
+	    margin-top: 0.2cm;
+		margin-bottom: 0.2cm;
+	}
+
+	.secao .titulo{
+		color: black;
+		padding-left: 0.4cm;
+		padding-top: 0.1cm;
+		padding-bottom: 0.1cm;
+	    border-bottom: 1px solid black;
+	}
+
+	.secao .conteudo{
+		font-size: 0.3cm;
+		margin: 0.2cm;
+	}	
+
+	.secao .conteudo .chave-valor > label{
+		font-weight: bold;
+		width: 100%;
+		float: left;		
+	}
+
+	.secao .conteudo .chave-valor > span{
+		width: 100%;
+		clear: left;
+		min-height: 0.3cm;
+		display: inline-block;
+	}
+
+	.secao .conteudo .col{
+		float: left;
+	}	
+
+	.secao .conteudo.solicitacao .col1{
+		width: 40%;
+	}
+
+	.secao .conteudo.solicitacao .col2{
+		width: 30%;
+	}
+
+	.secao .conteudo.solicitacao .col3{
+		width: 30%;
+	}
+
+	.secao .conteudo.valores .col{
+		width: 25%;
+	}
+
+	.secao .conteudo.validacao .col{
+		width: 30%;
+	}
+
+	.secao .conteudo.divergencias .col{
+		width: 33.33%;
+	}
+
+	.secao .conteudo.aprovar-recebimento-pedido .descricao{
+		margin-bottom: 0.3cm;
+	}
+
+	.secao .conteudo.aprovar-recebimento-pedido .comentarios-aprovador{
+
+	}
+
+	.clear-both {		  
+	  clear: both;
+	}
+
+	table{
+		width: 100%;
+		border-collapse: collapse;
+		font-size: 0.3cm;
+	}
+
+	table, th, td {
+	    border: 1px solid black;
+	}
+	
+	.rodape .emitido-em{
+		float: right;
+	}
+
+	.rodape .paginacao{
+		float: left;
+	}
+	</style>	
+</head>
+<body>	
+	<div class="principal">			
+		<div class="cabecalho">
+			<img class="logo" src="$logoPath"/>		
+			<h3 class="titulo">Guia Cega</h3>
+			<div class="dados-recebimento">			
+				<div class="col">
+					<!-- 
+					<div class="chave-valor">
+						<label>N� Recebimento</label> <span>101010</span>
+					</div>
+					 -->
+					<div class="chave-valor">
+						<label>Tipo de Despesa</label> <span>$requisicao.tipoDespesa</span>
+					</div>
+				</div>
+				<div class="col">
+					<div class="chave-valor">
+						<label>N° Intçãoo</label> <span>$formatUtils.seNuloSubstitui($requisicao.numeroIntencaoSolicitacaoCompra, '')</span>
+					</div>
+					<div class="chave-valor">
+						<label>Requisição C5</label> <span>$requisicao.nrorequisicao</span>
+					</div>
+				</div>
+				<div class="col">
+					<div class="chave-valor">
+						<label>Data Inclusção C5</label> <span>$formatUtils.formata($requisicao.dtainclusao, 'dd/MM/yyyy')</span>
+					</div>
+					<div class="chave-valor">
+						<label>Data Compra C5</label> <span>$formatUtils.formata($requisicao.dtacompra, 'dd/MM/yyyy')</span>
+					</div>
+				</div>			
+			</div>	
+			<div class="clear-both"></div>
+		</div>
+
+		<div class="corpo">
+			
+			<!--Solicitacao -->
+			<div class="secao">
+				<h4 class="titulo">Solicitação</h4>
+				<div class="conteudo solicitacao">
+					<div class="col1 col">
+						<div class="chave-valor">
+							<label>Nome do Solicitante</label>
+							<span>$formatUtils.seNuloSubstitui($solicitante.nomeRespPreenchimento, '')</span>
+						</div>
+						<div class="chave-valor">
+							<label>Fornecedor</label>
+							<span>$requisicao.nomeFornecedor</span>
+						</div>
+						<div class="chave-valor">
+							<label>Natureza de Despesa</label>
+							<span>$requisicao.naturezaDespesa</span>
+						</div>
+					</div>
+
+					<div class="col2 col">
+						<div class="chave-valor">
+							<label>Local de entrega</label>
+							<span>$requisicao.localDeEntrega</span>
+						</div>
+						<div class="chave-valor">
+							<label>Cód. Modelo</label>
+							<span>$requisicao.codmodelo</span>
+						</div>
+					</div>
+
+					<div class="col3 col">
+						<div class="chave-valor">
+							<label>Empresa</label>
+							<span>$requisicao.nomeEmpresa</span>
+						</div>
+						<div class="chave-valor">
+							<label>CGO</label>
+							<span>$requisicao.cgo</span>
+						</div>
+						<div class="chave-valor">
+							<label>Data Solicitação</label>
+							<span>$formatUtils.formata($requisicao.dataSolicitacaoIntencao, 'dd/MM/yyyy')</span>
+						</div>
+					</div>
+					<div class="clear-both">
+					</div>
+				</div>
+			</div>
+
+			<!--Valores -->
+			<div class="secao">
+				<h4 class="titulo">Valores</h4>
+				<div class="conteudo valores">
+					<div class="col">
+						<div class="chave-valor">
+							<label>Valor Total</label>
+							<span>$monetario.format($requisicao.valor)</span>
+						</div>
+					</div>
+					<div class="col">
+						<div class="chave-valor">
+							<label>Valor Desconto</label>
+							<span>$monetario.format($requisicao.vlrdescontos)</span>
+						</div>
+					</div>
+					<div class="col">
+						<div class="chave-valor">
+							<label>Valor Acréscimo</label>
+							<span>$monetario.format($requisicao.vlracrescimos)</span>
+						</div>
+					</div>
+					<div class="col">
+						<div class="chave-valor">
+							<label>Valor Líquido</label>
+							<span>$monetario.format($requisicao.vlrliqreq)</span>
+						</div>
+					</div>
+					<div class="clear-both">
+					</div>
+				</div>
+			</div>
+			
+			<!--Itens -->
+			<div class="secao">
+				<h4 class="titulo">Itens</h4>
+				<div class="conteudo">
+					<table>
+						<thead>
+							<tr>
+								<th style="width: 10%">Cód.</th>
+								<th>Descri��o</th>
+								<th style="width: 10%">Quant.</th>
+								<th style="width: 20%">Vlr. Unitário</th>
+								<th style="width: 20%">Vlr. Total</th>
+							</tr>	
+						</thead>
+						<tbody>
+							#foreach($item in $requisicao.orReqitensdespesas)
+							<tr>
+								<td>$item.codproduto</td>
+								<td>$item.descricao</td>
+								<td>$item.quantidade</td>
+								<td>$monetario.format($item.vlritem)</td>
+								<td>$monetario.format($item.vlrtotal)</td>
+							</tr>	
+							#end				
+						</tbody>
+					</table>
+				</div>
+			</div>
+			
+			<!--Valida��o -->
+			<div class="secao">
+				<h4 class="titulo">Validação</h4>
+				<div class="conteudo validacao">
+					<div class="col">
+						<div class="chave-valor">
+							<label>Box</label>
+							<span>$formatUtils.seNuloSubstitui($recebimento.box, '')</span>
+						</div>
+					</div>
+					<div class="col">
+						<div class="chave-valor">
+							<label>Nº Nota</label>
+							<span>$formatUtils.seNuloSubstitui($recebimento.nroNota, '')</span>
+						</div>
+					</div>
+					<div style="clear: both; width:100%">
+						<div class="chave-valor">
+							<label>Conferentes</label>
+							<span>$formatUtils.seNuloSubstitui($recebimento.conferentes, '')</span>
+						</div>
+					</div>
+					<div style="clear: both; width:100%">
+						<div class="chave-valor">
+							<label>Descarregadores</label>
+							<span>$formatUtils.seNuloSubstitui($recebimento.descarregadores, '')</span>
+						</div>
+					</div>
+					<div class="clear-both">
+					</div>
+				</div>
+			</div>
+			
+			<!--Diverg�ncias -->
+			<div class="secao">
+				<h4 class="titulo">Divergências</h4>
+				<div class="conteudo divergencias">
+					<div class="col">
+						<div class="chave-valor">
+							<label>Possui Diverg�ncias?</label>
+							<span>$recebimento.IsDivergencia</span>
+						</div>
+					</div>
+					<div class="col">
+						<div class="chave-valor">
+							<label>Categoria</label>
+							<span>$formatUtils.seNuloSubstitui($recebimento.tipoDivergencia, '')</span>
+						</div>
+					</div>
+					<!-- 
+					<div class="col">
+						<div class="chave-valor">
+							<label>Anexar documento - Nota com diverg�ncia</label>
+							<span>qualquer-coisa.pdf</span>
+						</div>
+					</div>
+					 -->
+					 
+					<div class="clear-both"></div>
+					<div>
+						<div class="chave-valor">
+							<label>Descrição</label>
+							<span>$formatUtils.seNuloSubstitui($recebimento.motivoOuJustificativaDivergencia, '   ')</span>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- 
+			<div class="secao">
+				<h4 class="titulo">Aprovar Recebimento de Pedido</h4>
+				<div class="conteudo aprovar-recebimento-pedido">
+					<div class="descricao">
+						O pedido com diverg�ncia parcial do solicitante <b>12121212 Fulano de tal</b> foi aprovado por <b>787877 Siclano de tal</b>
+					</div>
+					<div class="comentarios-aprovador">
+						<div class="chave-valor">
+							<label>Coment�rio do Aprovador</label>
+							<span>
+								
+							</span>
+						</div>
+					</div>
+				</div>
+			</div>			
+			-->
+
+		</div>
+
+		<!-- 
+		<div class="rodape">
+			<div class="paginacao">			
+				P�gina 1 de 1
+			</div>
+			<div class="emitido-em">
+				Emitido em: 10/08/2016 �s 10:10:10
+			</div>
+		</div>
+		 -->
+	</div>
+</body>
+</html>

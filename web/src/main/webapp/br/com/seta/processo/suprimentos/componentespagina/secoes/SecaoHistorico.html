@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns:wicket="http://wicket.apache.org">
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+	<wicket:panel>
+			<table class="historico table table-bordered table-hover table-condensed mb-none dataTable no-footer">
+				<thead>
+					<tr>					
+						<th wicket:id="statusOrder">
+							<i class="fa fa-sort-asc"></i> 
+							<i class="fa fa-sort-desc"></i> 
+							<i class="fa fa-sort"></i> 
+							Status
+						</th>
+						<th wicket:id="nomeOrder">
+							<i class="fa fa-sort-asc"></i> 
+							<i class="fa fa-sort-desc"></i> 
+							<i class="fa fa-sort"></i> 
+							Nome
+						</th>
+						<th wicket:id="dataOrder">
+							<i class="fa fa-sort-asc"></i> 
+							<i class="fa fa-sort-desc"></i> 
+							<i class="fa fa-sort"></i> 
+							Data
+						</th>
+						<th wicket:id="motivoOrder">
+							<i class="fa fa-sort-asc"></i> 
+							<i class="fa fa-sort-desc"></i> 
+							<i class="fa fa-sort"></i> 
+							Motivo
+						</th>
+						<th>						
+							Comentário
+						</th>					
+					</tr>
+				</thead>
+				<tbody>
+					<tr wicket:id="historicoDataView">
+						<td><span wicket:id="satus">[satus]</span></td>
+						<td><span wicket:id="nome">[nome]</span></td>
+						<td><span wicket:id="data">[data]</span></td>
+						<td><span wicket:id="motivo">[motivo]</span></td>
+						<td><span wicket:id="comentario" class="comentarios-historico">[comentario]</span></td>
+					</tr>
+				</tbody>
+			</table>
+	</wicket:panel>
+</body>
+</html>
+
+
+<table class="historico table table-bordered table-hover table-condensed mb-none dataTable no-footer">
+										<thead>
+											<tr>
+												<th wicket:id="DisplayStatus">
+													<i class="fa fa-sort-asc"></i> 
+													<i class="fa fa-sort-desc"></i> 
+													<i class="fa fa-sort"></i> 
+													Status
+												</th>
+												<th wicket:id="DisplayNome">
+													<i class="fa fa-sort-asc"></i> 
+													<i class="fa fa-sort-desc"></i> 
+													<i class="fa fa-sort"></i> 	
+													Nome
+												</th>
+												<th wicket:id="displayData">
+													<i class="fa fa-sort-asc"></i> 
+													<i class="fa fa-sort-desc"></i> 
+													<i class="fa fa-sort"></i> 
+													Data
+												</th>
+												<th wicket:id="DisplayMotivo">
+													<i class="fa fa-sort-asc"></i> 
+													<i class="fa fa-sort-desc"></i> 
+													<i class="fa fa-sort"></i> 
+													Motivo
+												</th>
+												<th>Comentário</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr wicket:id="sortingHistorico">
+												<td> <span wicket:id="satus">[satus]</span></td> 
+												<td> <span wicket:id="nome">[nome]</span></td>
+												<td> <span wicket:id="data">[data]</span></td>
+												<td> <span wicket:id="motivo">[motivo]</span></td>
+												<td> <span wicket:id="comentario" class="comentarios-historico">[comentario]</span></td>
+											</tr>										
+										</tbody>
+									</table>

@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns:wicket="http://wicket.apache.org">
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+	<wicket:panel>	
+		<button class="btn btn-primary" type="button" data-toggle="modal" data-backdrop="static" data-keyboard="false"
+			data-target="#confirmacaoSalvar">
+			<i class="fa fa-floppy-o"></i> Salvar
+		</button>
+		<button class="btn btn-primary" type="button" data-toggle="modal" data-backdrop="static" data-keyboard="false"
+			data-target="#comentariosRejeicaoModal">
+			<i class="fa fa-times"></i> Rejeitar
+		</button>
+		<button class="btn btn-primary" type="button" data-toggle="modal" data-backdrop="static" data-keyboard="false"
+			data-target="#confirmacaoAprovar">
+			<i class="fa fa-check"></i> Aprovar
+		</button>
+		
+		<!--início: Modal Confirmação Salvar -->
+		<div id="confirmacaoSalvar" class="modal in" role="dialog">
+			<div class="vertical-alignment-helper">
+				<div class="modal-dialog vertical-align-center confirmacao">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h4 class="modal-title">Confirmação</h4>
+						</div>
+						<div class="modal-body">
+							<div class="modal-wrapper">
+								<div class="modal-icon">
+									<i class="fa fa-question-circle"></i>
+								</div>
+								<div class="modal-text">Tem certeza que deseja salvar os dados?</div>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button wicket:id="salvarBtn" type="button" class="btn btn-primary" data-dismiss="modal">
+								<i class="fa fa-check"></i> Sim
+							</button>
+							<button type="button" class="btn btn-danger" data-dismiss="modal">
+								<i class="fa fa-times"></i> Não
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--fim: Modal Confirmação Salvar -->
+
+		<!-- início: Modal comentários rejeição -->
+		<div id="comentariosRejeicaoModal" class="modal" role="dialog">
+			<div class="vertical-alignment-helper">
+				<div class="modal-dialog vertical-align-center">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h4 class="modal-title">Rejeição - Comentários</h4>
+						</div>
+						<div class="modal-body">
+							<div class="row">
+								<div class="col-sm-12">
+									<div class="form-group form-group-sm">
+										<label class="control-label col-sm-2">Comentários</label>
+										<div class="col-sm-10">
+											<textarea wicket:id="comentariosRejeicao" class="form-control comentarios" rows="4"></textarea>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button class="btn btn-primary" type="button" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#confirmacaoRejeitar" data-dismiss="modal">
+								<i class="fa fa-envelope-o"></i> Enviar
+							</button>
+							<button type="button" class="btn btn-primary" data-dismiss="modal" onclick="limparCampoComentarios()">
+								<i class="fa fa-times"></i> Fechar
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- fim: Modal comentários rejeição -->
+
+		<!--início: Modal Confirmação Rejeição -->
+		<div id="confirmacaoRejeitar" class="modal in" role="dialog">
+			<div class="vertical-alignment-helper">
+				<div class="modal-dialog vertical-align-center confirmacao">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h4 class="modal-title">Confirmação</h4>
+						</div>
+						<div class="modal-body">
+							<div class="modal-wrapper">
+								<div class="modal-icon">
+									<i class="fa fa-question-circle"></i>
+								</div>
+								<div class="modal-text">Tem certeza que deseja rejeitar a solicitação de pagamento?</div>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button wicket:id="rejeitarBtn" type="button" class="btn btn-primary" data-dismiss="modal">
+								<i class="fa fa-check"></i> Sim
+							</button>
+							<button type="button" class="btn btn-danger" data-dismiss="modal" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#comentariosRejeicaoModal">
+								<i class="fa fa-times"></i> Não
+							</button>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--fim: Modal Confirmação Rejeição -->
+		
+		<!--início: Modal Confirmação Aprovação -->
+		<div id="confirmacaoAprovar" class="modal in" role="dialog">
+			<div class="vertical-alignment-helper">
+				<div class="modal-dialog vertical-align-center confirmacao">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h4 class="modal-title">Confirmação</h4>
+						</div>
+						<div class="modal-body">
+							<div class="modal-wrapper">
+								<div class="modal-icon">
+									<i class="fa fa-question-circle"></i>
+								</div>
+								<div class="modal-text">Tem certeza que deseja aprovar a solicitação de pagamento?</div>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button wicket:id="aprovarBtn" type="button" class="btn btn-primary" data-dismiss="modal">
+								<i class="fa fa-check"></i> Sim
+							</button>
+							<button type="button" class="btn btn-danger" data-dismiss="modal">
+								<i class="fa fa-times"></i> Não
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--fim: Modal Confirmação Aprovação -->
+
+		<!--início: Modal Sucesso -->
+		<div id="sucessoEnvioConsincoModal" class="modal" role="dialog">
+			<div class="vertical-alignment-helper">
+				<div class="modal-dialog sucesso vertical-align-center">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h4 class="modal-title">Sucesso</h4>
+						</div>
+						<div class="modal-body">
+							<div class="modal-wrapper">
+								<div class="modal-icon">
+									<i class="fa fa-check"></i>
+								</div>
+								<div class="modal-text">
+									<h4>Integração com a Consinco Realizada com Sucesso</h4>
+									<p>
+										Código gerado para o título: <b><span wicket:id="codTitulo"></span></b>
+									</p>
+								</div>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button wicket:id="sucessoOkBtn" type="button" class="btn btn-success">OK</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--fim: Modal Sucesso -->
+	</wicket:panel>
+</body>
+</html>

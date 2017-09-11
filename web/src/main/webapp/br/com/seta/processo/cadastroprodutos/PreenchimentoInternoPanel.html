@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:wicket="http://wicket.apache.org">
+<head>
+<title>Visualizar Planilha</title>
+</head>
+<body>
+	<wicket:panel>
+		<div class="secao">
+			<div class="cabecalho-secao">Dados do responsável pelo
+				preenchimento</div>
+			<div class="corpo-secao">
+				<div class="row">
+					<div class="col-sm-4">
+						<div class="form-group form-group-sm">
+							<label class="control-label col-sm-3">Nome</label>
+							<div class="col-sm-9">
+								<input wicket:id="nomeRespPreench" type="text"
+									class="form-control" />
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="form-group form-group-sm">
+							<label class="control-label col-sm-3">E-mail</label>
+							<div class="col-sm-9">
+								<input wicket:id="emailSolicitante" type="text"
+									class="form-control" />
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="form-group form-group-sm">
+							<label class="control-label col-sm-3">Telefone</label>
+							<div class="col-sm-9">
+								<input wicket:id="telefoneSolicitante" type="text"
+									class="form-control" />
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="secao">
+			<div class="cabecalho-secao">Solicitação</div>
+			<div class="corpo-secao">
+				<div class="row">
+					<div class="col-sm-4">
+						<div class="form-group form-group-sm">
+							<label class="control-label col-sm-3">Área</label>
+							<div class="col-sm-9">
+								<input wicket:id="area" type="text" class="form-control" />
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="form-group form-group-sm">
+							<label class="control-label col-sm-3">Solicitante</label>
+							<div class="col-sm-9">
+								<div wicket:id="nomeSolicitante">
+									<label wicket:id="bootstrapCustomSelect" class="glyphicon custom-select"> 
+										<select wicket:id="nomeSolicitanteDDC" class="form-control combo"></select>
+									</label>
+									
+									<input wicket:id="nomeSolicitanteTF" type="text" class="form-control" />
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="form-group form-group-sm">
+							<label class="control-label col-sm-3">Data/Hora</label>
+							<div class="col-sm-9">
+								<input wicket:id="dataSolicitacao" class="form-control" />
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-12">
+						<div class="form-group form-group-sm">
+							<label class="control-label col-sm-1">Descrição</label>
+							<div class="col-sm-11">
+								<textarea wicket:id="descricao" class="form-control" rows="4"
+									cols="40"></textarea>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-4">
+						<div class="form-group form-group-sm">
+							<label class="control-label col-sm-3">Acordo Comercial</label>
+							<div class="col-sm-3">
+								<div wicket:id="acordoComercial">
+									<div class="radio-custom radio-primary">
+										<input wicket:id="acordoComercial_0" type="radio"
+											name="rdbacordoComercial" /> <label
+											for="rdbacordoComercial_Sim">Sim</label>
+									</div>
+									<div class="radio-custom radio-primary">
+										<input wicket:id="acordoComercial_1" type="radio"
+											name="rdbacordoComercial" /> <label
+											for="rdbacordoComercial_Nao">Não</label>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-4">
+						<div class="form-group form-group-sm">
+							<label class="control-label col-sm-3">Nº Acordo</label>
+							<div class="col-sm-9">
+								<input wicket:id="nroAcordo" class="form-control" />
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- 
+		<div wicket:id="secaoAprovacao" class="secao">
+			<div class="cabecalho-secao">Aprovação Comercial - Aprovado</div>
+			<div class="corpo-secao">
+				<div class="row">
+					<div class="col-sm-4">
+						<div class="form-group form-group-sm">
+							<label class="control-label col-sm-3">Nome</label>
+							<div class="col-sm-9">
+								<span wicket:id="nomeAprovador" class="form-control disabled"></span>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="form-group form-group-sm">
+							<label class="control-label col-sm-3">Data/Hora</label>
+							<div class="col-sm-9">
+								<span wicket:id="dataAprovacao" class="form-control disabled"></span>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-12">
+						<div class="form-group form-group-sm">
+							<label class="control-label col-sm-1">Comentário</label>
+							<div class="col-sm-11">
+								<textarea wicket:id="comentariosAprovador" class="form-control"
+									rows="4" cols="40" disabled="disabled"></textarea>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>		
+		 -->
+	</wicket:panel>
+</body>
+</html>

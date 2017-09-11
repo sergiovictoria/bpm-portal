@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns:wicket="http://wicket.apache.org">
+<head>
+<meta charset="UTF-8">
+</head>
+<body> 
+	<wicket:panel>
+		
+		<div id="secaoRateioCusto" class="secao">
+			<div class="cabecalho-secao">Títulos de Obrigação</div>
+			<div class="corpo-secao">
+			
+				<div class="row">
+					<div class="col-md-3">
+						<div class="form-group form-group-sm">
+							<label class="control-label col-sm-3">Tipo</label>
+						    <div class="col-sm-9">
+						    	<label class="glyphicon custom-select">
+						    		<select wicket:id="cmbTipo" class="form-control combo"></select>
+						    	</label>
+						    </div>
+						</div>
+					</div>
+					<div class="col-md-2" style="text-align: left;">
+						<button wicket:id="btnIncluirLcto" class="btn btn-success" type="button">
+							<i class="fa fa-check"></i> Gerar
+						</button>
+					</div>
+				</div>
+				
+				<div wicket:id="grpPrazo">
+					<div class="row" wicket:id="grpCamposPrazo">
+						<div class="col-md-4">
+							<div class="form-group form-group-sm">
+								<label class="col-sm-2 control-label">Prazo</label>
+								<div class="col-sm-7 text-left">
+									<input type="text" wicket:id="txtPrazoDias" class="form-control"/>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div wicket:id="grpParcelas">
+					<div class="row" wicket:id="grpCamposParcelados">
+						<div class="col-md-3">
+							<div class="form-group form-group-sm">
+								<label class="col-sm-5 control-label">Qtd Parcelas</label>
+								<div class="col-sm-7 text-left">
+									<input type="text" wicket:id="txtQtdParcelas" class="form-control" />
+								</div>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="form-group form-group-sm">
+								<label class="col-sm-5 control-label">Dias entre Vcto.</label>
+								<div class="col-sm-7 text-left">
+									<input type="text" wicket:id="txtQtdDias" class="form-control" />
+								</div>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="form-group form-group-sm">
+								<label class="col-sm-5 control-label">Vcto. Inicial</label>
+								<div class="col-sm-7 text-left">
+									<input type="text" wicket:id="txtDataVencimento" class="form-control date" />
+								</div>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="checkbox-custom checkbox-primary" >
+								<input type="checkbox" wicket:id="chkGeraFixo" id="chkGeraFixo"/>
+								<label for="chkGeraFixo" /> Gera dia fixo
+							 </div>
+						</div>
+					</div>
+				</div>
+				
+				
+				<div class="row">
+					<div class="col-md-12" wicket:id="rptLctos">
+						<table id="tabelaRateios" class="table table-bordered table-hover table-condensed mb-none dataTable">
+							<thead>
+								<tr>
+									<th>Parcela</th>
+									<th>Data Vencimento</th>
+									<th>Data Programada</th>
+									<th>Valor Total</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr wicket:id="dtvLctos">
+									<td><span wicket:id="parcela">[PARCELA]</span></td>
+									<td><span wicket:id="dataVencimento">[DATA VENCIMENTO]</span></td>
+									<td><span wicket:id="dataProgramada">[DATA PROGRAMADA]</span></td>
+									<td><span wicket:id="valorLiquido">[VALOR TOTAL]</span></td>
+								</tr>
+							</tbody>
+							<tfoot>
+								<tr>
+									<td colspan="3"></td>
+									<td><span wicket:id="totalLcto" style="font-weight: bold;">[TOTAL]</span></td>
+								</tr>
+							</tfoot>
+						</table>
+					</div><!-- fim .col-md-12 -->
+				</div> <!-- fim .row -->
+			</div>
+		</div>
+
+	</wicket:panel>
+</body>
+</html>

@@ -1,0 +1,41 @@
+.secao-fonte-pagadora{
+	padding-right: 5px;
+	float:left;
+	width: 50%;
+}
+
+.secao-categoria{
+    padding-left: 5px;
+	float:right;
+	width: 50%;
+}
+
+.secao-fonte-pagadora .dataview-navigator, .secao-categoria .dataview-navigator{
+	margin-right: 30px;
+} 
+
+.secao-fonte-pagadora .alertaContainer, .secao-categoria .alertaContainer{
+	margin-right: 30px;
+	margin-left: 30px;
+}
+
+.secao-configuracoes{
+	float:left;
+	width: 50%;
+	clear: both;
+}
+
+table td.tdCheck{
+	text-align: center;
+}
+
+table.historico{
+	/*table-layout: fixed;*/
+}
+
+table.historico  td > span.comentarios{
+	text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    display: block;
+}

@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns:wicket="http://wicket.apache.org">
+<head>
+<meta charset="UTF-8">
+</head>
+<body> 
+	<wicket:panel>
+		<div class="row">
+			<div wicket:id="secaoBuscaNaturezaDespesa" class="col-sm-12">
+				<div class="form-group form-group-sm">
+					<label class="control-label col-sm-3">Natureza de Despesa</label>
+					<div class="col-sm-5">
+						<div class="input-group input-group-sm">
+							<input wicket:id="naturezaDespesa" type="text" class="form-control" />
+							<div class="input-group-btn">
+								<button wicket:id="abrirModalBuscaNaturezas" type="button" class="btn btn-primary btn-sm" data-target="#buscaNaturezaDespesa" data-toggle="modal" data-backdrop="static" data-keyboard="false">
+									<i class="fa fa-search"></i>
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>	
+		<div wicket:id="secaoCentroCusto" class="secao">
+			<div class="cabecalho-secao">Centro de Custo</div>
+			<div class="corpo-secao">
+				<div wicket:id="tabelaCentroCusto">
+					<table class="table table-bordered table-hover table-condensed mb-none dataTable no-footer">
+						<thead>
+							<tr>
+								<th>Linha</th>
+								<th>Centro de Custo</th>
+								<th>Conta Débito</th>
+								<th>Conta Crédito</th>
+								<th>Histórico</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr wicket:id="centrosCustos">
+								<td><span wicket:id="linhaLbl"></span></td>
+								<td><span wicket:id="centroCustoLbl"></span></td>
+								<td><span wicket:id="contaDebitoLbl"></span></td>
+								<td><span wicket:id="contaCreditoLbl"></span></td>
+								<td><span wicket:id="historico"></span></td>
+								<td style="text-align: center">
+									<a wicket:id="addCentroCustoBtn"><i class="fa fa-plus" aria-hidden="true"></i></a>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div wicket:id="secaoRateioCusto" class="secao">
+			<div class="cabecalho-secao">Rateio Centro de Custo</div>
+			<div class="corpo-secao">
+				<table wicket:id="tabelaRateios" class="table table-bordered table-hover table-condensed mb-none dataTable no-footer">
+					<thead>
+						<tr>
+							<th>Linha</th>
+							<th>Centro de Custo</th>
+							<th>Conta Débito</th>
+							<th>Conta Crédito</th>
+							<th>Histórico</th>
+							<th>Porcentagem</th>
+							<th>Valor</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr wicket:id="rateios">
+							<td><span wicket:id="linhaLbl"></span></td>
+							<td><span wicket:id="centroCustoLbl"></span></td>
+							<td><span wicket:id="contaDebitoLbl"></span></td>
+							<td><span wicket:id="contaCreditoLbl"></span></td>
+							<td><span wicket:id="historicoLbl"></span></td>
+							<td><input wicket:id="porcentagem" type="text" style="width: 100%"></td>
+							<td><span wicket:id="valorLbl"></span></td>
+							<td style="text-align: center">
+								<a wicket:id="excluirBtn"><i class="fa fa-trash" aria-hidden="true"></i></a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+		<!-- início: dialog busca de natureza despesa  -->
+		<div id="buscaNaturezaDespesa" class="modal" role="dialog">
+			<div class="vertical-alignment-helper">
+				<div wicket:id="buscaNaturezaDespesaModal" class="modal-dialog vertical-align-center">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h4 class="modal-title">Itens</h4>
+						</div>
+						<div class="modal-body">
+							<div class="row">
+								<div class="col-sm-12">
+									<div class="form-group form-group-sm">
+										<label class="control-label col-sm-2">Buscar</label>
+										<div class="col-sm-10">
+											<div class="input-group input-group-sm">
+												<input wicket:id="filtroNaturezaDespesa" type="text" class="form-control">
+												<span class="input-group-btn">
+													<button wicket:id="buscaNaturezaBtn" class="btn btn-primary" type="button">
+														<i class="fa fa-search"></i>
+													</button>
+												</span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="separador"></div>
+							<div wicket:id="tabelaNaturezaDespesa">
+								<table class="table table-bordered table-hover table-condensed mb-none" id="datatable-default">
+									<thead>
+										<tr>
+											<th>Código</th>
+											<th>Descrição</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr wicket:id="naturezas">
+											<td><span wicket:id="idLbl"></span></td>
+											<td><span wicket:id="descricaoLbl"></span></td>
+										</tr>
+									</tbody>
+								</table>
+
+								<div class="row">
+									<div class="col-sm-12">
+										<div wicket:id="naturezaNavigator" class="dataview-navigator"></div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div wicket:id="msgNaturezasNaoEncontrados" class="alertaContainer alert alert-info">Não foram encontrados resultados</div>
+							</div>
+
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-danger" data-dismiss="modal">
+								<i class="fa fa-times"></i> Fechar
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- fim: dialog busca de natureza despesa  -->
+	</wicket:panel>
+</body>
+</html>

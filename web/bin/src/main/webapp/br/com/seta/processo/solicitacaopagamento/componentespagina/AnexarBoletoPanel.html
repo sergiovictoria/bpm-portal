@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns:wicket="http://wicket.apache.org">
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+	<wicket:panel>
+		<div class="form-group form-group-sm">
+			<label class="control-label col-sm-1">Anexo boleto</label>
+			<div class="col-sm-6 form-value">
+				<div class="fileupload fileupload-new" data-provides="fileupload">
+					<div class="input-append">
+						<div class="input-group input-group-sm">
+							<div class="uneditable-input form-control">
+								<span class="fa fa-file fileupload-exists"></span> <span class="fileupload-preview"></span>
+							</div>
+							<span class="input-group-btn"> <span class="btn btn-primary btn-file"> <span class="fileupload-exists"> <i
+										class="fa fa-refresh"> </i> Trocar
+								</span> <span class="fileupload-new"> <i class="fa fa-search"></i>
+								</span> <input type="file" wicket:id="anexoField" />
+							</span>
+								<button class="btn btn-primary fileupload-exists" data-dismiss="fileupload">
+									<i class="fa fa-trash-o"></i> Remover
+								</button>	
+							</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</wicket:panel>
+</body>
+</html>

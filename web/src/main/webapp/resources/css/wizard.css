@@ -1,0 +1,50 @@
+/* inicio: Estilo específico do WIZARD */
+/* Wizard */
+.wizard-steps > li.active .badge {
+	background-color: #044687;
+}
+html .wizard-progress .wizard-steps li.active a span
+{
+	color: #044687;
+	border-color: #044687;
+}
+.wizard-steps > li.active a,
+.wizard-steps > li.active a:hover,
+.wizard-steps > li.active a:focus {
+	border-top-color: #044687;
+}
+.wizard-tabs ul > li.active .badge {
+	background-color: #044687;
+}
+html .wizard-progress .steps-progress .progress-indicator
+{
+	background: #044687;
+}
+html .wizard-progress .wizard-steps li.completed a span
+{
+	border-color: #044687;
+	background: #044687;
+}
+
+html .wizard-progress .wizard-steps li.active a span
+{
+	border-color: #044687;
+	background: #fff;
+	color: #044687 !important;
+}
+
+a:hover, a:focus {
+	color: #044687;
+	text-decoration: underline;
+}
+a:active, a:hover {
+	outline: 0;
+}
+a {
+	color: #044687;
+	text-decoration: none;
+}
+
+.pager {
+	margin: 0;
+}

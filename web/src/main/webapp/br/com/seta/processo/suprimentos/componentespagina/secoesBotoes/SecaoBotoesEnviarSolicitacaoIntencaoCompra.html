@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns:wicket="http://wicket.apache.org">
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+	<wicket:panel>
+		<button class="btn btn-primary" type="button" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#envioSolicitacaoModal">
+			<i class="fa fa-envelope-o" aria-hidden="true"></i> Enviar
+		</button>
+		<!--início: Modal Envio -->
+		<div id="envioSolicitacaoModal" class="modal in" role="dialog">
+			<div class="vertical-alignment-helper">
+				<div class="modal-dialog vertical-align-center confirmacao">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h4 class="modal-title">Confirmação</h4>
+						</div>
+						<div class="modal-body">
+							<div class="modal-wrapper">
+								<div class="modal-icon">
+									<i class="fa fa-question-circle"></i>
+								</div>
+								<div class="modal-text">Tem certeza que deseja enviar a solicitação?</div>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button wicket:id="enviarBtn" type="button" class="btn btn-primary" data-dismiss="modal">
+								<i class="fa fa-check"></i> Sim
+							</button>
+							<button type="button" class="btn btn-danger" data-dismiss="modal">
+								<i class="fa fa-times"></i> Não
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--fim: Modal Envio -->
+		
+		<div wicket:id="bloqueioModal"></div>
+	</wicket:panel>
+</body>
+</html>

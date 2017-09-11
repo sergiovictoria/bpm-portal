@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:wicket="http://wicket.apache.org" class="fixed sidebar-left-collapsed">
+<head>
+	<title>Processos</title>
+	
+	<link rel="shortcut icon" href="resources/img/seta/seta_icon.png" type="image/png" />
+	
+	<!-- Basic -->
+	<meta charset="UTF-8"></meta>
+	
+	<!-- Mobile Metas -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	
+	<!-- Web Fonts  -->
+	<link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800|Shadows+Into+Light" rel="stylesheet" type="text/css" />
+
+	<!-- Vendor CSS -->
+	<link rel="stylesheet" href="resources/assets/vendor/bootstrap/css/bootstrap.css" />
+	
+	<link rel="stylesheet" href="resources/assets/vendor/font-awesome/css/font-awesome.css" />
+	<link rel="stylesheet" href="resources/assets/vendor/elusive-icons/css/elusive-icons.css" />
+	<link rel="stylesheet" href="resources/assets/magnific-popup/magnific-popup.css" />
+	<link rel="stylesheet" href="resources/assets/vendor/bootstrap-datepicker/css/bootstrap-datepicker3.css" />
+	<link rel="stylesheet" href="resources/assets/vendor/select2/css/select2.css" />
+	<link rel="stylesheet" href="resources/assets/vendor/select2-bootstrap-theme/select2-bootstrap.css" />
+	<link rel="stylesheet" href="resources/assets/vendor/jquery-datatables-bs3/assets/css/datatables.css" />
+	<link rel="stylesheet" href="resources/assets/vendor/bootstrap-fileupload/bootstrap-fileupload.min.css" />
+	<link rel="stylesheet" href="resources/assets/vendor/select2/css/select2.css" />
+	<link rel="stylesheet" href="resources/assets/vendor/select2-bootstrap-theme/select2-bootstrap.css" />
+	<link rel="stylesheet" href="resources/assets/vendor/bootstrap-multiselect/bootstrap-multiselect.css" />
+	
+	<!-- Notificações -->
+	<link rel="stylesheet" href="resources/assets/vendor/pnotify/pnotify.custom.css" />	
+	
+	<!-- Select2 -->
+    <link rel="stylesheet" href="resources/assets/select2/select2.min.css" />
+	
+	<!-- Specific Page Vendor CSS -->
+	<link rel="stylesheet" href="resources/assets/vendor/jstree/themes/default/style.css" />
+
+	<!-- Theme CSS -->
+	<link rel="stylesheet" href="resources/assets/stylesheets/theme.css" />
+
+	<!-- Theme Custom CSS -->
+	<link rel="stylesheet" href="resources/assets/stylesheets/theme-custom.css" />
+	
+	<!-- Head Libs -->
+	<script src="resources/assets/vendor/modernizr/modernizr.js"></script>	
+	
+	<link rel="stylesheet" href="resources/assets/custom/estilo.css" />
+	
+	<!-- Estilo específico da aplicação de processos-->
+	<link rel="stylesheet" href="resources/css/override-template.css"></link>
+	<link rel="stylesheet" href="resources/css/processos.css"></link>
+	
+	<script type="text/javascript" src="resources/assets/jquery/dist/jquery-1.11.3.min.js"></script>
+	
+</head>
+<body>
+	<!-- INICIO DIV MASTER -->	
+	<!-- Blqueio de interface-->
+	<span wicket:id="bloqueioMb"></span>
+	
+	<!--Início: Dialog para apresentar mensagens de erros de validação  -->	
+	<div id="modalMensagemErro" class="modal" role="dialog">
+		<div class="vertical-alignment-helper">
+			<div wicket:id="msgErroContainer" class="modal-dialog erro vertical-align-center">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 wicket:id="cabecalhoModalErro" class="modal-title">Erro</h4>
+					</div>
+					<div class="modal-body">
+						<div class="modal-wrapper">
+							<div class="modal-icon">
+								<i class="fa fa-times-circle"></i>
+							</div>
+							<div class="modal-text">
+								<h4 wicket:id="cabelhoMsgErro">Os seguintes erros foram encontrados: </h4>
+								<p wicket:id="msgsErroRepeatingView">[Mensagem de erro]</p>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-danger" data-dismiss="modal">OK</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--Fim: Dialog para apresentar mensagens de erros de validação  -->
+
+	<!--Início: Dialog Atenção -->
+	<div id="modalMensagemAtencao" class="modal" role="dialog">
+		<div class="vertical-alignment-helper">
+			<div wicket:id="msgAtencaoContainer" class="modal-dialog atencao vertical-align-center">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 wicket:id="cabecalhoModalAtencao" class="modal-title">Atencao</h4>
+					</div>
+					<div class="modal-body">
+						<div class="modal-wrapper">
+							<div class="modal-icon">
+								<i class="fa fa-warning"></i>
+							</div>
+							<div class="modal-text">
+								<h4 wicket:id="cabelhoMsgAtencao"></h4>
+								<p wicket:id="msgsAtencaoRepeatingView">[Mensagem de erro]</p>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-warning" data-dismiss="modal">OK</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--Fim: Dialog Atenção  -->
+
+	<!--Início: Modal de Carregamento  -->
+	<div class="modal" id="carregamentoModal" role="dialog">
+		<div class="vertical-alignment-helper">
+		  <div class="modal-dialog modal-sm vertical-align-center">
+		    <div class="modal-content">
+		      <div class="modal-body" style="text-align: center">
+		      	<img src="resources/img/loading/712.GIF" />
+		      </div>
+		    </div>
+		  </div>
+		 </div>
+	</div>
+	<!--Fim: Modal de Carregamento  -->
+	
+	<div align="center">
+		<div id="master">
+			<!-- start: header -->
+			<header class="header">
+				<div class="logo-container">					
+					<a class="logo">
+						<img src="resources/assets/images/seta/LogoSeta.png" height="35" alt="Seta Atacadista" />
+					</a>
+					
+					<div class="visible-xs toggle-sidebar-left" data-toggle-class="sidebar-left-opened" data-target="html" data-fire-event="sidebar-left-opened">
+						<i class="fa fa-bars" aria-label="Toggle sidebar"></i>
+					</div>
+				</div>
+									
+				<!-- start: user box -->
+				<div class="header-right">
+					<span class="separator"></span>
+					<div id="userbox" class="userbox">
+						<a href="#" data-toggle="dropdown" aria-expanded="false">
+							<figure class="profile-picture">
+                            	<!-- <img src="resources/assets/images/!logged-user.jpg" class="img-circle" /> -->
+                            	<i class="fa fa-user" aria-hidden="true" style="font-size: 30px;"></i>
+							</figure>
+							<div class="profile-info">
+								<!-- <div class="profile-info" data-lock-name="John Doe" data-lock-email="johndoe@okler.com">  -->
+								<span wicket:id="usuarioLogado" class="name">User</span> 
+								<!-- <span class="role">administrator</span>  -->
+							</div>
+							<i class="fa custom-caret"></i>
+						</a>
+						
+						<div class="dropdown-menu">
+							<ul class="list-unstyled">
+								<li class="divider"></li>
+								<li>
+									<a wicket:id="perfilUsuario" role="menuitem" tabindex="-1"><i class="fa fa-user"></i> Meu Perfil</a>
+								</li>
+								<li>
+									<a wicket:id="SignOut" role="menuitem" tabindex="-1"><i class="fa fa-power-off"></i> Sair</a>
+								</li>
+							</ul>
+						</div>
+					</div>					
+				</div>
+				<!-- end: user box -->
+					
+			</header>
+			<!-- end: header -->
+			
+			<div class="inner-wrapper">
+				<!-- start: sidebar -->
+				<aside id="sidebar-left" class="sidebar-left">
+				
+					<div class="sidebar-header">
+						<div class="sidebar-title">
+							Navegação
+						</div>
+						<div class="sidebar-toggle hidden-xs" data-toggle-class="sidebar-left-collapsed" data-target="html" data-fire-event="sidebar-left-toggle">
+							<i class="fa fa-bars" aria-label="Toggle sidebar"></i>
+						</div>
+					</div>
+				
+					<div class="nano has-scrollbar">
+						<div class="nano-content" tabindex="0">
+							<nav id="menu" class="nav-main" role="navigation">
+								<ul class="nav nav-main">
+									<li>
+										<a wicket:id="home" href="#">
+											<i class="fa fa-home" aria-hidden="true"></i>
+											<span>Página Inicial</span>
+										</a>
+									</li>
+									<li wicket:id="atividadesAbertas">										
+									</li>
+									<li wicket:id="atividadesEncerradas">										
+									</li>								
+									<li wicket:id="opcaoProcessos" class="nav-parent">
+										<a>
+											<i class="el el-fork" aria-hidden="true"></i>
+											<span>Processos</span>
+										</a>
+										<ul class="nav nav-children">
+											<li wicket:id="processos">
+												<a href="#">
+													<span wicket:id="versaoProcesso" class="pull-right label label-primary">[VERSÃO]</span>		
+													<span wicket:id="nomeProcesso">[NOME_PROCESSO]</span>
+												</a>
+											</li>
+										</ul>
+									</li>
+									<li wicket:id="opcaoRelatorios"></li> 
+									<li wicket:id="opcaoConsultas"> </li>										
+									<li wicket:id="opcaoParametros"></li>
+									<li wicket:id="opcaoServicos"></li>
+								</ul>
+							</nav>
+						</div>
+				
+					</div>
+				
+				</aside>
+				<!-- end: sidebar -->
+				
+				<!-- start: conteúdo  -->
+				<section class="content-body" role="main">
+					<header class="page-header">
+						<h2 wicket:id="tituloPagina" class="tituloPagina">My Task</h2>
+						<span wicket:id="dadosAdicionais" class="dados-adicionais"></span>
+					</header>
+					<div class="row full">						
+						<wicket:child />
+					</div>
+				</section>
+				<!-- end: conteúdo  -->
+				
+			</div>
+			
+			<footer class="footer">
+                <div class="container">
+                </div>
+            </footer>
+		</div>
+		<!-- FIM DA DIV MASTER -->
+	</div>
+		
+	<script type="text/javascript" src="resources/assets/vendor/jquery-browser-mobile/jquery.browser.mobile.js"></script>
+	<script type="text/javascript" src="resources/assets/vendor/nanoscroller/nanoscroller.js"></script>
+		
+	<script type="text/javascript" src="resources/assets/vendor/bootstrap/js/bootstrap.js"></script>
+	<script type="text/javascript" src="resources/assets/moment/min/moment-with-locales.min.js"></script>
+	<script src="resources/assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+	<script src="resources/assets/vendor/magnific-popup/jquery.magnific-popup.js"></script>
+	<script src="resources/assets/vendor/jquery-placeholder/jquery-placeholder.js"></script>
+	<script type="text/javascript" src="resources/assets/magnific-popup/jquery.magnific-popup.js"></script>
+	
+	<!-- Specific Page Vendor -->
+	<script src="resources/assets/vendor/jstree/jstree.js"></script>
+	<script src="resources/assets/vendor/ios7-switch/ios7-switch.js"></script>
+	<script src="resources/assets/vendor/select2/js/select2.js"></script>
+	<script src="resources/assets/vendor/jquery-datatables/media/js/jquery.dataTables.js"></script> 
+	<script src="resources/assets/vendor/jquery-datatables/extras/TableTools/js/dataTables.tableTools.min.js"></script> 
+	<script src="resources/assets/vendor/jquery-datatables-bs3/assets/js/datatables.js"></script>  
+	<script src="resources/assets/vendor/bootstrap-fileupload/bootstrap-fileupload.min.js"></script>
+	<script src="resources/assets/vendor/select2/js/select2.js"></script>
+	<script src="resources/assets/vendor/bootstrap-multiselect/bootstrap-multiselect.js"></script>
+	
+	<!-- Theme Base, Components and Settings -->
+	<script src="resources/assets/javascripts/theme.js"></script>
+	
+	<!-- Theme Custom -->
+	<script src="resources/assets/javascripts/theme.custom.js"></script>
+	
+	<!-- Theme Initialization Files -->
+	<script src="resources/assets/javascripts/theme.init.js"></script>
+	
+	<!-- Rich Textarea -->
+	<script src="resources/assets/vendor/summernote/summernote.js"></script>	
+	<!-- Notificações -->
+	<script src="resources/assets/vendor/pnotify/pnotify.custom.js"></script>
+	
+	<script src="resources/assets/jquery-mask-plugin/jquery.mask.min.js"></script>
+	<script src="resources/assets/jquery-maskmoney/jquery.maskMoney.js"></script>
+		
+	<!-- Função acionadas no evento de onload da aplicação de Processos -->
+	<script src="resources/js/processos.js" ></script>	
+    
+	<script type="text/javascript">
+		if (top != self) { 
+			var wicket = top.Wicket; 
+			if (wicket && wicket.Window) { 
+				var modal = wicket.Window.get(); 
+				if (modal) { 
+					modal.close(); 
+				} 
+			} 
+			top.location.href = location.href; 
+		}
+	</script>
+</body>
+</html>

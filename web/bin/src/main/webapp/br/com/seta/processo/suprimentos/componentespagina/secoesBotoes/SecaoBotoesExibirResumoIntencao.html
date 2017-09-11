@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns:wicket="http://wicket.apache.org">
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+	<wicket:panel>
+		<button wicket:id="voltarBtn" class="btn btn-primary" type="button">
+			<i class="fa fa-chevron-left"></i> Voltar
+		</button>
+		<button id="cancelarBtn" class="btn btn-primary" type="button" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#comentariosModal">
+			<i class="fa fa-times" aria-hidden="true"></i> Cancelar
+		</button>
+		<button id="alterarIntencaoBtn" class="btn btn-primary" type="button" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#comentariosModal">
+			<i class="fa fa-pencil-square-o" aria-hidden="true"></i> Alterar Intenção
+		</button>
+		<button id="abrirIntencaoBtn" class="btn btn-primary" type="button" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#comentariosModal">
+			<i class="fa fa-check" aria-hidden="true"></i> Abrir Requisição
+		</button>
+
+		<!-- início: Modal comentários -->
+		<div id="comentariosModal" class="modal in" role="dialog">
+			<div class="vertical-alignment-helper">
+				<div class="modal-dialog vertical-align-center confirmacao">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h4 class="modal-title">Comentários</h4>
+						</div>
+						<div class="modal-body">
+							<div class="secao">
+								<div class="cabecalho-secao">Comentários</div>
+								<div class="corpo-secao">
+									<div class="col-sm-12">
+										<textarea wicket:id="comentariosAprovacao" class="form-control" rows="4" cols="40"></textarea>
+									</div>
+								</div>
+							</div>
+							<div class="row" style="margin-bottom: 10px;"></div>
+						</div>
+						<div class="modal-footer">
+							<button id="submeterComentariosBtn" class="btn btn-primary" type="button" data-dismiss="modal" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#aprovacaoModal">
+								<i class="fa fa-check"></i> Sim
+							</button>
+							<button type="button" class="btn btn-danger" data-dismiss="modal">
+								<i class="fa fa-times"></i> Não
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- fim: Modal comentários -->
+
+		<!--início: Modal Abrir Requisição -->
+		<div id="abrirRequisicaoModal" class="modal in" role="dialog">
+			<div class="vertical-alignment-helper">
+				<div class="modal-dialog vertical-align-center confirmacao">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h4 class="modal-title">Confirmação</h4>
+						</div>
+						<div class="modal-body">
+							<div class="modal-wrapper">
+								<div class="modal-icon">
+									<i class="fa fa-question-circle"></i>
+								</div>
+								<div class="modal-text">Tem certeza que deseja abrir a requisição?</div>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button wicket:id="abrirRequisicaoBtn" type="button" class="btn btn-primary" data-dismiss="modal">
+								<i class="fa fa-check"></i> Sim
+							</button>
+							<button type="button" class="btn btn-danger" data-dismiss="modal" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#aprovacaoHierarquicaModal">
+								<i class="fa fa-times"></i> Não
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--fim: Modal Abrir Requisição -->
+
+		<!--início: Modal Cancelar Requisição -->
+		<div id="cancelarModal" class="modal in" role="dialog">
+			<div class="vertical-alignment-helper">
+				<div class="modal-dialog vertical-align-center confirmacao">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h4 class="modal-title">Confirmação</h4>
+						</div>
+						<div class="modal-body">
+							<div class="modal-wrapper">
+								<div class="modal-icon">
+									<i class="fa fa-question-circle"></i>
+								</div>
+								<div class="modal-text">Tem certeza que deseja cancelar a inteção?</div>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button wicket:id="cancelarBtn" type="button" class="btn btn-primary" data-dismiss="modal">
+								<i class="fa fa-check"></i> Sim
+							</button>
+							<button type="button" class="btn btn-danger" data-dismiss="modal">
+								<i class="fa fa-times"></i> Não
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--fim: Modal Cancelar Requisição -->
+
+		<!--início: Modal alterar inteção -->
+		<div id="alterarIntencaoModal" class="modal in" role="dialog">
+			<div class="vertical-alignment-helper">
+				<div class="modal-dialog vertical-align-center confirmacao">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h4 class="modal-title">Confirmação</h4>
+						</div>
+						<div class="modal-body">
+							<div class="modal-wrapper">
+								<div class="modal-icon">
+									<i class="fa fa-question-circle"></i>
+								</div>
+								<div class="modal-text">Tem certeza que deseja alterar a intenção?</div>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button wicket:id="alterarRequisicaoBtn" type="button" class="btn btn-primary" data-dismiss="modal">
+								<i class="fa fa-check"></i> Sim
+							</button>
+							<button type="button" class="btn btn-danger" data-dismiss="modal" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#aprovacaoHierarquicaModal">
+								<i class="fa fa-times"></i> Não
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--fim: Modal alterar inteção -->
+		
+		<!--início: Modal Sucesso -->
+		<div id="sucessoModal" class="modal" role="dialog">
+			<div class="vertical-alignment-helper">
+				<div wicket:id="sucessoModal" class="modal-dialog sucesso vertical-align-center">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h4 class="modal-title">Sucesso</h4>
+						</div>
+						<div class="modal-body">
+							<div class="modal-wrapper">
+								<div class="modal-icon">
+									<i class="fa fa-check"></i>
+								</div>
+								<div class="modal-text">
+									Integração com a Consinco realizada com sucesso. <br> Número da requisição: 
+									<span wicket:id="nroRequisicao"></span>
+								</div>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button wicket:id="sucessoOkBtn" type="button" class="btn btn-success">OK</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--fim: Modal Sucesso -->
+
+		<script>
+		function GerenciadorModals(){
+			var idModal = "";
+
+			this.abrirModal = function(idModal){
+				$(this.idModal).modal("show");
+			}
+
+			this.setModalSelecionado = function(idModal){
+				this.idModal = idModal; 
+			}
+		}
+
+		var gerenciadorModals = new GerenciadorModals();
+		$("#cancelarBtn").click(function(){gerenciadorModals.setModalSelecionado("#cancelarModal")});
+		$("#alterarIntencaoBtn").click(function(){gerenciadorModals.setModalSelecionado("#alterarIntencaoModal")});
+		$("#abrirIntencaoBtn").click(function(){gerenciadorModals.setModalSelecionado("#abrirRequisicaoModal")});
+		$("#submeterComentariosBtn").click(function(){gerenciadorModals.abrirModal()});
+		</script>
+	</wicket:panel>
+</body>
+</html>

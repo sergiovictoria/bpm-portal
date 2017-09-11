@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns:wicket="http://wicket.apache.org">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title></title>
+</head>
+<body>
+	<wicket:extend>
+	
+		<div class="panel panel-primary">
+			<form wicket:id="form">			
+				<div class="panel-menu">
+					<button class="btn btn-primary" type="button" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#modalFiltro">
+						<i class="fa fa-filter" aria-hidden="true"></i> Filtros
+					</button>
+					
+					<button class="btn btn-primary" type="button" wicket:id="btnImprimirPdf">
+						<i class="fa fa-file-pdf-o" aria-hidden="true"></i> Imprimir
+					</button>
+					
+					<button class="btn btn-primary" type="button" data-toggle="modal" wicket:id="btnImprimirXls">
+						<i class="fa fa-file-excel-o" aria-hidden="true"></i> Exportar Excel
+					</button>
+				</div>
+				<div class="panel-body">
+					
+					<div wicket:id="rptAtividades">
+						<div class="row">
+							<div class="col-md-12">
+								<table class="table table-bordered table-hover table-condensed mb-none historico" id="datatable-default">
+									<thead>
+										<tr>
+											<th>Case ID</th>
+											<th>Processo</th>
+											<th>ID Atividade</th>
+											<th>Atividade</th>
+											<th>Estado</th>
+											<th>Data Instância</th>
+											<th>Início Atividade</th>
+											<th>Fim Atividade</th>
+											<th>Duração</th>
+											<th>Grupo</th>
+											<th>Usuário</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr wicket:id="dtvAtividades">
+											<td><span wicket:id="lblDtvCaseId"></span></td>
+											<td><span wicket:id="lblDtvProcesso"></span></td>
+											<td><span wicket:id="lblDtvIdAtividade"></span></td>
+											<td><span wicket:id="lblDtvAtividade"></span></td>
+											<td><span wicket:id="lblDtvEstado"></span></td>
+											<td><span wicket:id="lblDtvDataInstancia"></span></td>
+											<td><span wicket:id="lblDtvInicioAtividade"></span></td>
+											<td><span wicket:id="lblDtvFimAtividade"></span></td>
+											<td><span wicket:id="lblDtvDuracao"></span></td>
+											<td><span wicket:id="lblDtvAtor"></span></td>
+											<td><span wicket:id="lblDtvUsuario"></span></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12">
+								<span wicket:id="ajaxPagingNavigator" class="dataview-navigator" style="margin-top: 10px;">[NAVIGATOR]</span>
+							</div>
+						</div>
+					</div>
+					
+				</div>
+				
+				
+				
+				
+		<!-- MODAL FILTRO -->			
+		<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" data-backdrop="static" data-keyboard="false" id="modalFiltro" wicket:id="modalFiltro">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header" style="background-image: linear-gradient(#04519b, #044687 60%, #033769);">
+		        <h4 class="modal-title" id="myModalLabel" style="color:#fff;">Filtros</h4>
+		      </div>
+		      <div class="modal-body" style="background: #eeeeee;">
+		      	<div class="row">
+                    <div class="col-md-12">
+                   	  <div class="form-group form-group-sm">
+                         <label class="col-sm-3 control-label">Case ID</label>
+                         <div class="col-sm-3">
+                           <input wicket:id="txtCaseId" type="text" class="form-control">
+                         </div>
+                       </div> 
+                    </div><!-- fim col -->					                    	
+               </div><!-- fim row -->
+               
+		      	<div class="row">
+                   	<div class="col-md-12">
+                   	  <div class="form-group form-group-sm">
+                           <label class="col-sm-3 control-label">Processo</label>
+                           <div class="col-sm-7">
+                               <label class="glyphicon custom-select">
+                                   <select wicket:id="cmbProcesso" class="form-control combo"></select>
+                               </label>
+                           </div>
+                       </div> 
+                      </div><!-- fim col -->					                    	
+                </div><!-- fim row -->
+                
+                <div class="row">
+                   	<div class="col-md-12">
+                   	  <div class="form-group form-group-sm">
+                           <label class="col-sm-3 control-label">Estado</label>
+                           <div class="col-sm-7">
+                               <label class="glyphicon custom-select">
+                                   <select wicket:id="cmbEstado" class="form-control combo"></select>
+                               </label>
+                           </div>
+                       </div> 
+                      </div><!-- fim col -->					                    	
+                </div><!-- fim row -->
+		        <div class="row">
+                    <div class="col-md-12">
+                   	  <div class="form-group form-group-sm">
+                         <label class="col-sm-3 control-label">Período De</label>
+                         <div class="col-sm-3">
+                           <input wicket:id="txtDataDe" id="txtDataDe" type="text" class="form-control" data-plugin-datepicker data-plugin-options='{"language":"pt-BR", "format": "dd/mm/yyyy"}'>
+                         </div>
+                         <label class="col-sm-1 control-label">Até</label>
+                         <div class="col-sm-3">
+                           <input wicket:id="txtDataAte" id="txtDataAte" type="text" class="form-control" data-plugin-datepicker data-plugin-options='{"language":"pt-BR", "format": "dd/mm/yyyy"}'>
+                         </div>
+                       </div> 
+                    </div><!-- fim col -->					                    	
+               </div><!-- fim row -->
+               
+               <div class="row">
+                    <div class="col-md-12">
+                   	  <div class="form-group form-group-sm">
+                         <label class="col-sm-3 control-label">Grupo</label>
+                          <div class="col-sm-7">
+						       <label class="glyphicon custom-select">
+						           <select wicket:id="cmbAtor" class="form-control combo"></select>
+						       </label>
+						   </div>
+                       </div> 
+                    </div><!-- fim col cmbAtor -->					                    	
+               </div><!-- fim row -->
+               
+               <div class="row">
+                    <div class="col-md-12">
+                   	  <div class="form-group form-group-sm">
+                         <label class="col-sm-3 control-label">Usuário</label>
+                          <div class="col-sm-7">
+						       <label class="glyphicon custom-select">
+						           <select wicket:id="cmbUsuario" class="form-control combo"></select>
+						       </label>
+						   </div>
+					  </div>
+                    </div><!-- fim col -->					                    	
+               </div><!-- fim row -->
+		    </div>
+		    <div class="modal-footer" style="background-color: #f5f5f5;">
+	        	<button type="button" class="btn btn-primary" wicket:id="btnPesquisar" onclick="$('#modalFiltro').modal('hide');$('#carregamentoModal').modal('show');"><i class="fa fa-search"></i> Pesquisar</button>
+	        	<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>				        
+	        </div>
+		  </div>
+		</div>
+		</div><!-- fim modal filtro -->
+				
+			</form>
+			
+		</div>
+		
+	</wicket:extend>
+</body>
+</html>

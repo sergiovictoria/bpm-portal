@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:wicket="http://wicket.apache.org">
+<head>
+<title>Atividades encerradas</title>
+
+</head>	
+<body>
+	<wicket:extend>		
+		<form wicket:id="filtroForm"  class="form-horizontal atividadesContainer">
+			<div class="panel panel-primary">			
+				<div class="panel-menu">
+					<button wicket:id="buscaBtn"  class="btn btn-primary" type="button"><i class="fa fa-search"></i> Buscar</button>
+				</div>
+				<div class="panel-body">
+					<div class="secao-filtro-atividades">
+						<div class="row">
+							<div class="col-sm-6">																
+								<div class="form-group form-group-sm">
+									<div class="col-sm-12">
+										<input wicket:id="filtroInput"  type="text" class="form-control" placeholder="Busque..." />
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-3">
+								<div class="form-group form-group-sm">
+									<label class="col-sm-2 control-label">De</label>
+									<div class="col-sm-9 text-left">
+										<div class="input-group input-group-sm date">									
+											<input wicket:id="inicioInput" type="text" class="form-control date" />
+										</div>									
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-3">
+								<div class="form-group form-group-sm">
+									<label class="col-sm-2 control-label">Até</label>
+									<div class="col-sm-9 text-left">
+										<div class="input-group input-group-sm date">									
+											<input wicket:id="fimInput"  type="text" class="form-control date" />
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>					
+					</div>					
+				</div>
+			</div>
+
+			<div wicket:id="atividadesContainer" class="secaoAtividades"> <!--  style="display: none">  -->
+				<table class="table table-bordered table-hover table-condensed mb-none dataTable no-footer atividades-encerradas">
+					<thead>
+						<tr>
+							<th wicket:id="orderId">
+								<i class="fa fa-sort-asc"></i> 
+                                <i class="fa fa-sort-desc"></i> 
+                                <i class="fa fa-sort"></i>  
+								Id
+							</th>
+							<th wicket:id="orderProcesso">
+								<i class="fa fa-sort-asc"></i> 
+                                <i class="fa fa-sort-desc"></i> 
+                                <i class="fa fa-sort"></i> 
+								Processo
+							</th>
+							<th wicket:id="orderStatus">
+								<i class="fa fa-sort-asc"></i> 
+                                <i class="fa fa-sort-desc"></i> 
+                                <i class="fa fa-sort"></i> 
+								Status
+							</th>
+							<th wicket:id="orderTermino">
+								<i class="fa fa-sort-asc"></i> 
+                                <i class="fa fa-sort-desc"></i> 
+                                <i class="fa fa-sort"></i> 
+								Término
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr wicket:id="casesDataView">
+							<td><span wicket:id="id">[Id]</span></td>
+							<td><span wicket:id="processo">[Processo]</span></td>
+							<td><span wicket:id="status">[Status]</span></td>
+							<td><span wicket:id="termino">[Término]</span></td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="row">
+					<div class="col-sm-12">
+						<span wicket:id="navigator" class="dataview-navigator"></span>
+					</div>
+				</div>
+			</div>
+			<div wicket:id="timelineContainer" class="panel panel-primary secaoTimeline encerradas secao" style="display: none">
+				<div class="panel-menu">
+					<span class="titulo-secao">Linha do Tempo</span>
+				</div>
+				<div class="panel-body">
+					<div wicket:id="timelinePanel"></div>
+				</div>
+			</div>
+			
+			<div class="alertaContainer alert alert-info" style="display: none; clear: both">	
+				Não foram encontrados resultados
+			</div>
+			
+		</form>
+		<script>
+			var initTabelas = function(){
+				var linhas = $("table.atividades-encerradas > tbody > tr");
+				linhas.first().addClass("selecionado");
+				linhas.click(function(){
+					$("table.atividades-encerradas > tbody > tr").removeClass("selecionado");
+					$(this).addClass("selecionado");
+				});
+			}
+
+			var visibilidadeCampos = function(){
+				var quantidadeRegistros = $(".atividades-encerradas > tbody > tr").length;
+					
+				if(quantidadeRegistros <= 0){
+					$(".secaoAtividades").hide();
+					$(".secaoTimeline").hide();
+					$(".alertaContainer").show();
+				}else{
+					$(".secaoAtividades").show();
+					$(".secaoTimeline").show();
+					$(".alertaContainer").hide();
+				}				
+			}
+
+			$(function(){
+				initTabelas();
+				visibilidadeCampos();
+			});
+		</script>
+	</wicket:extend>
+</body>
+</html>
